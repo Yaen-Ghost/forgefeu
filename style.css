@@ -160,6 +160,7 @@ button:hover, .btn:hover {
   font-size: 1.1rem;
 }
 
+/* Bouton fermer */
 .close {
   position: absolute;
   top: 30px;
@@ -180,29 +181,31 @@ button:hover, .btn:hover {
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;                  /* centre verticalement */
+  top: 50%;
   transform: translateY(-50%);
-  transform-origin: center;  /* point d'ancrage au centre */
-  font-size: 60px;           /* taille plus grande */
-  font-weight: bold;
-  color: white;
-  padding: 10px 20px;
-  user-select: none;
-  transition: color 0.3s, transform 0.3s;
-  z-index: 1001;             /* au-dessus de l'image */
+  padding: 20px;             /* zone cliquable */
+  z-index: 1001;
 }
 
-.prev:hover, .next:hover {
+.prev span, .next span {
+  display: inline-block;
+  font-size: 60px;           /* taille du symbole */
+  font-weight: bold;
+  color: white;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.prev:hover span, .next:hover span {
   color: #ff6600;
-  transform: translateY(-50%) scale(1.1); /* zoom subtil au survol */
+  transform: scale(1.1);      /* zoom seulement sur le symbole */
 }
 
 .prev {
-  left: 0;                    /* à gauche de l'image */
+  left: 0;
 }
 
 .next {
-  right: 0;                   /* à droite de l'image */
+  right: 0;
 }
 
 
@@ -248,6 +251,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
