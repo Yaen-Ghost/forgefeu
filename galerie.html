@@ -64,8 +64,17 @@ function showSlide(index) {
   const lightboxImg = document.getElementById('lightbox-img');
   const caption = document.getElementById('caption');
 
+  // Retirer la classe show pour fade-out
+  lightboxImg.classList.remove("show");
+
+  // Changer l'image et le caption
   lightboxImg.src = galleryImages[currentIndex].src;
   caption.textContent = galleryImages[currentIndex].alt;
+
+  // Réappliquer show pour fade-in
+  setTimeout(() => {
+    lightboxImg.classList.add("show");
+  }, 10);
 }
 
 function changeSlide(n) {
@@ -88,6 +97,7 @@ document.getElementById('lightbox').onclick = function(e) {
 
 </body>
 </html>
+
 
 
 
