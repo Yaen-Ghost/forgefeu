@@ -59,7 +59,7 @@ nav a:hover {
 
 /* ----------------- HERO (page accueil) ----------------- */
 .hero {
-  background: url("./images/hero.jpg") center/cover no-repeat; /* image hero */
+  background: url("./images/cerises1.jpg") center/cover no-repeat; /* image hero */
   height: 80vh;
   display: flex;
   justify-content: center;
@@ -256,4 +256,5 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
