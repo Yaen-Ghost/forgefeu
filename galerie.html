@@ -44,8 +44,32 @@
   <div id="caption"></div>
 </div>
 
+<script>
+function openLightbox(img) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const caption = document.getElementById('caption');
+  
+  lightbox.style.display = "block";
+  lightboxImg.src = img.src;
+  caption.textContent = img.alt;
+}
+
+// Fermer la lightbox
+document.querySelector('.close').onclick = function() {
+  document.getElementById('lightbox').style.display = "none";
+}
+
+// Fermer en cliquant en dehors de l'image
+document.getElementById('lightbox').onclick = function(e) {
+  if(e.target === this) {
+    this.style.display = "none";
+  }
+}
+</script>
 
 </body>
 </html>
+
 
 
