@@ -46,7 +46,7 @@
   <div id="caption"></div>
 </div>
 
-<script>
+  <script>
 let currentIndex = 0;
 let galleryImages = document.querySelectorAll('.gallery img');
 
@@ -64,17 +64,19 @@ function showSlide(index) {
   const lightboxImg = document.getElementById('lightbox-img');
   const caption = document.getElementById('caption');
 
-  // Retirer la classe show pour fade-out
-  lightboxImg.classList.remove("show");
+  // Fade-out
+  lightboxImg.style.opacity = 0;
 
-  // Changer l'image et le caption
-  lightboxImg.src = galleryImages[currentIndex].src;
-  caption.textContent = galleryImages[currentIndex].alt;
-
-  // Réappliquer show pour fade-in
+  // Changer l'image après un petit délai
   setTimeout(() => {
-    lightboxImg.classList.add("show");
-  }, 10);
+    lightboxImg.src = galleryImages[currentIndex].src;
+    caption.textContent = galleryImages[currentIndex].alt;
+
+    // Fade-in
+    requestAnimationFrame(() => {
+      lightboxImg.style.opacity = 1;
+    });
+  }, 200); // correspond à la durée du fade
 }
 
 function changeSlide(n) {
@@ -97,6 +99,7 @@ document.getElementById('lightbox').onclick = function(e) {
 
 </body>
 </html>
+
 
 
 
