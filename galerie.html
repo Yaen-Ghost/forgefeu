@@ -40,6 +40,8 @@
   <!-- Lightbox -->
 <div id="lightbox" class="lightbox">
   <span class="close">&times;</span>
+  <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+  <span class="next" onclick="changeSlide(1)">&#10095;</span>
   <img class="lightbox-content" id="lightbox-img">
   <div id="caption"></div>
 </div>
@@ -70,6 +72,7 @@ document.getElementById('lightbox').onclick = function(e) {
 
 </body>
 </html>
+
 
 
 
