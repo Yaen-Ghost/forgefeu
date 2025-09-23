@@ -165,10 +165,11 @@ button:hover, .btn:hover {
   top: 30px;
   right: 50px;
   color: white;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.3s;
+  z-index: 1001;
 }
 
 .close:hover {
@@ -176,35 +177,32 @@ button:hover, .btn:hover {
 }
 
 /* Flèches précédent / suivant */
-/* Flèches précédent / suivant */
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;                  /* Centre verticalement */
+  top: 50%;                  /* centre verticalement */
   transform: translateY(-50%);
-  font-size: 60px;            /* Plus grandes */
+  font-size: 60px;           /* plus grandes */
   font-weight: bold;
   color: white;
   padding: 10px 20px;
   user-select: none;
   transition: color 0.3s, transform 0.3s;
-  z-index: 1001;             /* Au-dessus de l'image */
+  z-index: 1001;             /* au-dessus de l'image */
 }
 
 .prev:hover, .next:hover {
   color: #ff6600;
-  transform: translateY(-50%) scale(1.2); /* Légère animation au survol */
+  transform: translateY(-50%) scale(1.2); /* effet au survol */
 }
 
 .prev {
-  left: 0;                    /* À gauche de l'image */
+  left: 0;                    /* à gauche de l'image */
 }
 
 .next {
-  right: 0;                   /* À droite de l'image */
+  right: 0;                   /* à droite de l'image */
 }
-
-
 
 
 /* FORMULAIRE */
@@ -249,6 +247,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
