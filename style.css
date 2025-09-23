@@ -176,32 +176,34 @@ button:hover, .btn:hover {
 }
 
 /* Flèches précédent / suivant */
+/* Flèches précédent / suivant */
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  color: white;
+  top: 50%;                  /* Centre verticalement */
+  transform: translateY(-50%);
+  font-size: 60px;            /* Plus grandes */
   font-weight: bold;
-  font-size: 40px;
+  color: white;
+  padding: 10px 20px;
   user-select: none;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s;
+  z-index: 1001;             /* Au-dessus de l'image */
 }
 
 .prev:hover, .next:hover {
   color: #ff6600;
+  transform: translateY(-50%) scale(1.2); /* Légère animation au survol */
 }
 
 .prev {
-  left: 20px;
-  transform: translateY(-50%);
+  left: 0;                    /* À gauche de l'image */
 }
 
 .next {
-  right: 20px;
-  transform: translateY(-50%);
+  right: 0;                   /* À droite de l'image */
 }
+
 
 
 
@@ -247,6 +249,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
