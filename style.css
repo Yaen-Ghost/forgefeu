@@ -182,7 +182,8 @@ button:hover, .btn:hover {
   position: absolute;
   top: 50%;                  /* centre verticalement */
   transform: translateY(-50%);
-  font-size: 60px;           /* plus grandes */
+  transform-origin: center;  /* point d'ancrage au centre */
+  font-size: 60px;           /* taille plus grande */
   font-weight: bold;
   color: white;
   padding: 10px 20px;
@@ -193,7 +194,7 @@ button:hover, .btn:hover {
 
 .prev:hover, .next:hover {
   color: #ff6600;
-  transform: translateY(-50%) scale(1.2); /* effet au survol */
+  transform: translateY(-50%) scale(1.1); /* zoom subtil au survol */
 }
 
 .prev {
@@ -247,6 +248,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
