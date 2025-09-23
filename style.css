@@ -181,15 +181,16 @@ button:hover, .btn:hover {
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 50%;                  
   transform: translateY(-50%);
-  padding: 20px;             /* zone cliquable */
+  padding: 20px;             /* zone cliquable large */
   z-index: 1001;
 }
 
 .prev span, .next span {
+  pointer-events: none;      /* le span ne capture pas les clics */
   display: inline-block;
-  font-size: 60px;           /* taille du symbole */
+  font-size: 60px;           
   font-weight: bold;
   color: white;
   transition: transform 0.3s, color 0.3s;
@@ -197,17 +198,16 @@ button:hover, .btn:hover {
 
 .prev:hover span, .next:hover span {
   color: #ff6600;
-  transform: scale(1.1);      /* zoom seulement sur le symbole */
+  transform: scale(1.1);      /* zoom léger sur le symbole */
 }
 
 .prev {
-  left: 0;
+  left: 0;                    
 }
 
 .next {
-  right: 0;
+  right: 0;                   
 }
-
 
 /* FORMULAIRE */
 form {
@@ -251,6 +251,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
