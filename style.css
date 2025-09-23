@@ -1,16 +1,24 @@
 /* Importer une police Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-body {
-  font-family: 'Poppins', sans-serif;
+/* ----------------- BASE ----------------- */
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
+  font-family: 'Poppins', sans-serif;
   background: #f9f9f9;
   color: #333;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column; /* pour le footer sticky */
 }
 
-/* HEADER + NAVIGATION */
+/* Main prend tout l’espace restant */
+main {
+  flex: 1;
+}
+
+/* ----------------- HEADER + NAVIGATION ----------------- */
 header {
   background: #222;
   padding: 15px 0;
@@ -39,23 +47,12 @@ nav a {
 }
 
 nav a:hover {
-  color: #ff6600; /* couleur d’accent */
+  color: #ff6600;
 }
 
-/* HERO (page accueil) */
-main h1 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-main p {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-/* HERO SECTION */
+/* ----------------- HERO (page accueil) ----------------- */
 .hero {
-  background: url("./images/cerises1.jpg") center/cover no-repeat;
+  background: url("./images/hero.jpg") center/cover no-repeat; /* image hero */
   height: 80vh;
   display: flex;
   justify-content: center;
@@ -65,7 +62,7 @@ main p {
   position: relative;
 }
 
-/* Effet overlay sombre pour lisibilité */
+/* Overlay sombre pour lisibilité */
 .hero::before {
   content: "";
   position: absolute;
@@ -75,7 +72,7 @@ main p {
 }
 
 .hero-content {
-  position: relative; /* pour que le texte passe au-dessus de l’overlay */
+  position: relative;
   z-index: 1;
   max-width: 700px;
   padding: 20px;
@@ -91,184 +88,6 @@ main p {
   margin-bottom: 25px;
 }
 
-
-/* BOUTONS */
+/* ----------------- BOUTONS ----------------- */
 button, .btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #ff6600;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover, .btn:hover {
-  background: #e65500;
-}
-
-/* GALERIE */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; /* <-- important pour changer le curseur */
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-
-/* LIGHTBOX */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  padding-top: 60px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9);
-}
-
-.lightbox-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-  opacity: 1;                   /* départ visible */
-  transition: opacity 0.3s ease; /* durée du fade */
-}
-
-#caption {
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  font-size: 1.1rem;
-}
-
-/* Bouton fermer */
-.close {
-  position: absolute;
-  top: 30px;
-  right: 50px;
-  color: white;
-  font-size: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s;
-  z-index: 1001;
-}
-
-.close:hover {
-  color: #ff6600;
-}
-
-/* Flèches précédent / suivant */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 20px;             
-  z-index: 1001;
-}
-
-.prev span, .next span {
-  pointer-events: none;      
-  display: inline-block;
-  font-size: 60px;           
-  font-weight: bold;
-  color: white;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.prev:hover span, .next:hover span {
-  color: #ff6600;
-  transform: scale(1.1);      
-}
-
-.prev {
-  left: 0;                    
-}
-
-.next {
-  right: 0;                   
-}
-
-
-/* FORMULAIRE */
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-form input, form textarea {
-  padding: 12px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-form button {
-  margin-top: 15px;
-  padding: 12px;
-}
-
-/* FOOTER */
-footer {
-  background: #222;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-}
-
-footer a {
-  color: #ff6600;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  display: inline-bl
