@@ -108,15 +108,20 @@ button, .btn {
   border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s;
-    /* Ajouté pour supprimer toute ligne/soulignement */
-  text-decoration: none;
-  outline: none; /* optionnel : supprime le contour de focus */
+
+  /* Supprimer tout soulignement et contour */
+  text-decoration: none !important;
+  outline: none !important;
 }
 
 button:hover, .btn:hover {
   background: #e65500;
-    text-decoration: none; /* assure qu’il n’y a pas de soulignement au hover */
+  text-decoration: none !important;
+}
 
+/* Supprimer l’outline lors du focus */
+button:focus, .btn:focus {
+  outline: none;
 }
 
 /* ----------------- GALERIE ----------------- */
@@ -264,6 +269,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
