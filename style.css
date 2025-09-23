@@ -13,9 +13,16 @@ html, body {
   flex-direction: column; /* pour le footer sticky */
 }
 
+/* Conteneur principal en flex */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 100% de la hauteur de la fenêtre */
+}
+
 /* Main prend tout l’espace restant */
 main {
-  flex: 1;
+  flex: 1 0 auto;
 }
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
@@ -237,6 +244,7 @@ footer {
   color: white;
   text-align: center;
   padding: 15px;
+  flex-shrink: 0; /* assure qu'il ne rétrécit pas */
   /* plus besoin de margin-top, le flex gère l’espace */
 }
 
@@ -248,3 +256,4 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
