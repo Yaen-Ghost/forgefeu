@@ -55,7 +55,7 @@ main p {
 
 /* HERO SECTION */
 .hero {
-  background: url(".images/cerises1.jpg") center/cover no-repeat; /* Mets ta propre image */
+  background: url("./images/cerises1.jpg") center/cover no-repeat; /* Mets ta propre image */
   height: 80vh;
   display: flex;
   justify-content: center;
@@ -254,6 +254,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
