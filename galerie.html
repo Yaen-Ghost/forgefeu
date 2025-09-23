@@ -21,10 +21,12 @@
   <main>
     <h1>Galerie</h1>
     <p>Voici quelques-unes de mes impressions 3D :</p>
-    <div class="gallery">
-      <img src="images/20250921_111114.jpg" alt="Cerises 1">
-      <img src="images/20250921_111239.jpg" alt="Amphinobi 1">
-      <img src="images/figurine3.jpg" alt="Figurine 3">
+   <div class="gallery">
+  <img src="images/20250921_111114.jpg" alt="Cerises 1" onclick="openLightbox(this)">
+  <img src="images/20250921_111239.jpg" alt="Amphinobi 1" onclick="openLightbox(this)">
+  <img src="images/figurine3.jpg" alt="Figurine 3" onclick="openLightbox(this)">
+</div>
+
       <!-- Ajoute autant d’images que tu veux -->
     </div>
   </main>
@@ -34,6 +36,16 @@
        <a href="mentions.html">Mentions légales</a>
     </p>
   </footer>
+
+  <!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+  <div id="caption"></div>
+</div>
+
+
 </body>
 </html>
+
 
