@@ -151,12 +151,8 @@ button:hover, .btn:hover {
   max-width: 90%;
   max-height: 80%;
   border-radius: 10px;
-  opacity: 0;                /* départ transparent */
-  transition: opacity 0.5s ease; /* transition pour le fade */
-}
-
-.lightbox-content.show {
-  opacity: 1;                /* visible */
+  opacity: 1;                   /* départ visible */
+  transition: opacity 0.3s ease; /* durée du fade */
 }
 
 #caption {
@@ -215,6 +211,7 @@ button:hover, .btn:hover {
   right: 0;                   
 }
 
+
 /* FORMULAIRE */
 form {
   display: flex;
@@ -257,6 +254,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
