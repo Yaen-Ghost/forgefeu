@@ -53,6 +53,45 @@ main p {
   color: #555;
 }
 
+/* HERO SECTION */
+.hero {
+  background: url("images/hero.jpg") center/cover no-repeat; /* Mets ta propre image */
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+/* Effet overlay sombre pour lisibilité */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+  position: relative; /* pour que le texte passe au-dessus de l’overlay */
+  z-index: 1;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+}
+
+
 /* BOUTONS */
 button, .btn {
   display: inline-block;
@@ -132,3 +171,4 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
