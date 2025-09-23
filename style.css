@@ -175,6 +175,35 @@ button:hover, .btn:hover {
   color: #ff6600;
 }
 
+/* Flèches précédent / suivant */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.prev:hover, .next:hover {
+  color: #ff6600;
+}
+
+.prev {
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+.next {
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+
 
 /* FORMULAIRE */
 form {
@@ -218,6 +247,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
