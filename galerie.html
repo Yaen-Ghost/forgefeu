@@ -47,14 +47,29 @@
 </div>
 
 <script>
+let currentIndex = 0;
+let galleryImages = document.querySelectorAll('.gallery img');
+
 function openLightbox(img) {
-  const lightbox = document.getElementById('lightbox');
+  currentIndex = Array.from(galleryImages).indexOf(img);
+  showSlide(currentIndex);
+  document.getElementById('lightbox').style.display = "block";
+}
+
+function showSlide(index) {
+  if (index < 0) currentIndex = galleryImages.length - 1;
+  else if (index >= galleryImages.length) currentIndex = 0;
+  else currentIndex = index;
+
   const lightboxImg = document.getElementById('lightbox-img');
   const caption = document.getElementById('caption');
-  
-  lightbox.style.display = "block";
-  lightboxImg.src = img.src;
-  caption.textContent = img.alt;
+
+  lightboxImg.src = galleryImages[currentIndex].src;
+  caption.textContent = galleryImages[currentIndex].alt;
+}
+
+function changeSlide(n) {
+  showSlide(currentIndex + n);
 }
 
 // Fermer la lightbox
@@ -70,8 +85,10 @@ document.getElementById('lightbox').onclick = function(e) {
 }
 </script>
 
+
 </body>
 </html>
+
 
 
 
