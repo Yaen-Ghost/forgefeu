@@ -151,6 +151,12 @@ button:hover, .btn:hover {
   max-width: 90%;
   max-height: 80%;
   border-radius: 10px;
+  opacity: 0;                /* départ transparent */
+  transition: opacity 0.5s ease; /* transition pour le fade */
+}
+
+.lightbox-content.show {
+  opacity: 1;                /* visible */
 }
 
 #caption {
@@ -181,14 +187,14 @@ button:hover, .btn:hover {
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;                  
+  top: 50%;
   transform: translateY(-50%);
-  padding: 20px;             /* zone cliquable large */
+  padding: 20px;             
   z-index: 1001;
 }
 
 .prev span, .next span {
-  pointer-events: none;      /* le span ne capture pas les clics */
+  pointer-events: none;      
   display: inline-block;
   font-size: 60px;           
   font-weight: bold;
@@ -198,7 +204,7 @@ button:hover, .btn:hover {
 
 .prev:hover span, .next:hover span {
   color: #ff6600;
-  transform: scale(1.1);      /* zoom léger sur le symbole */
+  transform: scale(1.1);      
 }
 
 .prev {
@@ -251,6 +257,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
