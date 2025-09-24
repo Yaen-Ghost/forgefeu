@@ -25,14 +25,13 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
-  /* Dégradé vertical doux, milieu plus foncé */
   background: linear-gradient(
     to bottom,
-    #D15347 0%,      /* rouge vif */
-    #D15347 30%,     /* étale le rouge */
-    #D15347 50%,     /* couleur intermédiaire plus foncée */
-    #D15347 70%,     /* étale le rouge foncé */
-    #D15347 100%     /* rouge foncé */
+    #D15347 0%,
+    #D15347 30%,
+    #D15347 50%,
+    #D15347 70%,
+    #D15347 100%
   );
   padding: 15px 0;
   position: sticky;
@@ -41,6 +40,31 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* Conteneur principal du header en grille */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* 3 colonnes : gauche | centre | droite */
+  align-items: center;
+  position: relative;
+}
+
+/* Logo */
+.logo {
+  justify-self: start;
+}
+.logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* Navigation desktop */
+nav {
+  grid-column: 2; /* menu centré */
+}
 nav ul {
   list-style: none;
   display: flex;
@@ -48,38 +72,60 @@ nav ul {
   margin: 0;
   padding: 0;
 }
-
 nav li {
   margin: 0 20px;
 }
-
 nav a {
   color: white;
   font-weight: 600;
-  text-decoration: none; /* supprime le soulignement */
+  text-decoration: none;
   transition: color 0.3s;
 }
-
 nav a:hover {
   color: #E07A5F !important;
-  text-decoration: none; /* toujours sans soulignement */
 }
 
-/* Header container */
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* ------------ VERSION MOBILE ------------- */
+.hamburger {
+  display: none; /* caché par défaut */
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  justify-self: end;
 }
 
-/* Logo */
-.logo img {
-  height: 50px; /* ajuste selon ton logo */
-  width: auto;
-  display: block;
+/* Mobile : écran < 768px */
+@media (max-width: 768px) {
+  /* Transforme le header */
+  .header-container {
+    grid-template-columns: 1fr auto; /* logo | hamburger */
+  }
+
+  nav {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    display: none; /* caché par défaut */
+    background: #D15347;
+    padding: 10px 0;
+  }
+
+  nav ul.active {
+    display: flex; /* affiché quand actif */
+  }
+
+  nav li {
+    margin: 10px 0;
+  }
+
+  /* Hamburger visible en mobile */
+  .hamburger {
+    display: block;
+  }
 }
 
 
@@ -542,6 +588,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
