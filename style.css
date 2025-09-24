@@ -53,7 +53,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #FFF2EE;
+  color: #E88880;
   text-decoration: none; /* toujours sans soulignement */
 }
 
@@ -401,3 +401,4 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
