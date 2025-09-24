@@ -25,10 +25,8 @@
         <img src="images/logo.png" alt="Forgefeu Logo">
       </a>
 
-      <!-- Hamburger mobile -->
-      <div class="hamburger">
-        <i class="fas fa-bars"></i>
-      </div>
+      <!-- Hamburger -->
+      <div class="hamburger"><i class="fas fa-bars"></i></div>
 
       <!-- Navigation -->
       <nav>
@@ -88,15 +86,17 @@
 
   <!-- Script Hamburger -->
   <script>
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav');
 
-    hamburger.addEventListener('click', () => {
-      nav.classList.toggle('active');
-      hamburger.innerHTML = nav.classList.contains('active')
-        ? '<i class="fas fa-times"></i>'
-        : '<i class="fas fa-bars"></i>';
-    });
-  </script>
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.innerHTML = navMenu.classList.contains('active')
+    ? '<i class="fas fa-times"></i>'
+    : '<i class="fas fa-bars"></i>';
+});
+</script>
+
 </body>
 </html>
+
