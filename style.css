@@ -6,7 +6,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #f9f9f9;
+  background: #FFF5F0; /* fond clair orangé */
   color: #333;
   line-height: 1.6;
   display: flex;
@@ -27,7 +27,7 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
-  background: #222;
+  background: #FF4500; /* orange feu */
   padding: 15px 0;
   position: sticky;
   top: 0;
@@ -54,7 +54,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #ff6600;
+  color: #FF6347; /* rouge vif */
 }
 
 /* ----------------- HERO (page accueil) ----------------- */
@@ -93,33 +93,30 @@ nav a:hover {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(255,69,0,0.5); /* overlay orange feu */
   z-index: 0;
 }
-
 
 /* ----------------- BOUTONS ----------------- */
 button, .btn {
   display: inline-block;
   padding: 10px 20px;
-  background: #ff6600;
+  background: #FF4500; /* couleur principale */
   color: white;
   border: none;
   border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s;
 
-  /* Supprimer tout soulignement et contour */
   text-decoration: none !important;
   outline: none !important;
 }
 
 button:hover, .btn:hover {
-  background: #e65500;
+  background: #FF6347; /* rouge vif */
   text-decoration: none !important;
 }
 
-/* Supprimer l’outline lors du focus */
 button:focus, .btn:focus {
   outline: none;
 }
@@ -136,14 +133,14 @@ button:focus, .btn:focus {
 .gallery img {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(255,69,0,0.1); /* ombre orangée */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(255,69,0,0.2);
 }
 
 /* ----------------- LIGHTBOX ----------------- */
@@ -191,7 +188,7 @@ button:focus, .btn:focus {
 }
 
 .close:hover {
-  color: #ff6600;
+  color: #FF6347;
 }
 
 /* Flèches précédent / suivant */
@@ -214,17 +211,12 @@ button:focus, .btn:focus {
 }
 
 .prev:hover span, .next:hover span {
-  color: #ff6600;
+  color: #FF6347;
   transform: scale(1.1);
 }
 
-.prev {
-  left: 0;
-}
-
-.next {
-  right: 0;
-}
+.prev { left: 0; }
+.next { right: 0; }
 
 /* Boutique */
 .shop {
@@ -237,7 +229,7 @@ button:focus, .btn:focus {
 .product {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(255,69,0,0.1);
   padding: 15px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -245,25 +237,18 @@ button:focus, .btn:focus {
 
 .product img {
   width: 100%;
-  height: 180px; /* fixe un format horizontal identique */
+  height: 180px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
 }
 
-.product h3 {
-  margin: 10px 0 5px;
-}
+.product h3 { margin: 10px 0 5px; }
+.product .price { font-weight: bold; color: #FF4500; }
 
-.product .price {
-  font-weight: bold;
-  color: #ff6600;
-}
-
-/* Hover effet produit */
 .product:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(255,69,0,0.2);
 }
 
 /* Lightbox boutique */
@@ -301,21 +286,13 @@ button:focus, .btn:focus {
   justify-content: space-between;
 }
 
-.shop-lightbox-info h2 {
-  margin-top: 0;
-}
-
+.shop-lightbox-info h2 { margin-top: 0; }
 .share a {
   margin-right: 10px;
-  color: #ff6600;
+  color: #FF4500;
   text-decoration: none;
 }
-
-.share a:hover {
-  text-decoration: underline;
-}
-
-/* Bouton fermer */
+.share a:hover { text-decoration: underline; }
 .shop-lightbox .close {
   position: absolute;
   top: 20px;
@@ -326,7 +303,6 @@ button:focus, .btn:focus {
   cursor: pointer;
 }
 
-
 /* ----------------- FORMULAIRE ----------------- */
 form {
   display: flex;
@@ -336,7 +312,7 @@ form {
   background: white;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(255,69,0,0.1);
 }
 
 form input, form textarea {
@@ -350,11 +326,14 @@ form input, form textarea {
 form button {
   margin-top: 15px;
   padding: 12px;
+  background: #FF4500;
+  color: white;
 }
+form button:hover { background: #FF6347; }
 
 /* ----------------- FOOTER ----------------- */
 footer {
-  background: #222;
+  background: #FF4500;
   color: white;
   padding: 30px 20px 10px;
   flex-shrink: 0;
@@ -375,7 +354,7 @@ footer {
 
 .footer-column h4 {
   margin-bottom: 10px;
-  color: #ff6600;
+  color: #FFF5F0;
 }
 
 .footer-column ul {
@@ -384,9 +363,7 @@ footer {
   margin: 0;
 }
 
-.footer-column ul li {
-  margin-bottom: 8px;
-}
+.footer-column ul li { margin-bottom: 8px; }
 
 .footer-column a {
   color: white;
@@ -395,7 +372,7 @@ footer {
 }
 
 .footer-column a:hover {
-  color: #ff6600;
+  color: #FF6347;
   text-decoration: underline;
 }
 
@@ -406,9 +383,7 @@ footer {
   transition: color 0.3s;
 }
 
-.social-icons a:hover {
-  color: #ff6600;
-}
+.social-icons a:hover { color: #FF6347; }
 
 .footer-bottom {
   text-align: center;
@@ -417,19 +392,13 @@ footer {
   color: #ccc;
 }
 
-/* Responsive : les colonnes passent en vertical sur petits écrans */
+/* Responsive footer */
 @media (max-width: 700px) {
   .footer-container {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
-  .footer-column {
-    margin: 15px 0;
-  }
-
-  .social-icons a {
-    margin: 0 10px;
-  }
+  .footer-column { margin: 15px 0; }
+  .social-icons a { margin: 0 10px; }
 }
