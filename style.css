@@ -61,7 +61,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #E88880 !important;
+  color: #E07A5F !important;
   text-decoration: none; /* toujours sans soulignement */
 }
 
@@ -409,6 +409,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
