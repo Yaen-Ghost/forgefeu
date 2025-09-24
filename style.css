@@ -47,15 +47,13 @@ nav li {
   margin: 0 20px;
 }
 
-nav a {
+header nav a {
   color: white;
-  text-decoration: none;
-  font-weight: 600;
   transition: color 0.3s;
 }
 
-nav a:hover {
-  color: #FFF2EE; /* texte clair au hover */
+header nav a:hover {
+  color: #FFF2EE !important;
 }
 
 /* ----------------- HERO ----------------- */
@@ -402,3 +400,4 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
