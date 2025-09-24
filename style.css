@@ -96,20 +96,16 @@ nav a:hover {
 
 /* ----------------- MOBILE ----------------- */
 @media (max-width: 768px) {
-  /* Hamburger visible */
-  .hamburger {
-    display: block;
+  .hamburger { display: block; }
+  nav { 
+    position: absolute; top: 100%; left: 0; width: 100%; 
+    background: #D15347; flex-direction: column; display: none; 
   }
+  nav.active { display: flex; }
+  nav ul { flex-direction: column; }
+  nav li { margin: 15px 0; text-align: center; }
+}
 
-  /* Navigation mobile */
-  nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #D15347;
-    display: none; /* caché par défaut */
-    flex-direct
 
 
 
@@ -572,6 +568,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
