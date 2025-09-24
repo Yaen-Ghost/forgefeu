@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Boutique - Mon Portfolio 3D</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Boutique</h1>
+    <p>Découvrez mes figurines disponibles à la vente. Pour commander, contactez-moi directement par mail.</p>
+
+    <div class="shop">
+      <!-- Produit 1 -->
+      <div class="product">
+        <img src="images/figurine1.jpg" alt="Figurine Cerises" onclick="openShopLightbox(0)">
+        <h3>Figurine Cerises</h3>
+        <p class="price">25 €</p>
+      </div>
+
+      <!-- Produit 2 -->
+      <div class="product">
+        <img src="images/figurine2.jpg" alt="Amphinobi" onclick="openShopLightbox(1)">
+        <h3>Amphinobi</h3>
+        <p class="price">30 €</p>
+      </div>
+
+      <!-- Produit 3 -->
+      <div class="product">
+        <img src="images/figurine3.jpg" alt="Figurine Dragon" onclick="openShopLightbox(2)">
+        <h3>Figurine Dragon</h3>
+        <p class="price">40 €</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Forgefeu | 
+       <a href="mentions.html">Mentions légales</a>
+    </p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="shop-lightbox" class="shop-lightbox">
+    <span class="close" onclick="closeShopLightbox()">&times;</span>
+    <div class="shop-lightbox-content">
+      <div class="shop-lightbox-img">
+        <img id="shop-lightbox-img" src="" alt="">
+      </div>
+      <div class="shop-lightbox-info">
+        <h2 id="shop-title"></h2>
+        <p id="shop-price"></p>
+        <p id="shop-description"></p>
+        <div class="share">
+          <p>Partager :</p>
+          <a id="share-facebook" target="_blank">Facebook</a> |
+          <a id="share-twitter" target="_blank">Twitter</a> |
+          <a id="share-instagram" target="_blank">Instagram</a> |
+          <a id="share-link" target="_blank">Copier le lien</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      {
+        img: "images/figurine1.jpg",
+        title: "Figurine Cerises",
+        price: "25 €",
+        description: "Une jolie figurine imprimée en 3D, peinte à la main."
+      },
+      {
+        img: "images/figurine2.jpg",
+        title: "Amphinobi",
+        price: "30 €",
+        description: "Figurine Amphinobi en impression 3D, idéale pour les fans de Pokémon."
+      },
+      {
+        img: "images/figurine3.jpg",
+        title: "Figurine Dragon",
+        price: "40 €",
+        description: "Un dragon majestueux imprimé en 3D, parfait pour décorer votre bureau."
+      }
+    ];
+
+    const lightbox = document.getElementById('shop-lightbox');
+    const lightboxImg = document.getElementById('shop-lightbox-img');
+    const lightboxTitle = document.getElementById('shop-title');
+    const lightboxPrice = document.getElementById('shop-price');
+    const lightboxDesc = document.getElementById('shop-description');
+
+    function openShopLightbox(index) {
+      const product = products[index];
+      lightboxImg.src = product.img;
+      lightboxTitle.textContent = product.title;
+      lightboxPrice.textContent = product.price;
+      lightboxDesc.textContent = product.description;
+
+      // Mettre à jour les liens de partage
+      const pageUrl = window.location.href;
+      document.getElementById("share-facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+      document.getElementById("share-twitter").href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${product.title}`;
+      document.getElementById("share-instagram").href = `https://www.instagram.com/`; // Instagram n’a pas d’API publique
+      document.getElementById("share-link").href = pageUrl;
+
+      lightbox.style.display = "flex";
+    }
+
+    function closeShopLightbox() {
+      lightbox.style.display = "none";
+    }
+  </script>
+</body>
+</html>
