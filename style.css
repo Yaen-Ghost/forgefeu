@@ -6,7 +6,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #FFF5F0; /* fond clair orangé */
+  background: #FFF2EE; /* fond clair orangé doux */
   color: #333;
   line-height: 1.6;
   display: flex;
@@ -27,23 +27,12 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
-  background: linear-gradient(90deg, #FF4500 0%, #FF6347 100%);
+  background: linear-gradient(90deg, #D94F2C 0%, #E07A5F 100%);
   padding: 15px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-nav a {
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #FFF5F0;
 }
 
 nav ul {
@@ -58,7 +47,18 @@ nav li {
   margin: 0 20px;
 }
 
-/* ----------------- HERO (page accueil) ----------------- */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #FFF2EE; /* texte clair au hover */
+}
+
+/* ----------------- HERO ----------------- */
 .hero {
   position: relative;
   height: 80vh;
@@ -76,47 +76,45 @@ nav li {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  opacity: 0.85; /* réduit légèrement l'opacité */
+  opacity: 0.85; /* légèrement estompée */
 }
 
-/* Overlay dégradé pour intensifier l'effet feu et améliorer lisibilité */
+/* Overlay dégradé feu pour lisibilité */
 .hero::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom right, rgba(255,69,0,0.4), rgba(255,99,71,0.4));
+  background: linear-gradient(to bottom right, rgba(217,79,44,0.4), rgba(224,122,95,0.4));
   z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2; /* au-dessus de l'image et overlay */
+  z-index: 2;
   color: white;
   max-width: 700px;
   padding: 20px;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* texte plus lisible */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 
 /* ----------------- BOUTONS ----------------- */
 button, .btn {
   display: inline-block;
   padding: 10px 20px;
-  background: #FF4500; /* couleur principale */
+  background: #D94F2C; /* couleur principale */
   color: white;
   border: none;
   border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s;
-
   text-decoration: none !important;
   outline: none !important;
 }
 
 button:hover, .btn:hover {
-  background: #FF6347; /* rouge vif */
-  text-decoration: none !important;
+  background: #E07A5F; /* couleur hover */
 }
 
 button:focus, .btn:focus {
@@ -135,14 +133,14 @@ button:focus, .btn:focus {
 .gallery img {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(255,69,0,0.1); /* ombre orangée */
+  box-shadow: 0 4px 8px rgba(217,79,44,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(255,69,0,0.2);
+  box-shadow: 0 8px 16px rgba(217,79,44,0.2);
 }
 
 /* ----------------- LIGHTBOX ----------------- */
@@ -190,7 +188,7 @@ button:focus, .btn:focus {
 }
 
 .close:hover {
-  color: #FF6347;
+  color: #E07A5F;
 }
 
 /* Flèches précédent / suivant */
@@ -213,14 +211,14 @@ button:focus, .btn:focus {
 }
 
 .prev:hover span, .next:hover span {
-  color: #FF6347;
+  color: #E07A5F;
   transform: scale(1.1);
 }
 
 .prev { left: 0; }
 .next { right: 0; }
 
-/* Boutique */
+/* ----------------- BOUTIQUE ----------------- */
 .shop {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -231,7 +229,7 @@ button:focus, .btn:focus {
 .product {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(255,69,0,0.1);
+  box-shadow: 0 2px 6px rgba(217,79,44,0.1);
   padding: 15px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -246,11 +244,11 @@ button:focus, .btn:focus {
 }
 
 .product h3 { margin: 10px 0 5px; }
-.product .price { font-weight: bold; color: #FF4500; }
+.product .price { font-weight: bold; color: #D94F2C; }
 
 .product:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(255,69,0,0.2);
+  box-shadow: 0 8px 16px rgba(217,79,44,0.2);
 }
 
 /* Lightbox boutique */
@@ -291,7 +289,7 @@ button:focus, .btn:focus {
 .shop-lightbox-info h2 { margin-top: 0; }
 .share a {
   margin-right: 10px;
-  color: #FF4500;
+  color: #D94F2C;
   text-decoration: none;
 }
 .share a:hover { text-decoration: underline; }
@@ -314,7 +312,7 @@ form {
   background: white;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(255,69,0,0.1);
+  box-shadow: 0 2px 6px rgba(217,79,44,0.1);
 }
 
 form input, form textarea {
@@ -328,14 +326,14 @@ form input, form textarea {
 form button {
   margin-top: 15px;
   padding: 12px;
-  background: #FF4500;
+  background: #D94F2C;
   color: white;
 }
-form button:hover { background: #FF6347; }
+form button:hover { background: #E07A5F; }
 
 /* ----------------- FOOTER ----------------- */
 footer {
-  background: #FF4500;
+  background: #D94F2C;
   color: white;
   padding: 30px 20px 10px;
   flex-shrink: 0;
@@ -356,7 +354,7 @@ footer {
 
 .footer-column h4 {
   margin-bottom: 10px;
-  color: #FFF5F0;
+  color: #FFF2EE;
 }
 
 .footer-column ul {
@@ -374,7 +372,7 @@ footer {
 }
 
 .footer-column a:hover {
-  color: #FF6347;
+  color: #E07A5F;
   text-decoration: underline;
 }
 
@@ -385,7 +383,7 @@ footer {
   transition: color 0.3s;
 }
 
-.social-icons a:hover { color: #FF6347; }
+.social-icons a:hover { color: #E07A5F; }
 
 .footer-bottom {
   text-align: center;
@@ -404,5 +402,3 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
-
-
