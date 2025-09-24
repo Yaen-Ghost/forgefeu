@@ -90,13 +90,13 @@ nav li {
   z-index: 1;
 }
 
-/* Texte du hero au-dessus de l'image */
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2; /* au-dessus de l'image et overlay */
   color: white;
   max-width: 700px;
   padding: 20px;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* texte plus lisible */
 }
 
 /* ----------------- BOUTONS ----------------- */
@@ -404,4 +404,5 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
