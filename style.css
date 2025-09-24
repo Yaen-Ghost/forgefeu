@@ -25,7 +25,6 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
-  /* Dégradé vertical doux */
   background: linear-gradient(
     to bottom,
     #D15347 0%,
@@ -48,17 +47,11 @@ header {
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: center; /* par défaut : centrer nav */
-  position: relative; /* permet au logo absolu de s’ancrer */
-  width: 100%;
 }
 
-/* Logo */
+/* Logo collé à gauche */
 .logo {
-  position: absolute;
-  left: 20px; /* colle au bord avec un léger padding */
-  top: 50%;
-  transform: translateY(-50%);
+  flex: 1; /* prend la place à gauche */
 }
 .logo img {
   height: 50px;
@@ -66,26 +59,26 @@ header {
   display: block;
 }
 
-/* Navigation */
+/* Navigation centrée */
+nav {
+  flex: 2; /* occupe plus de place pour centrer le menu */
+}
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* menu centré */
   margin: 0;
   padding: 0;
 }
-
 nav li {
   margin: 0 20px;
 }
-
 nav a {
   color: white;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s;
 }
-
 nav a:hover {
   color: #E07A5F !important;
   text-decoration: none;
@@ -95,70 +88,27 @@ nav a:hover {
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
-    padding: 10px;
+    align-items: center;
   }
 
   .logo {
-    position: static;
-    transform: none;
+    flex: unset;
     margin-bottom: 10px;
-    align-self: flex-start;
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav li {
-    margin: 10px 0;
-  }
-}
-
-
-/* ------------ VERSION MOBILE ------------- */
-.hamburger {
-  display: none; /* caché par défaut */
-  font-size: 28px;
-  color: white;
-  cursor: pointer;
-  justify-self: end;
-}
-
-/* Mobile : écran < 768px */
-@media (max-width: 768px) {
-  /* Transforme le header */
-  .header-container {
-    grid-template-columns: 1fr auto; /* logo | hamburger */
   }
 
   nav {
-    grid-column: 1 / -1;
-    width: 100%;
+    flex: unset;
   }
 
   nav ul {
     flex-direction: column;
     align-items: center;
-    display: none; /* caché par défaut */
-    background: #D15347;
-    padding: 10px 0;
-  }
-
-  nav ul.active {
-    display: flex; /* affiché quand actif */
   }
 
   nav li {
     margin: 10px 0;
   }
-
-  /* Hamburger visible en mobile */
-  .hamburger {
-    display: block;
-  }
 }
-
 
 /* ----------------- HERO ----------------- */
 .hero {
@@ -619,6 +569,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
