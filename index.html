@@ -88,16 +88,19 @@
   <p class="footer-bottom">&copy; 2025 Forgefeu</p>
 </footer>
   <script>
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav'); // on cible le <nav> et non <ul>
 
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.innerHTML = navMenu.classList.contains('active')
-      ? '<i class="fas fa-times"></i>'
-      : '<i class="fas fa-bars"></i>';
-  });
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('active'); // bascule la classe active sur <nav>
+
+  // Change l'icône du hamburger en croix
+  hamburger.innerHTML = nav.classList.contains('active')
+    ? '<i class="fas fa-times"></i>'
+    : '<i class="fas fa-bars"></i>';
+});
 </script>
 
 </body>
 </html>
+
