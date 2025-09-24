@@ -226,6 +226,107 @@ button:focus, .btn:focus {
   right: 0;
 }
 
+/* Boutique */
+.shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product img {
+  width: 100%;
+  height: 180px; /* fixe un format horizontal identique */
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.product h3 {
+  margin: 10px 0 5px;
+}
+
+.product .price {
+  font-weight: bold;
+  color: #ff6600;
+}
+
+/* Hover effet produit */
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Lightbox boutique */
+.shop-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.shop-lightbox-content {
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 90%;
+  padding: 20px;
+  gap: 20px;
+}
+
+.shop-lightbox-img img {
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.shop-lightbox-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shop-lightbox-info h2 {
+  margin-top: 0;
+}
+
+.share a {
+  margin-right: 10px;
+  color: #ff6600;
+  text-decoration: none;
+}
+
+.share a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton fermer */
+.shop-lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+
 /* ----------------- FORMULAIRE ----------------- */
 form {
   display: flex;
@@ -269,6 +370,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 
 
 
