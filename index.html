@@ -20,10 +20,15 @@
   <!-- HEADER avec logo -->
   <header>
   <div class="header-container">
-    <!-- Logo cliquable -->
+    <!-- Logo -->
     <a href="index.html" class="logo">
       <img src="images/logo.png" alt="Forgefeu Logo">
     </a>
+
+    <!-- Hamburger mobile -->
+    <div class="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
 
     <!-- Navigation -->
     <nav>
@@ -35,9 +40,6 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-
-    <!-- Hamburger bouton -->
-    <div class="hamburger"><i class="fas fa-bars"></i></div>
   </div>
 </header>
 
@@ -89,12 +91,12 @@
 </footer>
   <script>
 const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('nav'); // on cible le <nav> et non <ul>
+const nav = document.querySelector('nav');
 
 hamburger.addEventListener('click', () => {
-  nav.classList.toggle('active'); // bascule la classe active sur <nav>
+  nav.classList.toggle('active');
 
-  // Change l'icône du hamburger en croix
+  // Changer l'icône du hamburger
   hamburger.innerHTML = nav.classList.contains('active')
     ? '<i class="fas fa-times"></i>'
     : '<i class="fas fa-bars"></i>';
@@ -103,4 +105,5 @@ hamburger.addEventListener('click', () => {
 
 </body>
 </html>
+
 
