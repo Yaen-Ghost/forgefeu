@@ -24,6 +24,9 @@
       <a href="index.html" class="logo">
         <img src="images/logo.png" alt="Forgefeu Logo">
       </a>
+      <!-- Bouton hamburger -->
+<div class="hamburger"><i class="fas fa-bars"></i></div>
+
 
       <!-- Navigation -->
       <nav>
@@ -83,8 +86,21 @@
 
   <p class="footer-bottom">&copy; 2025 Forgefeu</p>
 </footer>
+  <script>
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.innerHTML = navMenu.classList.contains('active')
+      ? '<i class="fas fa-times"></i>'
+      : '<i class="fas fa-bars"></i>';
+  });
+</script>
+
 </body>
 </html>
+
 
 
 
