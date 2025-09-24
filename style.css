@@ -333,7 +333,7 @@ form button:hover { background: #E07A5F; }
 
 /* ----------------- FOOTER ----------------- */
 footer {
-  background: ##B13D20;
+  background: #B13D20;
   color: white;
   padding: 30px 20px 10px;
   flex-shrink: 0;
@@ -401,6 +401,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
