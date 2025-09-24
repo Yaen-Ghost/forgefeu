@@ -386,6 +386,15 @@ form button:hover {
   line-height: 1.4;
   cursor: pointer;
   user-select: none;
+
+  /* Permet au texte long de revenir à la ligne */
+  flex-wrap: wrap;
+  white-space: normal;
+}
+
+/* Le texte lui-même */
+.checkbox-container span {
+  flex: 1; /* occupe tout l’espace restant */
 }
 
 .checkbox-container input {
@@ -515,6 +524,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
