@@ -312,76 +312,138 @@ button:focus, .btn:focus {
 
 /* ----------------- FORMULAIRE MODERNE ----------------- */
 .contact-section {
-  padding: 40px 20px;
-  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
 .contact-section h1 {
+  text-align: center;
+  margin-bottom: 15px;
   color: #D94F2C;
-  margin-bottom: 10px;
 }
 
 .contact-section p {
-  color: #555;
+  text-align: center;
   margin-bottom: 30px;
-  font-size: 1.05rem;
+  color: #555;
 }
 
-.contact-form {
-  background: #FFF2EE;
-  border-radius: 15px;
-  padding: 30px;
-  max-width: 500px;
-  margin: auto;
-  box-shadow: 0 8px 20px rgba(217,79,44,0.2);
+form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  background: #fff2ee;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(217,79,44,0.2);
 }
 
-.contact-form label {
-  margin-top: 15px;
-  margin-bottom: 5px;
-  font-weight: 600;
-  text-align: left;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 15px;
-  border: 2px solid #D94F2C;
-  border-radius: 10px;
+form input, form textarea {
+  padding: 12px 15px;
+  border: 1px solid #D94F2C;
+  border-radius: 8px;
   font-size: 1rem;
   transition: border 0.3s, box-shadow 0.3s;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #E07A5F;
-  box-shadow: 0 0 8px rgba(224,122,95,0.4);
+form input:focus, form textarea:focus {
   outline: none;
+  border-color: #E07A5F;
+  box-shadow: 0 0 8px rgba(224,122,95,0.3);
 }
 
-.contact-form textarea {
+textarea {
   min-height: 120px;
   resize: vertical;
 }
 
-.contact-form button {
-  margin-top: 20px;
-  padding: 15px;
-  border: none;
-  border-radius: 30px;
+form button {
+  padding: 12px;
   background: #D94F2C;
   color: white;
-  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
 
-.contact-form button:hover {
+form button:hover {
   background: #E07A5F;
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
+
+/* Case à cocher stylisée (RGPD) */
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 30px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-container .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff2ee;
+  border: 2px solid #D94F2C;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.checkbox-container:hover .checkmark {
+  background-color: #fbe6e1;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #D94F2C;
+  border-color: #D94F2C;
+}
+
+.checkbox-container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+  left: 5px;
+  top: 0px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container a {
+  color: #D94F2C;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.checkbox-container a:hover {
+  color: #E07A5F;
+  text-decoration: underline;
+}
+
 
 /* ----------------- FOOTER ----------------- */
 footer {
@@ -453,6 +515,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
