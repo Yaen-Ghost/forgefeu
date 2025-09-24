@@ -25,6 +25,7 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
+  /* Dégradé vertical doux */
   background: linear-gradient(
     to bottom,
     #D15347 0%,
@@ -40,20 +41,24 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Conteneur principal du header en grille */
+/* Conteneur du header */
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* 3 colonnes : gauche | centre | droite */
+  display: flex;
   align-items: center;
-  position: relative;
+  justify-content: center; /* par défaut : centrer nav */
+  position: relative; /* permet au logo absolu de s’ancrer */
+  width: 100%;
 }
 
 /* Logo */
 .logo {
-  justify-self: start;
+  position: absolute;
+  left: 20px; /* colle au bord avec un léger padding */
+  top: 50%;
+  transform: translateY(-50%);
 }
 .logo img {
   height: 50px;
@@ -61,10 +66,7 @@ header {
   display: block;
 }
 
-/* Navigation desktop */
-nav {
-  grid-column: 2; /* menu centré */
-}
+/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -72,18 +74,47 @@ nav ul {
   margin: 0;
   padding: 0;
 }
+
 nav li {
   margin: 0 20px;
 }
+
 nav a {
   color: white;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s;
 }
+
 nav a:hover {
   color: #E07A5F !important;
+  text-decoration: none;
 }
+
+/* ----------------- RESPONSIVE ----------------- */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .logo {
+    position: static;
+    transform: none;
+    margin-bottom: 10px;
+    align-self: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin: 10px 0;
+  }
+}
+
 
 /* ------------ VERSION MOBILE ------------- */
 .hamburger {
@@ -588,6 +619,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
