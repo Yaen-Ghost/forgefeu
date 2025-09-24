@@ -65,6 +65,24 @@ nav a:hover {
   text-decoration: none; /* toujours sans soulignement */
 }
 
+/* Header container */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo img {
+  height: 50px; /* ajuste selon ton logo */
+  width: auto;
+  display: block;
+}
+
+
 /* ----------------- HERO ----------------- */
 .hero {
   position: relative;
@@ -524,6 +542,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
