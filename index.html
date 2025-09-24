@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Accueil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,9 +11,10 @@
     <nav>
       <ul>
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="galerie.html">Galerie</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="galerie.html">Portfolio</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
         <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -28,13 +30,40 @@
 </section>
 </main>
 
-  <footer>
-    <p>&copy; 2025 Forgefeu | 
-       <a href="mentions.html">Mentions légales</a>
-    </p>
-  </footer>
+<footer>
+  <div class="footer-container">
+    <!-- Colonne 1 : Informations légales -->
+    <div class="footer-column">
+      <h4>Informations</h4>
+      <ul>
+        <li><a href="mentions.html">Mentions légales</a></li>
+        <li><a href="cgv.html">Conditions générales de vente</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 2 : Contact -->
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <p><a href="mailto:tonmail@example.com">tonmail@example.com</a></p>
+    </div>
+
+    <!-- Colonne 3 : Réseaux sociaux -->
+    <div class="footer-column">
+      <h4>Suivez-moi</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-bottom">&copy; 2025 Forgefeu</p>
+</footer>
 </body>
 </html>
+
 
 
 
