@@ -4,72 +4,85 @@
   <meta charset="UTF-8">
   <title>Contact</title>
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome pour les icônes réseaux si besoin -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- CSS principal -->
+  <!-- Ton CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <nav>
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Portfolio</a></li>
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contact-section">
+    <h1>Contactez-moi</h1>
+    <p>Envoyez-moi un message pour toute demande ou commande :</p>
+
+    <form action="https://formspree.io/f/[ton-id-formspree]" method="POST">
+      <label for="name">Nom :</label>
+      <input type="text" id="name" name="name" placeholder="Votre nom" required>
+
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" placeholder="Votre email" required>
+
+      <label for="subject">Objet :</label>
+      <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required>
+
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+
+      <!-- Case à cocher RGPD stylisée -->
+      <label class="checkbox-container">
+        <input type="checkbox" name="consent" required>
+        <span class="checkmark"></span>
+        En envoyant un message, j'accepte les <a href="cgv.html">Conditions générales</a> et la <a href="confidentialite.html">Politique de confidentialité</a>, et j'autorise Forgefeu à traiter mes données afin de répondre à mon message.
+      </label>
+
+      <button type="submit">Envoyer</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <!-- Colonne 1 : Informations légales -->
+    <div class="footer-column">
+      <h4>Informations</h4>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="galerie.html">Portfolio</a></li>
-        <li><a href="boutique.html">Boutique</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mentions.html">Mentions légales</a></li>
+        <li><a href="cgv.html">Conditions générales de vente</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
       </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="contact-section">
-      <h1>Contactez-moi</h1>
-      <p>Envoyez-moi un message pour toute demande ou commande :</p>
-
-      <form action="https://formspree.io/f/[ton-id-formspree]" method="POST" class="contact-form">
-        <label for="name">Nom :</label>
-        <input type="text" id="name" name="name" placeholder="Votre nom" required>
-
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
-
-        <label for="message">Message :</label>
-        <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
-
-        <button type="submit">Envoyer</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-container">
-      <div class="footer-column">
-        <h4>Informations</h4>
-        <ul>
-          <li><a href="mentions.html">Mentions légales</a></li>
-          <li><a href="cgv.html">Conditions générales de vente</a></li>
-          <li><a href="confidentialite.html">Politique de confidentialité</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>Contact</h4>
-        <p><a href="mailto:tonmail@example.com">tonmail@example.com</a></p>
-      </div>
-
-      <div class="footer-column">
-        <h4>Suivez-moi</h4>
-        <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
     </div>
 
-    <p class="footer-bottom">&copy; 2025 Forgefeu</p>
-  </footer>
+    <!-- Colonne 2 : Contact -->
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <p><a href="mailto:tonmail@example.com">tonmail@example.com</a></p>
+    </div>
+
+    <!-- Colonne 3 : Réseaux sociaux -->
+    <div class="footer-column">
+      <h4>Suivez-moi</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-bottom">&copy; 2025 Forgefeu</p>
+</footer>
 </body>
 </html>
