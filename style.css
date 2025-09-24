@@ -25,14 +25,14 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
-  /* Dégradé vertical plus doux, milieu flou */
+  /* Dégradé vertical doux, milieu plus foncé */
   background: linear-gradient(
     to bottom,
-    #FA5C4B 0%,     /* début rouge vif */
-    #FA5C4B 30%,    /* étale le rouge */
-    #F28A78 50%,    /* couleur intermédiaire douce au centre */
-    #D15347 70%,    /* étale le rouge foncé */
-    #D15347 100%    /* fin rouge foncé */
+    #FA5C4B 0%,      /* rouge vif */
+    #FA5C4B 30%,     /* étale le rouge */
+    #E06A5C 50%,     /* couleur intermédiaire plus foncée */
+    #D15347 70%,     /* étale le rouge foncé */
+    #D15347 100%     /* rouge foncé */
   );
   padding: 15px 0;
   position: sticky;
@@ -409,6 +409,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
