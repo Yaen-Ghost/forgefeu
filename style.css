@@ -25,7 +25,15 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
-  background: linear-gradient(to bottom, #FA5C4B 50%, #D15347 50%);
+  /* Dégradé vertical plus doux, milieu flou */
+  background: linear-gradient(
+    to bottom,
+    #FA5C4B 0%,     /* début rouge vif */
+    #FA5C4B 30%,    /* étale le rouge */
+    #F28A78 50%,    /* couleur intermédiaire douce au centre */
+    #D15347 70%,    /* étale le rouge foncé */
+    #D15347 100%    /* fin rouge foncé */
+  );
   padding: 15px 0;
   position: sticky;
   top: 0;
@@ -401,6 +409,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
