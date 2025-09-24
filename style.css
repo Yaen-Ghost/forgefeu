@@ -40,32 +40,27 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Container header */
+/* Header container */
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-between; /* espace entre logo et nav */
-  flex-wrap: wrap;
 }
 
 /* Logo */
 .logo img {
-  height: 50px; /* ajuste selon ton logo */
+  height: 50px;
   width: auto;
   display: block;
 }
 
-/* Navigation desktop */
-nav {
-  flex: 1;
-}
-
+/* Navigation - desktop */
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center; /* menu centré */
+  justify-content: center;
   margin: 0;
   padding: 0;
 }
@@ -85,27 +80,45 @@ nav a:hover {
   color: #E07A5F;
 }
 
-/* Hamburger button - caché sur desktop */
+/* Hamburger button - hidden on desktop */
 .hamburger {
   display: none;
   font-size: 28px;
   color: white;
   cursor: pointer;
-  z-index: 1001;
 }
 
 /* ----------------- MOBILE ----------------- */
 @media (max-width: 768px) {
-  .hamburger { display: block; }
-  nav { 
-    position: absolute; top: 100%; left: 0; width: 100%; 
-    background: #D15347; flex-direction: column; display: none; 
+  .hamburger {
+    display: block;
   }
-  nav.active { display: flex; }
-  nav ul { flex-direction: column; }
-  nav li { margin: 15px 0; text-align: center; }
-}
 
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #D15347;
+    flex-direction: column;
+    display: none; /* caché par défaut */
+  }
+
+  nav.active {
+    display: flex; /* visible après clic hamburger */
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    margin: 15px 0;
+    text-align: center;
+  }
+}
 
 
 
@@ -568,6 +581,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
