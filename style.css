@@ -89,38 +89,47 @@ nav a:hover {
 }
 
 /* ----------------- MOBILE ----------------- */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+
+  /* cacher le menu par défaut sur mobile */
+  nav {
+    display: none;
+  }
+
+  /* afficher le menu quand on clique */
+  nav.active {
+    display: block;
+    position: absolute;
+    top: 70px; /* ajuste selon la hauteur de ton header */
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* arrière-plan */
+  }
+
+  /* afficher le hamburger sur mobile */
   .hamburger {
     display: block;
   }
 
-  nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #D15347;
-    flex-direction: column;
-    display: none; /* caché par défaut */
-  }
-
-  nav.active {
-    display: flex; /* visible après clic hamburger */
-  }
-
+  /* rendre le menu vertical sur mobile */
   nav ul {
+    display: flex;
     flex-direction: column;
-    margin: 0;
     padding: 0;
+    margin: 0;
   }
 
-  nav li {
-    margin: 15px 0;
-    text-align: center;
+  nav ul li {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
   }
 }
-
-
 
 /* ----------------- HERO ----------------- */
 .hero {
@@ -581,6 +590,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
