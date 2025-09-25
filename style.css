@@ -224,11 +224,8 @@ button:focus, .btn:focus {
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-auto-rows: 10px; /* petite unité pour ajuster */
   gap: 10px;
   padding: 20px;
-  /* IMPORTANT pour Masonry */
-  grid-auto-rows: 100px; /* la base pour calculer le span JS */
 }
 
 .gallery img {
@@ -670,6 +667,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
