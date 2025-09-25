@@ -315,7 +315,7 @@ button:focus, .btn:focus {
   font-size: 45px;
   font-weight: bold;
   cursor: pointer;
-  z-index: 1002;
+  z-index: 10;
   transition: color 0.3s;
 }
 
@@ -657,6 +657,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
