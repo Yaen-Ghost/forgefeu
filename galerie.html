@@ -2,155 +2,91 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio</title>
+  <title>Galerie</title>
 
-  <!-- Font Awesome v6 complet, sans integrity tronqué -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/favicon.ico">
+  <link rel="shortcut icon" href="images/favicon.ico">
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Ton CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <!-- HEADER -->
   <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="galerie.html">Portfolio</a></li>
-        <li><a href="boutique.html">Boutique</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Forgefeu Logo">
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="galerie.html" class="active">Portfolio</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
+  <!-- MAIN -->
   <main>
     <h1>Galerie</h1>
-    <p>Voici quelques-unes de mes impressions 3D :</p>
-<div class="gallery">
-  <img src="images/cerises1.jpg" alt="Cerises 1" onclick="openLightbox(this)">
-  <img src="images/cerises3.jpg" alt="Cerises 2" onclick="openLightbox(this)">
-  <img src="images/cerises4.jpg" alt="Cerises 3" onclick="openLightbox(this)">
-  <img src="images/amphinobi1.jpg" alt="Amphinobi 1" onclick="openLightbox(this)">
-  <img src="images/amphinobi2.jpg" alt="Amphinobi 2" onclick="openLightbox(this)">
-  <img src="images/amphinobi3.jpg" alt="Amphinobi 3" onclick="openLightbox(this)">
-</div>
 
+    <!-- Menu catégories -->
+    <div class="gallery-menu">
+      <button data-category="miniatures">Miniatures jeu de rôle</button>
+      <button data-category="figurines">Figurines</button>
+      <button data-category="commissions">Commissions</button>
+    </div>
 
-      <!-- Ajoute autant d’images que tu veux -->
+    <!-- Galerie -->
+    <div class="gallery"></div>
   </main>
 
-<footer>
-  <div class="footer-container">
-    <!-- Colonne 1 : Informations légales -->
-    <div class="footer-column">
-      <h4>Informations</h4>
-      <ul>
-        <li><a href="mentions.html">Mentions légales</a></li>
-        <li><a href="cgv.html">Conditions générales de vente</a></li>
-        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
-      </ul>
-    </div>
-
-    <!-- Colonne 2 : Contact -->
-    <div class="footer-column">
-      <h4>Contact</h4>
-      <p><a href="mailto:tonmail@example.com">tonmail@example.com</a></p>
-    </div>
-
-    <!-- Colonne 3 : Réseaux sociaux -->
-    <div class="footer-column">
-      <h4>Suivez-moi</h4>
-      <div class="social-icons">
-        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-      </div>
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="" alt="">
+    <div class="lightbox-controls">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
     </div>
   </div>
 
-  <p class="footer-bottom">&copy; 2025 Forgefeu</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="mentions.html">Mentions légales</a></li>
+          <li><a href="cgv.html">Conditions générales de vente</a></li>
+          <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <p><a href="mailto:contact@forgefeu.fr">contact@forgefeu.fr</a></p>
+      </div>
+      <div class="footer-column">
+        <h4>Suivez-moi</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2025 Forgefeu</p>
+  </footer>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox">
-  <span class="close">&times;</span>
-  <span class="prev" onclick="changeSlide(-1)"><span>&#10094;</span></span>
-  <span class="next" onclick="changeSlide(1)"><span>&#10095;</span></span>
-  <img class="lightbox-content" id="lightbox-img">
-  <div id="caption"></div>
-</div>
-
-  <script>
-let currentIndex = 0;
-let galleryImages = document.querySelectorAll('.gallery img');
-
-function openLightbox(img) {
-  currentIndex = Array.from(galleryImages).indexOf(img);
-  showSlide(currentIndex);
-  document.getElementById('lightbox').style.display = "block";
-}
-
-function showSlide(index) {
-  if (index < 0) currentIndex = galleryImages.length - 1;
-  else if (index >= galleryImages.length) currentIndex = 0;
-  else currentIndex = index;
-
-  const lightboxImg = document.getElementById('lightbox-img');
-  const caption = document.getElementById('caption');
-
-  // Fade-out
-  lightboxImg.style.opacity = 0;
-
-  // Changer l'image après un petit délai
-  setTimeout(() => {
-    lightboxImg.src = galleryImages[currentIndex].src;
-    caption.textContent = galleryImages[currentIndex].alt;
-
-    // Fade-in
-    requestAnimationFrame(() => {
-      lightboxImg.style.opacity = 1;
-    });
-  }, 200); // correspond à la durée du fade
-}
-
-function changeSlide(n) {
-  showSlide(currentIndex + n);
-}
-
-// Fermer la lightbox
-document.querySelector('.close').onclick = function() {
-  document.getElementById('lightbox').style.display = "none";
-}
-
-// Fermer en cliquant en dehors de l'image
-document.getElementById('lightbox').onclick = function(e) {
-  if(e.target === this) {
-    this.style.display = "none";
-  }
-}
-</script>
-
-
+  <!-- JS -->
+  <script src="gallery.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
