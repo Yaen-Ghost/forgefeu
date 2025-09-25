@@ -250,7 +250,7 @@ button:focus, .btn:focus {
 }
 
 .gallery-item {
-  width: 100%;
+  overflow: hidden; /* évite que les images débordent */
 }
 
 .gallery-item img {
@@ -670,6 +670,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
