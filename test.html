@@ -12,26 +12,70 @@
 </head>
 <body>
 
-<h1>Galerie Cloudinary</h1>
+<header>
+  <h1>Galerie</h1>
+  <nav>
+    <button onclick="loadGallery('miniatures')">Miniatures jeu de rôle</button>
+    <button onclick="loadGallery('figurines')">Figurines</button>
+    <button onclick="loadGallery('commissions')">Commissions</button>
+  </nav>
+</header>
+
 <div class="gallery" id="gallery"></div>
 
-<script>
-  const cloudName = "dx0mbjcva"; // <-- à remplacer
-  const tag = "miniatures";           // <-- ton tag
-  const url = `https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`;
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+  <p class="caption" id="lightbox-caption"></p>
+</div>
 
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const gallery = document.getElementById("gallery");
-      data.resources.forEach(img => {
-        const imgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${img.public_id}.${img.format}`;
-        const el = document.createElement("img");
-        el.src = imgUrl;
-        gallery.appendChild(el);
+<script>
+  const cloudName = "dx0mbjcva"; // ← remplace par ton cloud_name
+  const gallery = document.getElementById("gallery");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxCaption = document.getElementById("lightbox-caption");
+
+  // Charger une galerie à partir d’un tag
+  function loadGallery(tag) {
+    gallery.innerHTML = "<p style='text-align:center'>Chargement...</p>";
+    fetch(`https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`)
+      .then(res => res.json())
+      .then(data => {
+        gallery.innerHTML = "";
+        data.resources.forEach(img => {
+          const imgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_600,q_auto,f_auto/${img.public_id}.${img.format}`;
+          const fullUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${img.public_id}.${img.format}`;
+          const el = document.createElement("img");
+          el.src = imgUrl;
+          el.loading = "lazy"; // lazy loading
+          el.alt = img.public_id.split("/").pop();
+          el.addEventListener("click", () => openLightbox(fullUrl, el.alt));
+          gallery.appendChild(el);
+        });
+      })
+      .catch(err => {
+        gallery.innerHTML = "<p style='color:red;text-align:center'>Erreur de chargement des images.</p>";
+        console.error(err);
       });
-    })
-    .catch(err => console.error("Erreur Cloudinary :", err));
+  }
+
+  // Ouvrir la lightbox
+  function openLightbox(src, caption) {
+    lightbox.style.display = "flex";
+    lightboxImg.src = src;
+    lightboxCaption.textContent = caption;
+  }
+
+  // Fermer la lightbox
+  function closeLightbox() {
+    lightbox.style.display = "none";
+    lightboxImg.src = "";
+  }
+
+  // Charger une catégorie par défaut
+  loadGallery("miniatures");
 </script>
 
 </body>
