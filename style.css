@@ -228,7 +228,7 @@ button:focus, .btn:focus {
   gap: 10px;
   padding: 20px;
   /* IMPORTANT pour Masonry */
-  grid-auto-rows: 1000px; /* la base pour calculer le span JS */
+  grid-auto-rows: 100px; /* la base pour calculer le span JS */
 }
 
 .gallery img {
@@ -670,6 +670,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
