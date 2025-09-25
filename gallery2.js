@@ -1,9 +1,9 @@
-// gallery.js
-// Remplace TON_CLOUD_NAME par ton cloud name Cloudinary
+// gallery2.js (remplace entièrement ton fichier)
+// Remplace dx0mbjcva par ton cloud name déjà présent si besoin
 const cloudName = "dx0mbjcva";
 
 const galleryEl = document.getElementById("gallery");
-const buttons = document.querySelectorAll(".gallery-menu button");
+const buttonNodes = document.querySelectorAll(".gallery-menu button");
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
@@ -16,30 +16,51 @@ let currentImages = []; // [{thumb, full, caption}]
 let currentIndex = 0;
 let observer = null;
 
-// Helper: build URLs robustly (use secure_url if present, else public_id+format)
-function buildUrls(resource) {
-  // full url
-  let full;
-  if (resource.secure_url) full = resource.secure_url;
-  else full = `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
+/* ---------- Helpers ---------- */
+function extractTagFromButton(btn) {
+  // 1) data-tag attribute
+  let tag = btn.getAttribute("data-tag");
+  if (tag) return tag.trim();
 
-  // thumb: insert transformation for optimization (w_1000 for decent size, change as needed)
-  if (full.includes("/upload/")) {
-    const transform = "f_auto,q_auto,c_limit,w_1000/";
-    const thumb = full.replace("/upload/", `/upload/${transform}`);
-    // also produce an optimized large version for lightbox if needed (no width)
-    const lightboxFull = full.replace("/upload/", "/upload/f_auto,q_auto/");
-    return { thumb, full: lightboxFull, caption: resource.public_id.split("/").pop() };
-  } else {
-    // fallback
-    return { thumb: full, full, caption: resource.public_id.split("/").pop() };
+  // 2) onclick inline like: loadGallery('miniatures')
+  const onclick = btn.getAttribute("onclick");
+  if (onclick) {
+    const m = onclick.match(/loadGallery\(['"]([^'"]+)['"]\)/);
+    if (m && m[1]) return m[1];
   }
+
+  // 3) fallback: try dataset.tag (same as data-tag) or button text (less reliable)
+  if (btn.dataset && btn.dataset.tag) return btn.dataset.tag.trim();
+  // fallback to sanitized text (only if nothing else)
+  return btn.textContent.trim().toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove accents
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_|_$/g, "");
 }
 
-// Load category/tag from Cloudinary
+function buildUrls(resource) {
+  // build full url (prefer secure_url)
+  const fullBase = resource.secure_url ?
+    resource.secure_url :
+    `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
+
+  // create optimized thumb and optimized full
+  if (fullBase.includes("/upload/")) {
+    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1000/");
+    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto/");
+    return { thumb, full, caption: resource.public_id.split("/").pop() };
+  }
+  return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
+}
+
+/* ---------- Main loader ---------- */
 async function loadCategory(tag) {
-  // highlight active button
-  buttons.forEach(b => b.classList.toggle("active", b.getAttribute("data-tag") === tag));
+  if (!tag) tag = "miniatures"; // sécurité si tag absent
+  // update active state on buttons
+  buttonNodes.forEach(b => {
+    const bTag = b.getAttribute("data-tag") || extractTagFromButton(b);
+    b.classList.toggle("active", bTag === tag);
+  });
 
   galleryEl.innerHTML = `<p style="text-align:center">Chargement...</p>`;
 
@@ -54,37 +75,31 @@ async function loadCategory(tag) {
       return;
     }
 
-    // build currentImages array
     currentImages = data.resources.map(r => buildUrls(r));
-
-    // clear gallery
     galleryEl.innerHTML = "";
 
-    // Destroy previous observer if any
+    // clean previous observer
     if (observer) {
       observer.disconnect();
       observer = null;
     }
 
-    // Create items
+    // create DOM items
     currentImages.forEach((imgObj, idx) => {
       const wrapper = document.createElement("div");
       wrapper.className = "gallery-item";
 
       const imgEl = document.createElement("img");
-      imgEl.dataset.src = imgObj.thumb; // lazy source
+      imgEl.dataset.src = imgObj.thumb;
       imgEl.alt = imgObj.caption || `Image ${idx + 1}`;
       imgEl.dataset.index = idx;
       imgEl.loading = "lazy";
-
-      // small placeholder to reserve layout (optional); keep empty src to avoid extra requests
-      // imgEl.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
       wrapper.appendChild(imgEl);
       galleryEl.appendChild(wrapper);
     });
 
-    // Setup IntersectionObserver for lazy loading
+    // IntersectionObserver for lazy loading (preload margin)
     observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -92,19 +107,14 @@ async function loadCategory(tag) {
           if (img.dataset.src) {
             img.src = img.dataset.src;
             img.addEventListener("load", () => img.classList.add("loaded"));
-            // attach click for lightbox after src assigned
             img.addEventListener("click", () => openLightbox(parseInt(img.dataset.index, 10)));
           }
           obs.unobserve(img);
         }
       });
-    }, {
-      rootMargin: "200px 0px" // pre-load before image enters viewport
-    });
+    }, { rootMargin: "200px 0px" });
 
-    // Observe each image
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
-
   } catch (err) {
     console.error("Erreur Cloudinary:", err);
     galleryEl.innerHTML = "<p style='color:red;text-align:center'>Impossible de charger la galerie.</p>";
@@ -112,13 +122,16 @@ async function loadCategory(tag) {
   }
 }
 
-/* -------- Lightbox functions -------- */
+/* expose a global function so inline onclick works */
+window.loadGallery = loadCategory;
+
+/* ---------- Lightbox ---------- */
 function openLightbox(index) {
   if (!currentImages.length) return;
   currentIndex = index;
   updateLightbox();
   lightbox.style.display = "flex";
-  document.body.style.overflow = "hidden"; // prevent background scroll
+  document.body.style.overflow = "hidden";
 }
 
 function updateLightbox() {
@@ -130,7 +143,7 @@ function updateLightbox() {
 function closeLightbox() {
   lightbox.style.display = "none";
   lightboxImg.src = "";
-  document.body.style.overflow = ""; // restore
+  document.body.style.overflow = "";
 }
 
 function showPrev() {
@@ -145,17 +158,17 @@ function showNext() {
   updateLightbox();
 }
 
-/* Close on click outside image */
+/* close when clicking outside content */
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
 });
 
-/* Prev / Next / Close handlers */
-prevBtn && prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
-nextBtn && nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
-closeBtn && closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
+/* prev/next/close handlers (if present) */
+if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
+if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
+if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
 
-/* Keyboard navigation */
+/* keyboard navigation */
 document.addEventListener("keydown", (e) => {
   if (lightbox.style.display === "flex") {
     if (e.key === "Escape") closeLightbox();
@@ -164,14 +177,20 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-/* Initialize: attach category buttons and load default */
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const tag = btn.getAttribute("data-tag");
-    loadCategory(tag);
+/* ---------- Init: wire up buttons and load default ---------- */
+buttonNodes.forEach(btn => {
+  // determine tag robustly and store it
+  const tag = extractTagFromButton(btn);
+  if (tag) btn.setAttribute("data-tag", tag);
+
+  // attach click using the resolved tag
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
+    loadCategory(t);
   });
 });
 
-// load default category (first button) or 'miniatures'
-const defaultTag = (buttons[0] && buttons[0].getAttribute("data-tag")) || "miniatures";
-loadCategory(defaultTag);
+// default: first button's tag or 'miniatures'
+const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
+loadCategory(firstTag);
