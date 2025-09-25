@@ -118,8 +118,8 @@ data.resources.sort((a, b) => {
           const img = entry.target;
           if (img.dataset.src) {
             img.src = img.dataset.src;
+            img.addEventListener("click", () => openLightbox(parseInt(img.dataset.index, 10)));
             img.addEventListener("load", () => img.classList.add("loaded"));
-            //img.addEventListener("click", () => openLightbox(parseInt(img.dataset.index, 10)));
           }
           obs.unobserve(img);
         }
