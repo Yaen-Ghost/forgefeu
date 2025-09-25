@@ -59,39 +59,44 @@
 
 <!-- Script Masonry pour harmoniser les images -->
 <script>
-  function applyMasonry() {
-    const galleryItems = document.querySelectorAll('.gallery-item img');
-    galleryItems.forEach(img => {
-      if (img.complete) {
-        const rowHeight = 10; // doit correspondre à grid-auto-rows dans le CSS
+function applyMasonry() {
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  galleryItems.forEach(img => {
+    if (img.complete) {
+      const rowHeight = 10; // doit correspondre à grid-auto-rows
+      const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
+      img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
+    } else {
+      img.addEventListener('load', () => {
+        const rowHeight = 10;
         const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
         img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
-      } else {
-        img.addEventListener('load', () => {
-          const rowHeight = 10;
-          const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
-          img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
-        });
-      }
-    });
-  }
+      });
+    }
+  });
+}
 
-  // Observer pour recalculer après ajout dynamique d'images (ex: Cloudinary)
+// Appliquer Masonry après chaque chargement d'image
+document.addEventListener("DOMContentLoaded", () => {
   const galleryEl = document.getElementById('gallery');
+
+  // Observer pour les images ajoutées dynamiquement
   const observer = new MutationObserver(() => {
     applyMasonry();
   });
-
   observer.observe(galleryEl, { childList: true, subtree: true });
 
-  // Recalcule aussi au redimensionnement de la fenêtre
+  // Recalcule au redimensionnement
   window.addEventListener('resize', applyMasonry);
+
+  // Trigger initial après un court délai pour s'assurer que lazy loading a commencé
+  setTimeout(applyMasonry, 200);
+});
 </script>
-
-
   
 </body>
 </html>
+
 
 
 
