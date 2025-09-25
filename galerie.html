@@ -56,9 +56,40 @@
   </footer>
 
   <script src="gallery2.js"></script>
+
+<!-- Script Masonry pour harmoniser les images -->
+<script>
+  // Fonction pour ajuster les lignes de la grille (Masonry simple)
+  function applyMasonry() {
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    galleryItems.forEach(img => {
+      // span = hauteur naturelle / base grid-auto-rows
+      const rowHeight = 10; // doit correspondre à grid-auto-rows du CSS
+      const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
+      img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
+    });
+  }
+
+  // Appliquer Masonry après le chargement de chaque catégorie
+  const observer = new MutationObserver(() => {
+    // attendre que les images soient dans le DOM
+    const imgs = document.querySelectorAll('.gallery-item img');
+    imgs.forEach(img => {
+      if (img.complete) {
+        applyMasonry();
+      } else {
+        img.onload = () => applyMasonry();
+      }
+    });
+  });
+
+  const galleryEl = document.getElementById('gallery');
+  observer.observe(galleryEl, { childList: true, subtree: true });
+</script>
   
 </body>
 </html>
+
 
 
 
