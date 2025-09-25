@@ -309,8 +309,8 @@ button:focus, .btn:focus {
 /* Close button */
 .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 10px;       /* espace depuis le haut de l'image */
+  right: 10px;     /* espace depuis le bord droit de l'image */
   color: white;
   font-size: 45px;
   font-weight: bold;
@@ -671,6 +671,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
