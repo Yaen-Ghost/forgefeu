@@ -56,46 +56,10 @@
   </footer>
 
   <script src="gallery2.js"></script>
-
-<!-- Script Masonry pour harmoniser les images -->
-<script>
-function applyMasonry() {
-  const galleryItems = document.querySelectorAll('.gallery-item img');
-  galleryItems.forEach(img => {
-    if (img.complete) {
-      const rowHeight = 100; // doit correspondre à grid-auto-rows
-      const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
-      img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
-    } else {
-      img.addEventListener('load', () => {
-        const rowHeight = 10;
-        const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
-        img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
-      });
-    }
-  });
-}
-
-// Appliquer Masonry après chaque chargement d'image
-document.addEventListener("DOMContentLoaded", () => {
-  const galleryEl = document.getElementById('gallery');
-
-  // Observer pour les images ajoutées dynamiquement
-  const observer = new MutationObserver(() => {
-    applyMasonry();
-  });
-  observer.observe(galleryEl, { childList: true, subtree: true });
-
-  // Recalcule au redimensionnement
-  window.addEventListener('resize', applyMasonry);
-
-  // Trigger initial après un court délai pour s'assurer que lazy loading a commencé
-  setTimeout(applyMasonry, 200);
-});
-</script>
   
 </body>
 </html>
+
 
 
 
