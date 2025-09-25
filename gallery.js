@@ -1,4 +1,4 @@
-const cloudName = "TON_CLOUD_NAME"; // 🔹 remplace par ton Cloudinary
+const cloudName = "dx0mbjcva"; // 🔹 remplace par ton Cloudinary
 const galleryEl = document.getElementById("gallery");
 
 let currentImages = [];
