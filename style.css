@@ -251,16 +251,13 @@ button:focus, .btn:focus {
 .lightbox {
   display: none;
   position: fixed;
-  z-index: 2000;
-  left: 0; top: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.9);
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  overflow: auto;
-  padding: 20px;
+  z-index: 2000;
 }
 
 .lightbox-content {
@@ -268,58 +265,44 @@ button:focus, .btn:focus {
   max-width: 90%;
   max-height: 90%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  align-items: center;
 }
 
 #lightbox-img {
   max-width: 100%;
   max-height: 80vh;
-  border-radius: 10px;
   object-fit: contain;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  border-radius: 10px;
 }
 
-/* Flèches grandes et visibles */
-#lightbox .prev, #lightbox .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 15px;
-  z-index: 2100;
-  font-size: 60px;
-  color: white;
-  background: rgba(0,0,0,0.3);
-  border-radius: 50%;
-  user-select: none;
-  transition: background 0.3s, transform 0.2s;
-}
-
-#lightbox .prev:hover, #lightbox .next:hover {
-  background: rgba(224,122,95,0.7);
-  transform: translateY(-50%) scale(1.1);
-}
-
-/* Position à gauche et à droite */
-#lightbox .prev { left: -70px; }
-#lightbox .next { right: -70px; }
-
-/* Close button */
 #lightbox .close {
-  position: absolute;
-  top: 150px;       /* espace depuis le haut de l'image */
-  right: 150px;     /* espace depuis le bord droit de l'image */
+  position: fixed; /* par rapport à la fenêtre, pas à .lightbox-content */
+  top: 20px;
+  right: 20px;
   color: white;
   font-size: 45px;
   font-weight: bold;
   cursor: pointer;
   z-index: 2200;
-  transition: color 0.3s;
 }
 
-#lightbox .close:hover { color: #E07A5F; }
+#lightbox .prev, #lightbox .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  padding: 15px;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2100;
+}
+
+#lightbox .prev { left: -70px; }
+#lightbox .next { right: -70px; }
+
 
 /* ----------------- MOBILE ----------------- */
 @media (max-width: 768px) {
@@ -657,6 +640,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
