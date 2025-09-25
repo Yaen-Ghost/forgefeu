@@ -75,6 +75,15 @@ async function loadCategory(tag) {
       return;
     }
 
+    // Trier les images par nom (dernière partie du public_id)
+data.resources.sort((a, b) => {
+  const nameA = a.public_id.split("/").pop().toLowerCase();
+  const nameB = b.public_id.split("/").pop().toLowerCase();
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+});
+
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
