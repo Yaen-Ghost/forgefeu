@@ -25,24 +25,23 @@
       </nav>
     </div>
   </header>
-
-  <main>
-    <section class="gallery-section">
+  
+<main>  
+  <section class="gallery-section">
       <h1>Galerie</h1>
+  <nav>
+    <div class="gallery-menu">
+    <button data-tag="miniatures">Miniatures</button>
+    <button data-tag="figurines">Figurines</button>
+    <button data-tag="commissions">Commissions</button>
+       </div>
+  </nav>
 
-      <!-- Menu catégories -->
-      <div class="gallery-menu">
-        <button data-tag="miniatures">Miniatures jeu de rôle</button>
-        <button data-tag="figurines">Figurines</button>
-        <button data-tag="commissions">Commissions</button>
-      </div>
+<div class="gallery" id="gallery"></div>
 
-      <!-- Galerie dynamique -->
-      <div id="gallery" class="gallery"></div>
-    </section>
-  </main>
-
-  <!-- Lightbox -->
+     </main>
+  
+<!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <span class="close">&times;</span>
     <div class="lightbox-content">
@@ -53,10 +52,11 @@
     </div>
   </div>
 
-  <footer>
+     <footer>
     <p class="footer-bottom">&copy; 2025 Forgefeu</p>
   </footer>
 
-  <script src="gallery.js"></script>
+  <script src="gallery2.js"></script>
+  
 </body>
 </html>
