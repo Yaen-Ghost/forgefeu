@@ -313,6 +313,15 @@ button:focus, .btn:focus {
   }
 }
 
+/* Lightbox - image responsive et limitée */
+#lightbox .lightbox-content img {
+  max-width: 90%;   /* largeur maximale de l'image */
+  max-height: 80vh; /* hauteur maximale de l'image (viewport) */
+  object-fit: contain; /* garde les proportions */
+  border-radius: 10px;
+}
+
+
 
 /* ----------------- BOUTIQUE ----------------- */
 .shop {
@@ -616,6 +625,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
