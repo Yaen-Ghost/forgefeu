@@ -246,16 +246,6 @@ button:focus, .btn:focus {
   transform: scale(1.05);
 }
 
-.gallery-item {
-  overflow: hidden; /* évite que les images débordent */
-}
-
-.gallery-item img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
 
 /* ----------------- LIGHTBOX RESPONSIVE ----------------- */
 .lightbox {
@@ -667,6 +657,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
