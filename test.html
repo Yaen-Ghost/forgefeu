@@ -9,24 +9,48 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
-<header>
-  <h1>Galerie</h1>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Forgefeu Logo">
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="galerie.html" class="active">Portfolio</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+<main>  
+  <section class="gallery-section">
+      <h1>Galerie</h1>
   <nav>
+    <div class="gallery-menu">
     <button onclick="loadGallery('miniatures')">Miniatures jeu de rôle</button>
     <button onclick="loadGallery('figurines')">Figurines</button>
     <button onclick="loadGallery('commissions')">Commissions</button>
+       </div>
   </nav>
-</header>
 
 <div class="gallery" id="gallery"></div>
 
+     </main>
+  
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="close" onclick="closeLightbox()">&times;</span>
-  <img id="lightbox-img" src="" alt="">
-  <p class="caption" id="lightbox-caption"></p>
-</div>
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <p id="lightbox-caption"></p>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
+    </div>
+  </div>
 
 <script>
   const cloudName = "dx0mbjcva"; // ← remplace par ton cloud_name
@@ -76,5 +100,9 @@
   loadGallery("miniatures");
 </script>
 
+     <footer>
+    <p class="footer-bottom">&copy; 2025 Forgefeu</p>
+  </footer>
+    
 </body>
 </html>
