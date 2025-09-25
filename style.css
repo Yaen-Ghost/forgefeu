@@ -309,8 +309,8 @@ button:focus, .btn:focus {
 /* Close button */
 #lightbox .close {
   position: absolute;
-  top: 10px;       /* espace depuis le haut de l'image */
-  right: 10px;     /* espace depuis le bord droit de l'image */
+  top: 100px;       /* espace depuis le haut de l'image */
+  right: 100px;     /* espace depuis le bord droit de l'image */
   color: white;
   font-size: 45px;
   font-weight: bold;
@@ -657,6 +657,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
