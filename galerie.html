@@ -3,20 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Galerie</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="images/favicon.ico">
-  <link rel="apple-touch-icon" href="images/favicon.ico">
-  <link rel="shortcut icon" href="images/favicon.ico">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Ton CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome pour icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-  <!-- HEADER -->
   <header>
     <div class="header-container">
       <a href="index.html" class="logo">
@@ -34,59 +26,37 @@
     </div>
   </header>
 
-  <!-- MAIN -->
   <main>
-    <h1>Galerie</h1>
+    <section class="gallery-section">
+      <h1>Galerie</h1>
 
-    <!-- Menu catégories -->
-    <div class="gallery-menu">
-      <button data-category="miniatures">Miniatures jeu de rôle</button>
-      <button data-category="figurines">Figurines</button>
-      <button data-category="commissions">Commissions</button>
-    </div>
+      <!-- Menu catégories -->
+      <div class="gallery-menu">
+        <button data-tag="miniatures">Miniatures jeu de rôle</button>
+        <button data-tag="figurines">Figurines</button>
+        <button data-tag="commissions">Commissions</button>
+      </div>
 
-    <!-- Galerie -->
-    <div class="gallery"></div>
+      <!-- Galerie dynamique -->
+      <div id="gallery" class="gallery"></div>
+    </section>
   </main>
 
-  <!-- LIGHTBOX -->
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <span class="close">&times;</span>
-    <img class="lightbox-img" src="" alt="">
-    <div class="lightbox-controls">
-      <span class="prev">&#10094;</span>
-      <span class="next">&#10095;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <p id="lightbox-caption"></p>
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-container">
-      <div class="footer-column">
-        <h4>Informations</h4>
-        <ul>
-          <li><a href="mentions.html">Mentions légales</a></li>
-          <li><a href="cgv.html">Conditions générales de vente</a></li>
-          <li><a href="confidentialite.html">Politique de confidentialité</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Contact</h4>
-        <p><a href="mailto:contact@forgefeu.fr">contact@forgefeu.fr</a></p>
-      </div>
-      <div class="footer-column">
-        <h4>Suivez-moi</h4>
-        <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-    </div>
     <p class="footer-bottom">&copy; 2025 Forgefeu</p>
   </footer>
 
-  <!-- JS -->
   <script src="gallery.js"></script>
 </body>
 </html>
