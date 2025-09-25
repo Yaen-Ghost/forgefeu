@@ -104,6 +104,9 @@ data.resources.sort((a, b) => {
       imgEl.dataset.index = idx;
       imgEl.loading = "lazy";
 
+      // **ajouter le click handler immédiatement**
+      imgEl.addEventListener("click", () => openLightbox(idx));
+
       wrapper.appendChild(imgEl);
       galleryEl.appendChild(wrapper);
     });
@@ -116,7 +119,7 @@ data.resources.sort((a, b) => {
           if (img.dataset.src) {
             img.src = img.dataset.src;
             img.addEventListener("load", () => img.classList.add("loaded"));
-            img.addEventListener("click", () => openLightbox(parseInt(img.dataset.index, 10)));
+            //img.addEventListener("click", () => openLightbox(parseInt(img.dataset.index, 10)));
           }
           obs.unobserve(img);
         }
