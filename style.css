@@ -223,8 +223,9 @@ button:focus, .btn:focus {
 /* Grille images */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 10px; /* petite unité pour ajuster */
+  gap: 10px;
   padding: 20px;
 }
 
@@ -244,6 +245,16 @@ button:focus, .btn:focus {
 
 .gallery img:hover {
   transform: scale(1.05);
+}
+
+.gallery-item {
+  display: block;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 
@@ -657,6 +668,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
