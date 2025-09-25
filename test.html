@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Galerie Cloudinary</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+    .gallery img { width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s; }
+    .gallery img:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+
+<h1>Galerie Cloudinary</h1>
+<div class="gallery" id="gallery"></div>
+
+<script>
+  const cloudName = "TON_CLOUD_NAME"; // <-- à remplacer
+  const tag = "miniatures";           // <-- ton tag
+  const url = `https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const gallery = document.getElementById("gallery");
+      data.resources.forEach(img => {
+        const imgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${img.public_id}.${img.format}`;
+        const el = document.createElement("img");
+        el.src = imgUrl;
+        gallery.appendChild(el);
+      });
+    })
+    .catch(err => console.error("Erreur Cloudinary :", err));
+</script>
+
+</body>
+</html>
