@@ -59,36 +59,32 @@
 
 <!-- Script Masonry pour harmoniser les images -->
 <script>
-  // Fonction pour ajuster les lignes de la grille (Masonry simple)
-  function applyMasonry() {
-    const galleryItems = document.querySelectorAll('.gallery-item img');
-    galleryItems.forEach(img => {
-      // span = hauteur naturelle / base grid-auto-rows
-      const rowHeight = 10; // doit correspondre à grid-auto-rows du CSS
-      const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
-      img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
-    });
+  function applyMasonry(img) {
+    const rowHeight = 10; // doit correspondre à grid-auto-rows dans ton CSS
+    const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
+    img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
   }
 
-  // Appliquer Masonry après le chargement de chaque catégorie
-  const observer = new MutationObserver(() => {
-    // attendre que les images soient dans le DOM
+  // Observer pour appliquer Masonry à chaque image chargée
+  const masonryObserver = new MutationObserver(() => {
     const imgs = document.querySelectorAll('.gallery-item img');
     imgs.forEach(img => {
       if (img.complete) {
-        applyMasonry();
+        applyMasonry(img);
       } else {
-        img.onload = () => applyMasonry();
+        img.onload = () => applyMasonry(img);
       }
     });
   });
 
   const galleryEl = document.getElementById('gallery');
-  observer.observe(galleryEl, { childList: true, subtree: true });
+  masonryObserver.observe(galleryEl, { childList: true, subtree: true });
 </script>
+
   
 </body>
 </html>
+
 
 
 
