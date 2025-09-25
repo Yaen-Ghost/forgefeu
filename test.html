@@ -52,57 +52,11 @@
     </div>
   </div>
 
-<script>
-  const cloudName = "dx0mbjcva"; // ← remplace par ton cloud_name
-  const gallery = document.getElementById("gallery");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const lightboxCaption = document.getElementById("lightbox-caption");
-
-  // Charger une galerie à partir d’un tag
-  function loadGallery(tag) {
-    gallery.innerHTML = "<p style='text-align:center'>Chargement...</p>";
-    fetch(`https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`)
-      .then(res => res.json())
-      .then(data => {
-        gallery.innerHTML = "";
-        data.resources.forEach(img => {
-          const imgUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_600,q_auto,f_auto/${img.public_id}.${img.format}`;
-          const fullUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${img.public_id}.${img.format}`;
-          const el = document.createElement("img");
-          el.src = imgUrl;
-          el.loading = "lazy"; // lazy loading
-          el.alt = img.public_id.split("/").pop();
-          el.addEventListener("click", () => openLightbox(fullUrl, el.alt));
-          gallery.appendChild(el);
-        });
-      })
-      .catch(err => {
-        gallery.innerHTML = "<p style='color:red;text-align:center'>Erreur de chargement des images.</p>";
-        console.error(err);
-      });
-  }
-
-  // Ouvrir la lightbox
-  function openLightbox(src, caption) {
-    lightbox.style.display = "flex";
-    lightboxImg.src = src;
-    lightboxCaption.textContent = caption;
-  }
-
-  // Fermer la lightbox
-  function closeLightbox() {
-    lightbox.style.display = "none";
-    lightboxImg.src = "";
-  }
-
-  // Charger une catégorie par défaut
-  loadGallery("miniatures");
-</script>
-
      <footer>
     <p class="footer-bottom">&copy; 2025 Forgefeu</p>
   </footer>
-    
+
+  <script src="gallery.js"></script>
+  
 </body>
 </html>
