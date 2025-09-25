@@ -63,7 +63,7 @@ function applyMasonry() {
   const galleryItems = document.querySelectorAll('.gallery-item img');
   galleryItems.forEach(img => {
     if (img.complete) {
-      const rowHeight = 50; // doit correspondre à grid-auto-rows
+      const rowHeight = 1000; // doit correspondre à grid-auto-rows
       const rowSpan = Math.ceil(img.naturalHeight / rowHeight);
       img.parentElement.style.gridRowEnd = `span ${rowSpan}`;
     } else {
@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
 </body>
 </html>
+
 
 
 
