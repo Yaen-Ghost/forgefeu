@@ -146,7 +146,7 @@ function openLightbox(index) {
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
-  lightboxCaption.textContent = imgObj.caption || `${currentIndex + 1} / ${currentImages.length}`;
+  lightboxCaption.textContent = "";
 }
 
 function closeLightbox() {
