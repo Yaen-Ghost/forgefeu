@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const gallery = document.querySelector(".gallery");
   const buttons = document.querySelectorAll(".gallery-menu button");
 
-  const baseUrl = "https://res.cloudinary.com/TON_CLOUD_NAME/image/list/";
+  const baseUrl = "https://res.cloudinary.com/dx0mbjcva/image/list/";
 
   let currentImages = []; // stocker les images de la catégorie courante
   let currentIndex = 0;
