@@ -287,21 +287,34 @@ button:focus, .btn:focus {
   z-index: 2200;
 }
 
-#lightbox .prev, #lightbox .next {
+/* Flèches lightbox */
+.prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 60px;
-  padding: 15px;
+  font-size: 60px;          /* taille de la flèche */
+  font-weight: bold;
   color: white;
-  background: rgba(0,0,0,0.3);
-  border-radius: 50%;
   cursor: pointer;
+  user-select: none;
+  padding: 20px;
+  transition: color 0.3s, transform 0.3s;
   z-index: 2100;
 }
 
-#lightbox .prev { left: -70px; }
-#lightbox .next { right: -70px; }
+.prev:hover, .next:hover {
+  color: #ff6600;
+  transform: translateY(-50%) scale(1.2);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
 
 
 /* ----------------- MOBILE ----------------- */
@@ -640,6 +653,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
