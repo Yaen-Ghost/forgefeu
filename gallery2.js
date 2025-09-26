@@ -1,6 +1,5 @@
 // gallery2.js (fade-in + Masonry CSS, sans absolute positioning)
 const cloudName = "dx0mbjcva";
-
 const galleryEl = document.getElementById("gallery");
 const buttonNodes = document.querySelectorAll(".gallery-menu button");
 
@@ -19,12 +18,6 @@ let observer = null;
 function extractTagFromButton(btn) {
   let tag = btn.getAttribute("data-tag");
   if (tag) return tag.trim();
-  const onclick = btn.getAttribute("onclick");
-  if (onclick) {
-    const m = onclick.match(/loadGallery\(['"]([^'"]+)['"]\)/);
-    if (m && m[1]) return m[1];
-  }
-  if (btn.dataset && btn.dataset.tag) return btn.dataset.tag.trim();
   return btn.textContent.trim().toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "_")
@@ -36,18 +29,18 @@ function buildUrls(resource) {
     resource.secure_url :
     `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
-  if (fullBase.includes("/upload/")) {
-    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_300/");
-    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/");
-    return { thumb, full, caption: resource.public_id.split("/").pop() };
-  }
-  return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
+  const thumb = fullBase.includes("/upload/") ?
+    fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_300/") :
+    fullBase;
+  const full = fullBase.includes("/upload/") ?
+    fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/") :
+    fullBase;
+
+  return { thumb, full, caption: resource.public_id.split("/").pop() };
 }
 
 /* ---------- Main loader ---------- */
-async function loadCategory(tag) {
-  if (!tag) tag = "miniatures";
-
+async function loadCategory(tag = "miniatures") {
   buttonNodes.forEach(b => {
     const bTag = b.getAttribute("data-tag") || extractTagFromButton(b);
     b.classList.toggle("active", bTag === tag);
@@ -65,20 +58,16 @@ async function loadCategory(tag) {
       return;
     }
 
-    // Tri alphabétique naturel
-    data.resources.sort((a, b) => {
+    data.resources.sort((a,b) => {
       const nameA = a.public_id.split("/").pop().toLowerCase();
       const nameB = b.public_id.split("/").pop().toLowerCase();
-      return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });
+      return nameA.localeCompare(nameB, undefined, { numeric:true, sensitivity:'base' });
     });
 
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
-    if (observer) {
-      observer.disconnect();
-      observer = null;
-    }
+    if (observer) { observer.disconnect(); observer = null; }
 
     currentImages.forEach((imgObj, idx) => {
       const wrapper = document.createElement("div");
@@ -86,7 +75,7 @@ async function loadCategory(tag) {
 
       const imgEl = document.createElement("img");
       imgEl.dataset.src = imgObj.thumb;
-      imgEl.alt = imgObj.caption || `Image ${idx + 1}`;
+      imgEl.alt = imgObj.caption || `Image ${idx+1}`;
       imgEl.dataset.index = idx;
       imgEl.loading = "lazy";
 
@@ -96,7 +85,6 @@ async function loadCategory(tag) {
       galleryEl.appendChild(wrapper);
     });
 
-    // IntersectionObserver pour lazy load + fade-in
     observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -109,15 +97,11 @@ async function loadCategory(tag) {
             else img.addEventListener("load", () => img.classList.add("loaded"));
           }
 
-          const delay = img.dataset.index * 150; // 150ms par image
-          setTimeout(() => {
-            wrapper.classList.add("show");
-          }, delay);
-
+          setTimeout(() => { wrapper.classList.add("show"); }, img.dataset.index*150);
           obs.unobserve(img);
         }
       });
-    }, { rootMargin: "200px 0px" });
+    }, { rootMargin:"200px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
 
@@ -128,13 +112,9 @@ async function loadCategory(tag) {
   }
 }
 
-/* expose global function */
-window.loadGallery = loadCategory;
-
 /* ---------- Lightbox ---------- */
-function openLightbox(index) {
-  if (!currentImages.length) return;
-  currentIndex = index;
+function openLightbox(idx) {
+  currentIndex = idx;
   updateLightbox();
   lightbox.style.display = "flex";
   document.body.style.overflow = "hidden";
@@ -144,35 +124,21 @@ function updateLightbox() {
   lightboxImg.src = imgObj.full;
   lightboxCaption.textContent = imgObj.caption || "";
 }
-function closeLightbox() {
-  lightbox.style.display = "none";
-  lightboxImg.src = "";
-  document.body.style.overflow = "";
-}
-function showPrev() { if (!currentImages.length) return; currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; updateLightbox(); }
-function showNext() { if (!currentImages.length) return; currentIndex = (currentIndex + 1) % currentImages.length; updateLightbox(); }
+function closeLightbox() { lightbox.style.display="none"; lightboxImg.src=""; document.body.style.overflow=""; }
+function showPrev() { if (!currentImages.length) return; currentIndex=(currentIndex-1+currentImages.length)%currentImages.length; updateLightbox(); }
+function showNext() { if (!currentImages.length) return; currentIndex=(currentIndex+1)%currentImages.length; updateLightbox(); }
 
-lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
-if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
-if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
-if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
-document.addEventListener("keydown", (e) => { 
-  if (lightbox.style.display === "flex") {
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") showPrev();
-    if (e.key === "ArrowRight") showNext();
-  } 
-});
+lightbox.addEventListener("click",(e)=>{if(e.target===lightbox)closeLightbox();});
+if(prevBtn) prevBtn.addEventListener("click",(e)=>{e.stopPropagation();showPrev();});
+if(nextBtn) nextBtn.addEventListener("click",(e)=>{e.stopPropagation();showNext();});
+if(closeBtn) closeBtn.addEventListener("click",(e)=>{e.stopPropagation();closeLightbox();});
+document.addEventListener("keydown",(e)=>{if(lightbox.style.display==="flex"){if(e.key==="Escape")closeLightbox();if(e.key==="ArrowLeft")showPrev();if(e.key==="ArrowRight")showNext();}});
 
 /* ---------- Init ---------- */
-buttonNodes.forEach(btn => {
+buttonNodes.forEach(btn=>{
   const tag = extractTagFromButton(btn);
-  if (tag) btn.setAttribute("data-tag", tag);
-  btn.addEventListener("click", (e) => { 
-    e.preventDefault(); 
-    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures"; 
-    loadCategory(t); 
-  });
+  if(tag) btn.setAttribute("data-tag",tag);
+  btn.addEventListener("click",(e)=>{e.preventDefault();const t=btn.getAttribute("data-tag")||extractTagFromButton(btn)||"miniatures"; loadCategory(t);});
 });
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
-loadGallery(firstTag);
+loadCategory(firstTag);
