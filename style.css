@@ -198,7 +198,7 @@ button:focus, .btn:focus {
   outline: none;
 }
 
-/* ----------- GALERIE ----------- */
+/* ----------------- GALERIE ----------------- */
 .gallery-menu {
   text-align: center;
   margin: 20px 0;
@@ -215,27 +215,23 @@ button:focus, .btn:focus {
   font-weight: bold;
   transition: background 0.3s;
 }
+.gallery-menu button:hover { background: #E07A5F; }
 
-.gallery-menu button:hover {
-  background: #E07A5F;
-}
-
-/* Grille images type Masonry */
+/* Masonry-style gallery */
 .gallery {
-  column-count: 3;       /* Nombre de colonnes desktop */
-  column-gap: 15px;      /* Espacement entre colonnes */
+  column-count: 3;
+  column-gap: 15px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .gallery-item {
-  display: inline-block; /* Nécessaire pour masonry */
+  display: inline-block;
   width: 100%;
-  margin: 0 0 15px;     /* marge entre les images verticalement */
-  break-inside: avoid;   /* empêche les images de se couper */
-  
-  /* Animation Tympanus */
+  margin-bottom: 15px;
+  break-inside: avoid;
+
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1.2s ease, transform 1.2s ease;
@@ -252,21 +248,20 @@ button:focus, .btn:focus {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  /* lazy loading déjà géré par JS */
+  transition: transform 0.3s;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .gallery {
-    column-count: 2;
-  }
+.gallery img.loaded {
+  opacity: 1;
 }
 
-@media (max-width: 480px) {
-  .gallery {
-    column-count: 1;
-  }
+.gallery img:hover {
+  transform: scale(1.05);
 }
+
+/* Responsive Masonry */
+@media (max-width: 768px) { .gallery { column-count: 2; } }
+@media (max-width: 480px) { .gallery { column-count: 1; } }
 
 
 /* ----------------- LIGHTBOX RESPONSIVE ----------------- */
@@ -675,6 +670,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
