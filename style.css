@@ -246,6 +246,18 @@ button:focus, .btn:focus {
   transform: scale(1.05);
 }
 
+/* --- Animation galerie style Tympanus --- */
+.gallery-item {
+  opacity: 0;
+  transform: translateY(30px); /* décale vers le bas */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gallery-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* ----------------- LIGHTBOX RESPONSIVE ----------------- */
 .lightbox {
@@ -653,6 +665,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
