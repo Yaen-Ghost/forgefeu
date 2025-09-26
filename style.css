@@ -227,7 +227,7 @@ button:focus, .btn:focus {
 }
 
 .gallery-item {
-  display: inline-block;
+  display: block;
   width: 100%;
   margin-bottom: 15px;
   break-inside: avoid;
@@ -670,6 +670,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
