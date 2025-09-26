@@ -220,42 +220,52 @@ button:focus, .btn:focus {
   background: #E07A5F;
 }
 
-/* Grille images */
+/* Grille images type Masonry */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 10px;
+  column-count: 3;       /* Nombre de colonnes desktop */
+  column-gap: 15px;      /* Espacement entre colonnes */
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s;
-  opacity: 0; /* invisible avant lazy load */
-}
-
-.gallery img.loaded {
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* --- Animation galerie style Tympanus --- */
 .gallery-item {
+  display: inline-block; /* Nécessaire pour masonry */
+  width: 100%;
+  margin: 0 0 15px;     /* marge entre les images verticalement */
+  break-inside: avoid;   /* empêche les images de se couper */
+  
+  /* Animation Tympanus */
   opacity: 0;
-  transform: translateY(30px); /* décale vers le bas */
+  transform: translateY(30px);
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
 .gallery-item.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.gallery img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  /* lazy loading déjà géré par JS */
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    column-count: 1;
+  }
 }
 
 
@@ -665,6 +675,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
