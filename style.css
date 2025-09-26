@@ -308,11 +308,11 @@ button:focus, .btn:focus {
 }
 
 .prev {
-  left: 0;
+  left: 30px;
 }
 
 .next {
-  right: 0;
+  right: 30px;
 }
 
 
@@ -653,6 +653,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
