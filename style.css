@@ -223,23 +223,18 @@ button:focus, .btn:focus {
   column-gap: 15px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0; /* pas de padding horizontal */
+  box-sizing: border-box; /* 🔑 important */
 }
 
 .gallery-item {
-  display: block;
-  width: 100%;
+  display: block;   /* ✅ chaque item prend la largeur de sa colonne */
+  width: 100%;      /* ✅ remplit la colonne */
   margin-bottom: 15px;
   break-inside: avoid;
-
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1.2s ease, transform 1.2s ease;
-}
-
-.gallery-item.show {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .gallery img {
@@ -249,6 +244,12 @@ button:focus, .btn:focus {
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s;
+}
+
+
+.gallery-item.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .gallery img.loaded {
@@ -670,6 +671,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
