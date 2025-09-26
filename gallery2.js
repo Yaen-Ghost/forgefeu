@@ -117,7 +117,7 @@ observer = new IntersectionObserver((entries, obs) => {
       }
 
       // ✨ Animation en cascade : délai selon l’index
-      const delay = img.dataset.index * 100; // 100ms par image
+      const delay = img.dataset.index * 250; // 250ms par image
       setTimeout(() => {
         wrapper.classList.add("show");
       }, delay);
