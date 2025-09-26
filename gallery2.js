@@ -1,4 +1,4 @@
-// gallery2.js (remplace entièrement ton fichier)
+// gallery2.js (corrigé avec fade-in garanti)
 // Remplace dx0mbjcva par ton cloud name déjà présent si besoin
 const cloudName = "dx0mbjcva";
 
@@ -18,33 +18,27 @@ let observer = null;
 
 /* ---------- Helpers ---------- */
 function extractTagFromButton(btn) {
-  // 1) data-tag attribute
   let tag = btn.getAttribute("data-tag");
   if (tag) return tag.trim();
 
-  // 2) onclick inline like: loadGallery('miniatures')
   const onclick = btn.getAttribute("onclick");
   if (onclick) {
     const m = onclick.match(/loadGallery\(['"]([^'"]+)['"]\)/);
     if (m && m[1]) return m[1];
   }
 
-  // 3) fallback: try dataset.tag (same as data-tag) or button text (less reliable)
   if (btn.dataset && btn.dataset.tag) return btn.dataset.tag.trim();
-  // fallback to sanitized text (only if nothing else)
   return btn.textContent.trim().toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove accents
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "_")
     .replace(/^_|_$/g, "");
 }
 
 function buildUrls(resource) {
-  // build full url (prefer secure_url)
   const fullBase = resource.secure_url ?
     resource.secure_url :
     `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
-  // create optimized thumb and optimized full
   if (fullBase.includes("/upload/")) {
     const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_300/");
     const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/");
@@ -55,8 +49,7 @@ function buildUrls(resource) {
 
 /* ---------- Main loader ---------- */
 async function loadCategory(tag) {
-  if (!tag) tag = "miniatures"; // sécurité si tag absent
-  // update active state on buttons
+  if (!tag) tag = "miniatures";
   buttonNodes.forEach(b => {
     const bTag = b.getAttribute("data-tag") || extractTagFromButton(b);
     b.classList.toggle("active", bTag === tag);
@@ -75,23 +68,21 @@ async function loadCategory(tag) {
       return;
     }
 
-    // Trier les images par nom (dernière partie du public_id)
-data.resources.sort((a, b) => {
-  const nameA = a.public_id.split("/").pop().toLowerCase();
-  const nameB = b.public_id.split("/").pop().toLowerCase();
-  return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });
-});
+    // tri alphabétique naturel
+    data.resources.sort((a, b) => {
+      const nameA = a.public_id.split("/").pop().toLowerCase();
+      const nameB = b.public_id.split("/").pop().toLowerCase();
+      return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });
+    });
 
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
-    // clean previous observer
     if (observer) {
       observer.disconnect();
       observer = null;
     }
 
-    // create DOM items
     currentImages.forEach((imgObj, idx) => {
       const wrapper = document.createElement("div");
       wrapper.className = "gallery-item";
@@ -102,22 +93,25 @@ data.resources.sort((a, b) => {
       imgEl.dataset.index = idx;
       imgEl.loading = "lazy";
 
-      // **ajouter le click handler immédiatement**
       imgEl.addEventListener("click", () => openLightbox(idx));
 
       wrapper.appendChild(imgEl);
       galleryEl.appendChild(wrapper);
     });
 
-    // IntersectionObserver for lazy loading (preload margin)
     observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const img = entry.target;
           if (img.dataset.src) {
             img.src = img.dataset.src;
-            img.addEventListener("click", () => openLightbox(parseInt(img.dataset.index, 10)));
-            img.addEventListener("load", () => img.classList.add("loaded"));
+
+            // 🔑 FIX : gérer le cas cache + apparition avec fade-in
+            if (img.complete) {
+              img.classList.add("loaded");
+            } else {
+              img.addEventListener("load", () => img.classList.add("loaded"));
+            }
           }
           obs.unobserve(img);
         }
@@ -187,13 +181,11 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-/* ---------- Init: wire up buttons and load default ---------- */
+/* ---------- Init ---------- */
 buttonNodes.forEach(btn => {
-  // determine tag robustly and store it
   const tag = extractTagFromButton(btn);
   if (tag) btn.setAttribute("data-tag", tag);
 
-  // attach click using the resolved tag
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
@@ -201,6 +193,5 @@ buttonNodes.forEach(btn => {
   });
 });
 
-// default: first button's tag or 'miniatures'
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
 loadCategory(firstTag);
