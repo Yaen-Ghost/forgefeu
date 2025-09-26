@@ -218,59 +218,53 @@ button:focus, .btn:focus {
 .gallery-menu button:hover { background: #E07A5F; }
 
 /* Masonry-style gallery */
-/* Container Masonry */
+/* Masonry Gallery */
 .gallery {
-  column-count: 3;        /* nombre de colonnes desktop */
-  column-gap: 15px;       /* espace entre colonnes */
+  column-count: 3;
+  column-gap: 15px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0;
 }
 
-/* Chaque item */
 .gallery-item {
-  display: inline-block;  /* ✅ nécessaire pour Masonry */
-  width: 100%;            /* remplit la colonne */
-  margin-bottom: 15px;    /* espace vertical */
-  break-inside: avoid;    /* empêche la rupture */
+  display: inline-block;   /* obligatoire pour Masonry CSS */
+  width: 100%;             /* remplit la colonne */
+  margin-bottom: 15px;     /* espace vertical */
+  break-inside: avoid;     /* empêche la coupure */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-/* Quand on déclenche l'animation */
 .gallery-item.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Images */
 .gallery-item img {
   width: 100%;
   height: auto;
-  display: block;
+  display: block;          /* empêche chevauchement */
   border-radius: 8px;
-  cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
   transition: transform 0.3s;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .gallery { column-count: 2; }
-}
-@media (max-width: 480px) {
-  .gallery { column-count: 1; }
-}
-
-
-.gallery img.loaded {
+.gallery-item img.loaded {
   opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.gallery img:hover {
+.gallery-item img:hover {
   transform: scale(1.05);
 }
+
+/* Responsive */
+@media (max-width: 768px) { .gallery { column-count: 2; } }
+@media (max-width: 480px) { .gallery { column-count: 1; } }
+
 
 
 /* ----------------- LIGHTBOX RESPONSIVE ----------------- */
@@ -679,6 +673,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
