@@ -46,8 +46,8 @@ function buildUrls(resource) {
 
   // create optimized thumb and optimized full
   if (fullBase.includes("/upload/")) {
-    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1000/");
-    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto/");
+    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_300/");
+    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/");
     return { thumb, full, caption: resource.public_id.split("/").pop() };
   }
   return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
