@@ -250,7 +250,7 @@ button:focus, .btn:focus {
 .gallery-item {
   opacity: 0;
   transform: translateY(30px); /* décale vers le bas */
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
 .gallery-item.show {
@@ -665,6 +665,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
