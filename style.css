@@ -218,27 +218,36 @@ button:focus, .btn:focus {
 .gallery-menu button:hover { background: #E07A5F; }
 
 /* Masonry-style gallery */
+/* Container Masonry */
 .gallery {
-  column-count: 3;
-  column-gap: 15px;
+  column-count: 3;        /* nombre de colonnes desktop */
+  column-gap: 15px;       /* espace entre colonnes */
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0; /* pas de padding horizontal */
-  box-sizing: border-box; /* 🔑 important */
+  padding: 0;
 }
 
+/* Chaque item */
 .gallery-item {
-  display: block;   /* ✅ chaque item prend la largeur de sa colonne */
-  width: 100%;      /* ✅ remplit la colonne */
-  margin-bottom: 15px;
-  break-inside: avoid;
+  display: inline-block;  /* ✅ nécessaire pour Masonry */
+  width: 100%;            /* remplit la colonne */
+  margin-bottom: 15px;    /* espace vertical */
+  break-inside: avoid;    /* empêche la rupture */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-.gallery img {
+/* Quand on déclenche l'animation */
+.gallery-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Images */
+.gallery-item img {
   width: 100%;
+  height: auto;
   display: block;
   border-radius: 8px;
   cursor: pointer;
@@ -246,11 +255,14 @@ button:focus, .btn:focus {
   transition: transform 0.3s;
 }
 
-
-.gallery-item.show {
-  opacity: 1;
-  transform: translateY(0);
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery { column-count: 2; }
 }
+@media (max-width: 480px) {
+  .gallery { column-count: 1; }
+}
+
 
 .gallery img.loaded {
   opacity: 1;
@@ -259,10 +271,6 @@ button:focus, .btn:focus {
 .gallery img:hover {
   transform: scale(1.05);
 }
-
-/* Responsive Masonry */
-@media (max-width: 768px) { .gallery { column-count: 2; } }
-@media (max-width: 480px) { .gallery { column-count: 1; } }
 
 
 /* ----------------- LIGHTBOX RESPONSIVE ----------------- */
@@ -671,6 +679,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
