@@ -199,35 +199,19 @@ button:focus, .btn:focus {
 }
 
 /* ----------------- GALERIE ----------------- */
-.gallery-menu {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.gallery-menu button {
-  background: #D15347;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-.gallery-menu button:hover { background: #E07A5F; }
-
-/* Masonry-style gallery avec Masonry JS */
 .gallery {
+  column-count: 3;
+  column-gap: 15px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0;
-  position: relative; /* nécessaire pour Masonry */
 }
 
 .gallery-item {
-  width: 100%;           /* remplit la colonne Masonry */
-  margin-bottom: 15px;   /* espace vertical entre images */
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+  break-inside: avoid;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1.2s ease, transform 1.2s ease;
@@ -241,7 +225,7 @@ button:focus, .btn:focus {
 .gallery-item img {
   width: 100%;
   height: auto;
-  display: block;        /* empêche chevauchement */
+  display: block;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   cursor: pointer;
@@ -257,13 +241,10 @@ button:focus, .btn:focus {
   transform: scale(1.05);
 }
 
-/* Responsive : Masonry JS gère automatiquement le repositionnement */
-@media (max-width: 768px) {
-  .gallery-item { width: 48%; } /* 2 colonnes approximatives */
-}
-@media (max-width: 480px) {
-  .gallery-item { width: 100%; } /* 1 colonne */
-}
+/* Responsive */
+@media (max-width: 768px) { .gallery { column-count: 2; } }
+@media (max-width: 480px) { .gallery { column-count: 1; } }
+
 
 
 
@@ -674,6 +655,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
