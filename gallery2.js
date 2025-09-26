@@ -99,24 +99,34 @@ async function loadCategory(tag) {
       galleryEl.appendChild(wrapper);
     });
 
-    observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
+    // IntersectionObserver for lazy loading + animation
+observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      const wrapper = img.parentElement;
 
-            // 🔑 FIX : gérer le cas cache + apparition avec fade-in
-            if (img.complete) {
-              img.classList.add("loaded");
-            } else {
-              img.addEventListener("load", () => img.classList.add("loaded"));
-            }
-          }
-          obs.unobserve(img);
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+
+        if (img.complete) {
+          img.classList.add("loaded");
+        } else {
+          img.addEventListener("load", () => img.classList.add("loaded"));
         }
-      });
-    }, { rootMargin: "200px 0px" });
+      }
+
+      // ✨ Animation en cascade : délai selon l’index
+      const delay = img.dataset.index * 100; // 100ms par image
+      setTimeout(() => {
+        wrapper.classList.add("show");
+      }, delay);
+
+      obs.unobserve(img);
+    }
+  });
+}, { rootMargin: "200px 0px" });
+
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
   } catch (err) {
