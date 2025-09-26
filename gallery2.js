@@ -1,4 +1,4 @@
-// gallery2.js (fade-in + masonry)
+// gallery2-masonry.js
 // Remplace dx0mbjcva par ton cloud name si besoin
 const cloudName = "dx0mbjcva";
 
@@ -15,6 +15,7 @@ const nextBtn = document.querySelector("#lightbox .next");
 let currentImages = [];
 let currentIndex = 0;
 let observer = null;
+let masonry = null;
 
 /* ---------- Helpers ---------- */
 function extractTagFromButton(btn) {
@@ -46,22 +47,15 @@ function buildUrls(resource) {
 }
 
 /* ---------- Masonry helper ---------- */
-function applyMasonry() {
-  const items = Array.from(document.querySelectorAll(".gallery-item"));
-  const colCount = Math.floor(galleryEl.clientWidth / 250); // 250px min width
-  const colHeights = Array(colCount).fill(0);
-
-  items.forEach(item => {
-    const minCol = colHeights.indexOf(Math.min(...colHeights));
-    const x = minCol * (galleryEl.clientWidth / colCount);
-    const y = colHeights[minCol];
-    item.style.position = "absolute";
-    item.style.transform = `translate(${x}px, ${y}px)`;
-    colHeights[minCol] += item.offsetHeight + 10; // 10px gap
+function initMasonry() {
+  if (masonry) masonry.destroy();
+  masonry = new Masonry(galleryEl, {
+    itemSelector: '.gallery-item',
+    columnWidth: '.gallery-item',
+    percentPosition: true,
+    gutter: 10,
+    transitionDuration: '0.3s'
   });
-
-  galleryEl.style.position = "relative";
-  galleryEl.style.height = Math.max(...colHeights) + "px";
 }
 
 /* ---------- Main loader ---------- */
@@ -93,10 +87,7 @@ async function loadCategory(tag) {
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
-    if (observer) {
-      observer.disconnect();
-      observer = null;
-    }
+    if (observer) { observer.disconnect(); observer = null; }
 
     currentImages.forEach((imgObj, idx) => {
       const wrapper = document.createElement("div");
@@ -123,14 +114,15 @@ async function loadCategory(tag) {
           if (img.dataset.src) {
             img.src = img.dataset.src;
             if (img.complete) img.classList.add("loaded");
-            else img.addEventListener("load", () => img.classList.add("loaded"));
+            else img.addEventListener("load", () => {
+              img.classList.add("loaded");
+              wrapper.classList.add("show");
+              initMasonry();
+            });
           }
 
           const delay = img.dataset.index * 200;
-          setTimeout(() => {
-            wrapper.classList.add("show");
-            applyMasonry();
-          }, delay);
+          setTimeout(() => wrapper.classList.add("show"), delay);
 
           obs.unobserve(img);
         }
@@ -138,7 +130,7 @@ async function loadCategory(tag) {
     }, { rootMargin: "200px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
-    window.addEventListener("resize", applyMasonry);
+    window.addEventListener("resize", initMasonry);
 
   } catch (err) {
     console.error("Erreur Cloudinary:", err);
@@ -181,7 +173,11 @@ document.addEventListener("keydown", (e) => { if (lightbox.style.display === "fl
 buttonNodes.forEach(btn => {
   const tag = extractTagFromButton(btn);
   if (tag) btn.setAttribute("data-tag", tag);
-  btn.addEventListener("click", (e) => { e.preventDefault(); const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures"; loadCategory(t); });
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
+    loadCategory(t);
+  });
 });
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
-loadCategory(firstTag);
+loadGallery(firstTag);
