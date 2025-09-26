@@ -79,9 +79,7 @@ async function loadCategory(tag) {
 data.resources.sort((a, b) => {
   const nameA = a.public_id.split("/").pop().toLowerCase();
   const nameB = b.public_id.split("/").pop().toLowerCase();
-  if (nameA < nameB) return -1;
-  if (nameA > nameB) return 1;
-  return 0;
+  return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });
 });
 
     currentImages = data.resources.map(r => buildUrls(r));
