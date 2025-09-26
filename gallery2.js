@@ -1,5 +1,5 @@
-// gallery2.js (corrigé avec fade-in garanti)
-// Remplace dx0mbjcva par ton cloud name déjà présent si besoin
+// gallery2.js (fade-in + masonry)
+// Remplace dx0mbjcva par ton cloud name si besoin
 const cloudName = "dx0mbjcva";
 
 const galleryEl = document.getElementById("gallery");
@@ -12,7 +12,7 @@ const closeBtn = document.querySelector("#lightbox .close");
 const prevBtn = document.querySelector("#lightbox .prev");
 const nextBtn = document.querySelector("#lightbox .next");
 
-let currentImages = []; // [{thumb, full, caption}]
+let currentImages = [];
 let currentIndex = 0;
 let observer = null;
 
@@ -20,13 +20,11 @@ let observer = null;
 function extractTagFromButton(btn) {
   let tag = btn.getAttribute("data-tag");
   if (tag) return tag.trim();
-
   const onclick = btn.getAttribute("onclick");
   if (onclick) {
     const m = onclick.match(/loadGallery\(['"]([^'"]+)['"]\)/);
     if (m && m[1]) return m[1];
   }
-
   if (btn.dataset && btn.dataset.tag) return btn.dataset.tag.trim();
   return btn.textContent.trim().toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -47,6 +45,25 @@ function buildUrls(resource) {
   return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
 }
 
+/* ---------- Masonry helper ---------- */
+function applyMasonry() {
+  const items = Array.from(document.querySelectorAll(".gallery-item"));
+  const colCount = Math.floor(galleryEl.clientWidth / 250); // 250px min width
+  const colHeights = Array(colCount).fill(0);
+
+  items.forEach(item => {
+    const minCol = colHeights.indexOf(Math.min(...colHeights));
+    const x = minCol * (galleryEl.clientWidth / colCount);
+    const y = colHeights[minCol];
+    item.style.position = "absolute";
+    item.style.transform = `translate(${x}px, ${y}px)`;
+    colHeights[minCol] += item.offsetHeight + 10; // 10px gap
+  });
+
+  galleryEl.style.position = "relative";
+  galleryEl.style.height = Math.max(...colHeights) + "px";
+}
+
 /* ---------- Main loader ---------- */
 async function loadCategory(tag) {
   if (!tag) tag = "miniatures";
@@ -61,14 +78,12 @@ async function loadCategory(tag) {
     const res = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`);
     if (!res.ok) throw new Error(`Erreur HTTP ${res.status}`);
     const data = await res.json();
-
     if (!data.resources || !data.resources.length) {
       galleryEl.innerHTML = "<p style='text-align:center'>Aucune image trouvée pour cette catégorie.</p>";
       currentImages = [];
       return;
     }
 
-    // tri alphabétique naturel
     data.resources.sort((a, b) => {
       const nameA = a.public_id.split("/").pop().toLowerCase();
       const nameB = b.public_id.split("/").pop().toLowerCase();
@@ -99,36 +114,32 @@ async function loadCategory(tag) {
       galleryEl.appendChild(wrapper);
     });
 
-    // IntersectionObserver for lazy loading + animation
-observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      const wrapper = img.parentElement;
+    observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const wrapper = img.parentElement;
 
-      if (img.dataset.src) {
-        img.src = img.dataset.src;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            if (img.complete) img.classList.add("loaded");
+            else img.addEventListener("load", () => img.classList.add("loaded"));
+          }
 
-        if (img.complete) {
-          img.classList.add("loaded");
-        } else {
-          img.addEventListener("load", () => img.classList.add("loaded"));
+          const delay = img.dataset.index * 200;
+          setTimeout(() => {
+            wrapper.classList.add("show");
+            applyMasonry();
+          }, delay);
+
+          obs.unobserve(img);
         }
-      }
-
-      // ✨ Animation en cascade : délai selon l’index
-      const delay = img.dataset.index * 250; // 250ms par image
-      setTimeout(() => {
-        wrapper.classList.add("show");
-      }, delay);
-
-      obs.unobserve(img);
-    }
-  });
-}, { rootMargin: "200px 0px" });
-
+      });
+    }, { rootMargin: "200px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
+    window.addEventListener("resize", applyMasonry);
+
   } catch (err) {
     console.error("Erreur Cloudinary:", err);
     galleryEl.innerHTML = "<p style='color:red;text-align:center'>Impossible de charger la galerie.</p>";
@@ -136,7 +147,7 @@ observer = new IntersectionObserver((entries, obs) => {
   }
 }
 
-/* expose a global function so inline onclick works */
+/* expose a global function */
 window.loadGallery = loadCategory;
 
 /* ---------- Lightbox ---------- */
@@ -147,61 +158,30 @@ function openLightbox(index) {
   lightbox.style.display = "flex";
   document.body.style.overflow = "hidden";
 }
-
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
   lightboxCaption.textContent = "";
 }
-
 function closeLightbox() {
   lightbox.style.display = "none";
   lightboxImg.src = "";
   document.body.style.overflow = "";
 }
+function showPrev() { if (!currentImages.length) return; currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; updateLightbox(); }
+function showNext() { if (!currentImages.length) return; currentIndex = (currentIndex + 1) % currentImages.length; updateLightbox(); }
 
-function showPrev() {
-  if (!currentImages.length) return;
-  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-  updateLightbox();
-}
-
-function showNext() {
-  if (!currentImages.length) return;
-  currentIndex = (currentIndex + 1) % currentImages.length;
-  updateLightbox();
-}
-
-/* close when clicking outside content */
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) closeLightbox();
-});
-
-/* prev/next/close handlers (if present) */
+lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
 if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
 if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
 if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
-
-/* keyboard navigation */
-document.addEventListener("keydown", (e) => {
-  if (lightbox.style.display === "flex") {
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") showPrev();
-    if (e.key === "ArrowRight") showNext();
-  }
-});
+document.addEventListener("keydown", (e) => { if (lightbox.style.display === "flex") { if (e.key === "Escape") closeLightbox(); if (e.key === "ArrowLeft") showPrev(); if (e.key === "ArrowRight") showNext(); } });
 
 /* ---------- Init ---------- */
 buttonNodes.forEach(btn => {
   const tag = extractTagFromButton(btn);
   if (tag) btn.setAttribute("data-tag", tag);
-
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
-    loadCategory(t);
-  });
+  btn.addEventListener("click", (e) => { e.preventDefault(); const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures"; loadCategory(t); });
 });
-
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
 loadCategory(firstTag);
