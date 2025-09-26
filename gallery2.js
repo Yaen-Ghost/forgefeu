@@ -1,5 +1,4 @@
-// gallery2-masonry.js
-// Remplace dx0mbjcva par ton cloud name si besoin
+// gallery2.js (fade-in + Masonry CSS, sans absolute positioning)
 const cloudName = "dx0mbjcva";
 
 const galleryEl = document.getElementById("gallery");
@@ -15,7 +14,6 @@ const nextBtn = document.querySelector("#lightbox .next");
 let currentImages = [];
 let currentIndex = 0;
 let observer = null;
-let masonry = null;
 
 /* ---------- Helpers ---------- */
 function extractTagFromButton(btn) {
@@ -46,21 +44,10 @@ function buildUrls(resource) {
   return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
 }
 
-/* ---------- Masonry helper ---------- */
-function initMasonry() {
-  if (masonry) masonry.destroy();
-  masonry = new Masonry(galleryEl, {
-    itemSelector: '.gallery-item',
-    columnWidth: '.gallery-item',
-    percentPosition: true,
-    gutter: 10,
-    transitionDuration: '0.3s'
-  });
-}
-
 /* ---------- Main loader ---------- */
 async function loadCategory(tag) {
   if (!tag) tag = "miniatures";
+
   buttonNodes.forEach(b => {
     const bTag = b.getAttribute("data-tag") || extractTagFromButton(b);
     b.classList.toggle("active", bTag === tag);
@@ -78,6 +65,7 @@ async function loadCategory(tag) {
       return;
     }
 
+    // Tri alphabétique naturel
     data.resources.sort((a, b) => {
       const nameA = a.public_id.split("/").pop().toLowerCase();
       const nameB = b.public_id.split("/").pop().toLowerCase();
@@ -87,7 +75,10 @@ async function loadCategory(tag) {
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
-    if (observer) { observer.disconnect(); observer = null; }
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
 
     currentImages.forEach((imgObj, idx) => {
       const wrapper = document.createElement("div");
@@ -105,6 +96,7 @@ async function loadCategory(tag) {
       galleryEl.appendChild(wrapper);
     });
 
+    // IntersectionObserver pour lazy load + fade-in
     observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -114,15 +106,13 @@ async function loadCategory(tag) {
           if (img.dataset.src) {
             img.src = img.dataset.src;
             if (img.complete) img.classList.add("loaded");
-            else img.addEventListener("load", () => {
-              img.classList.add("loaded");
-              wrapper.classList.add("show");
-              initMasonry();
-            });
+            else img.addEventListener("load", () => img.classList.add("loaded"));
           }
 
-          const delay = img.dataset.index * 200;
-          setTimeout(() => wrapper.classList.add("show"), delay);
+          const delay = img.dataset.index * 150; // 150ms par image
+          setTimeout(() => {
+            wrapper.classList.add("show");
+          }, delay);
 
           obs.unobserve(img);
         }
@@ -130,7 +120,6 @@ async function loadCategory(tag) {
     }, { rootMargin: "200px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
-    window.addEventListener("resize", initMasonry);
 
   } catch (err) {
     console.error("Erreur Cloudinary:", err);
@@ -139,7 +128,7 @@ async function loadCategory(tag) {
   }
 }
 
-/* expose a global function */
+/* expose global function */
 window.loadGallery = loadCategory;
 
 /* ---------- Lightbox ---------- */
@@ -153,7 +142,7 @@ function openLightbox(index) {
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
-  lightboxCaption.textContent = "";
+  lightboxCaption.textContent = imgObj.caption || "";
 }
 function closeLightbox() {
   lightbox.style.display = "none";
@@ -167,16 +156,22 @@ lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLigh
 if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
 if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
 if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
-document.addEventListener("keydown", (e) => { if (lightbox.style.display === "flex") { if (e.key === "Escape") closeLightbox(); if (e.key === "ArrowLeft") showPrev(); if (e.key === "ArrowRight") showNext(); } });
+document.addEventListener("keydown", (e) => { 
+  if (lightbox.style.display === "flex") {
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+  } 
+});
 
 /* ---------- Init ---------- */
 buttonNodes.forEach(btn => {
   const tag = extractTagFromButton(btn);
   if (tag) btn.setAttribute("data-tag", tag);
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
-    loadCategory(t);
+  btn.addEventListener("click", (e) => { 
+    e.preventDefault(); 
+    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures"; 
+    loadCategory(t); 
   });
 });
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
