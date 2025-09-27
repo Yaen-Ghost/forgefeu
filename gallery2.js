@@ -1,4 +1,4 @@
-// gallery2.js (Masonry JS + lazy load + fade-in)
+// gallery2.js — Masonry + imagesLoaded + cascade au scroll
 const cloudName = "dx0mbjcva";
 
 const galleryEl = document.getElementById("gallery");
@@ -15,6 +15,7 @@ let currentImages = [];
 let currentIndex = 0;
 let observer = null;
 let msnry = null;
+const STAGGER = 90; // ms entre chaque élément lors de la cascade
 
 /* ---------- Helpers ---------- */
 function extractTagFromButton(btn) {
@@ -33,22 +34,36 @@ function extractTagFromButton(btn) {
 }
 
 function buildUrls(resource) {
-  const fullBase = resource.secure_url ?
-    resource.secure_url :
+  const fullBase = resource.secure_url ? resource.secure_url :
     `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
   if (fullBase.includes("/upload/")) {
-    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_300/");
+    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/");
     const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/");
     return { thumb, full, caption: resource.public_id.split("/").pop() };
   }
   return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
 }
 
-/* ---------- Main loader ---------- */
-async function loadCategory(tag) {
-  if (!tag) tag = "miniatures";
+/* ---------- Masonry init ---------- */
+function initMasonry() {
+  if (typeof Masonry === "undefined") {
+    console.warn("Masonry non trouvé — vérifie que tu as inclus masonry.pkgd.min.js avant gallery2.js");
+    return;
+  }
+  if (msnry) msnry.destroy();
+  msnry = new Masonry(galleryEl, {
+    itemSelector: ".gallery-item",
+    columnWidth: ".gallery-item",
+    percentPosition: true,
+    gutter: 15,
+    transitionDuration: 0
+  });
+}
 
+/* ---------- Main loader ---------- */
+async function loadCategory(tag = "miniatures") {
+  // bouton actif
   buttonNodes.forEach(b => {
     const bTag = b.getAttribute("data-tag") || extractTagFromButton(b);
     b.classList.toggle("active", bTag === tag);
@@ -66,24 +81,24 @@ async function loadCategory(tag) {
       return;
     }
 
-    // Tri alphabétique naturel
+    // tri naturel
     data.resources.sort((a, b) => {
       const nameA = a.public_id.split("/").pop().toLowerCase();
       const nameB = b.public_id.split("/").pop().toLowerCase();
-      return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });
+      return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: "base" });
     });
 
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
-    if (observer) {
-      observer.disconnect();
-      observer = null;
-    }
+    // cleanup observer
+    if (observer) { observer.disconnect(); observer = null; }
 
+    // ajouter items DOM
     currentImages.forEach((imgObj, idx) => {
       const wrapper = document.createElement("div");
       wrapper.className = "gallery-item";
+      wrapper.dataset.index = idx; // utilité éventuelle
 
       const imgEl = document.createElement("img");
       imgEl.dataset.src = imgObj.thumb;
@@ -91,10 +106,12 @@ async function loadCategory(tag) {
       imgEl.dataset.index = idx;
       imgEl.loading = "lazy";
 
+      // clic pour lightbox
       imgEl.addEventListener("click", () => openLightbox(idx));
 
-      // Quand l'image est chargée → recalcul Masonry
+      // quand l'image charge, on marque loaded et on demande un layout Masonry
       imgEl.addEventListener("load", () => {
+        imgEl.classList.add("loaded");
         if (msnry) msnry.layout();
       });
 
@@ -102,44 +119,63 @@ async function loadCategory(tag) {
       galleryEl.appendChild(wrapper);
     });
 
-    // Détruire puis recréer Masonry
-    if (msnry) msnry.destroy();
-    msnry = new Masonry(galleryEl, {
-      itemSelector: ".gallery-item",
-      columnWidth: ".gallery-item",
-      percentPosition: true,
-      gutter: 15
-    });
+    // initialiser Masonry (avant lazy load) pour que la grille existe
+    initMasonry();
 
-// IntersectionObserver pour lazy load + effet cascade au scroll
-observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      const wrapper = img.parentElement;
-
-      // Lazy load
-      if (img.dataset.src) {
-        img.src = img.dataset.src;
-        if (img.complete) img.classList.add("loaded");
-        else img.addEventListener("load", () => img.classList.add("loaded"));
-      }
-
-      // Effet cascade basé sur l’index
-      const index = parseInt(img.dataset.index, 10) || 0;
-      const delay = index * 120; // 120ms entre chaque image
-
-      setTimeout(() => {
-        wrapper.classList.add("show");
+    // imagesLoaded : quand les images déjà en cache sont ok, relayout
+    if (typeof imagesLoaded !== "undefined") {
+      imagesLoaded(galleryEl, () => {
         if (msnry) msnry.layout();
-      }, delay);
-
-      obs.unobserve(img);
+      });
     }
-  });
-}, { rootMargin: "0px 0px -50px 0px" });
 
-    document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
+    // IntersectionObserver sur les WRAPPERS (pas sur les images) — cela nous donne le groupe d'items visibles
+    observer = new IntersectionObserver((entries, obs) => {
+      // garder uniquement les wrappers qui sont visibles et pas encore montrés
+      const visibleWrappers = entries
+        .filter(en => en.isIntersecting)
+        .map(en => en.target)
+        .filter(w => !w.classList.contains("show"));
+
+      if (!visibleWrappers.length) return;
+
+      // trier par position visuelle : top then left (relative au viewport)
+      visibleWrappers.sort((a, b) => {
+        const ra = a.getBoundingClientRect();
+        const rb = b.getBoundingClientRect();
+        // priorité top (tolérance 10px), sinon left
+        if (Math.abs(ra.top - rb.top) > 10) return ra.top - rb.top;
+        return ra.left - rb.left;
+      });
+
+      // pour chaque wrapper visible, lazy-load l'image et planifier le reveal en cascade
+      visibleWrappers.forEach((wrapper, i) => {
+        const img = wrapper.querySelector("img");
+        if (img && img.dataset.src && !img.src) {
+          img.src = img.dataset.src;
+        }
+        setTimeout(() => {
+          wrapper.classList.add("show");
+          // on ne relayoute pas après chaque item pour perf ; on fera un layout final
+        }, i * STAGGER);
+
+        // on arrête d'observer le wrapper (animation jouera une seule fois)
+        obs.unobserve(wrapper);
+      });
+
+      // relayout Masonry une fois la cascade programmée (après le dernier delay)
+      const totalDelay = visibleWrappers.length * STAGGER + 70;
+      setTimeout(() => {
+        if (msnry) msnry.layout();
+      }, totalDelay);
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+
+    // observer sur tous les wrappers
+    document.querySelectorAll(".gallery-item").forEach(w => {
+      // reset état d'affichage (utile si on change de catégorie)
+      w.classList.remove("show");
+      observer.observe(w);
+    });
 
   } catch (err) {
     console.error("Erreur Cloudinary:", err);
@@ -151,7 +187,7 @@ observer = new IntersectionObserver((entries, obs) => {
 /* expose global function */
 window.loadGallery = loadCategory;
 
-/* ---------- Lightbox ---------- */
+/* ---------- Lightbox (inchangé) ---------- */
 function openLightbox(index) {
   if (!currentImages.length) return;
   currentIndex = index;
@@ -176,23 +212,23 @@ lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLigh
 if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
 if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
 if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
-document.addEventListener("keydown", (e) => { 
+document.addEventListener("keydown", (e) => {
   if (lightbox.style.display === "flex") {
     if (e.key === "Escape") closeLightbox();
     if (e.key === "ArrowLeft") showPrev();
     if (e.key === "ArrowRight") showNext();
-  } 
+  }
 });
 
 /* ---------- Init ---------- */
 buttonNodes.forEach(btn => {
   const tag = extractTagFromButton(btn);
   if (tag) btn.setAttribute("data-tag", tag);
-  btn.addEventListener("click", (e) => { 
-    e.preventDefault(); 
-    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures"; 
-    loadCategory(t); 
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
+    loadCategory(t);
   });
 });
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
-loadGallery(firstTag);
+loadCategory(firstTag);
