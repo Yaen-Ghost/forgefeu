@@ -259,18 +259,9 @@ button:focus, .btn:focus {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .gallery-item { width: 30%; }
-    .gallery {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-@media (max-width: 480px) {
-  .gallery-item { width: 50%; }
-    .gallery {
-    padding-left: 15px;
-    padding-right: 15px;
+@media (max-width: 768px) and (min-width: 480px)  {
+  .gallery-item { 
+    width: 50%;
   }
 }
 
@@ -695,6 +686,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
