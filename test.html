@@ -85,20 +85,33 @@
   <div class="spacer"></div> <!-- espace vide après la galerie -->
   
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const items = document.querySelectorAll(".gallery-item");
+  document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll(".gallery-item");
 
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const item = entry.target;
 
-      items.forEach(item => observer.observe(item));
-    });
-  </script>
+          // Trouver l’index de l’élément
+          const allItems = Array.from(items);
+          const index = allItems.indexOf(item);
+
+          // Calcul du délai (ici 150ms par "rangée virtuelle")
+          const delay = (index % 5) * 150;
+
+          setTimeout(() => {
+            item.classList.add("show");
+          }, delay);
+
+          obs.unobserve(item);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" });
+
+    items.forEach(item => observer.observe(item));
+  });
+</script>
+
 </body>
 </html>
