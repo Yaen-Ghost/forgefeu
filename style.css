@@ -372,7 +372,7 @@ button:focus, .btn:focus {
 }
 
   #lightbox .close {
-    font-size: 70px;        /* taille du symbole */
+    font-size: 170px;        /* taille du symbole */
     padding: 15px;          /* zone cliquable plus large */
     top: 15px;              /* ajustement position si nécessaire */
     right: 15px;
@@ -394,7 +394,7 @@ button:focus, .btn:focus {
 }
 
   #lightbox .close {
-    font-size: 70px;        /* taille du symbole */
+    font-size: 170px;        /* taille du symbole */
     padding: 15px;          /* zone cliquable plus large */
     top: 15px;              /* ajustement position si nécessaire */
     right: 15px;
@@ -705,6 +705,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
