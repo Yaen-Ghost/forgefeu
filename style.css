@@ -316,6 +316,11 @@ button:focus, .btn:focus {
   z-index: 2200;
 }
 
+#lightbox-caption {
+  display: none;
+}
+
+
 /* Flèches lightbox */
 .prev, .next {
   position: absolute;
@@ -361,6 +366,10 @@ button:focus, .btn:focus {
   #lightbox-img {
     max-height: 70vh;
   }
+
+  #lightbox .close {
+  font-size: 70px;
+}
 }
 
 @media (max-width: 480px) {
@@ -374,8 +383,12 @@ button:focus, .btn:focus {
   }
 
   #lightbox-caption {
-    font-size: 0.9rem;
-  }
+  display: none;
+}
+
+    #lightbox .close {
+  font-size: 70px;
+}
 }
 
 
@@ -682,6 +695,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
