@@ -1,4 +1,4 @@
-// gallery2.js (Masonry JS + imagesLoaded + fade-in)
+// gallery2.js (Masonry JS + lazy load + fade-in)
 const cloudName = "dx0mbjcva";
 
 const galleryEl = document.getElementById("gallery");
@@ -38,21 +38,11 @@ function buildUrls(resource) {
     `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
   if (fullBase.includes("/upload/")) {
-    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/"); // taille vignette
-    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/"); // taille plein écran
+    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_300/");
+    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/");
     return { thumb, full, caption: resource.public_id.split("/").pop() };
   }
   return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
-}
-
-/* ---------- Masonry init ---------- */
-function initMasonry() {
-  if (msnry) msnry.destroy();
-  msnry = new Masonry(galleryEl, {
-    itemSelector: ".gallery-item",
-    percentPosition: true,
-    gutter: 15
-  });
 }
 
 /* ---------- Main loader ---------- */
@@ -76,11 +66,11 @@ async function loadCategory(tag) {
       return;
     }
 
-    // tri alphabétique naturel
+    // Tri alphabétique naturel
     data.resources.sort((a, b) => {
       const nameA = a.public_id.split("/").pop().toLowerCase();
       const nameB = b.public_id.split("/").pop().toLowerCase();
-      return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: "base" });
+      return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });
     });
 
     currentImages = data.resources.map(r => buildUrls(r));
@@ -103,39 +93,46 @@ async function loadCategory(tag) {
 
       imgEl.addEventListener("click", () => openLightbox(idx));
 
+      // Quand l'image est chargée → recalcul Masonry
+      imgEl.addEventListener("load", () => {
+        if (msnry) msnry.layout();
+      });
+
       wrapper.appendChild(imgEl);
       galleryEl.appendChild(wrapper);
     });
 
-    // Lazy loading avec fade-in (corrigé)
-observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      const wrapper = img.parentElement;
+    // Détruire puis recréer Masonry
+    if (msnry) msnry.destroy();
+    msnry = new Masonry(galleryEl, {
+      itemSelector: ".gallery-item",
+      columnWidth: ".gallery-item",
+      percentPosition: true,
+      gutter: 15
+    });
 
-      if (img.dataset.src) {
-        img.src = img.dataset.src;
-        if (img.complete) img.classList.add("loaded");
-        else img.addEventListener("load", () => img.classList.add("loaded"));
-      }
+    // IntersectionObserver pour lazy load + fade-in
+    observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const wrapper = img.parentElement;
 
-      // 👇 Le fade-in n’est déclenché QUE quand l’item entre dans la vue
-      wrapper.classList.add("show");
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            if (img.complete) img.classList.add("loaded");
+            else img.addEventListener("load", () => img.classList.add("loaded"));
+          }
 
-      if (msnry) msnry.layout(); // repositionne Masonry
-      obs.unobserve(img); // évite que l’animation rejoue
-    }
-  });
-}, { rootMargin: "100px 0px" });
+          wrapper.classList.add("show");
 
+          if (msnry) msnry.layout();
+          obs.unobserve(img);
+        }
+      });
+    }, { rootMargin: "100px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
-
-    // Quand toutes les images sont chargées → Masonry organise
-    imagesLoaded(galleryEl, () => {
-      initMasonry();
-    });
 
   } catch (err) {
     console.error("Erreur Cloudinary:", err);
@@ -165,39 +162,30 @@ function closeLightbox() {
   lightboxImg.src = "";
   document.body.style.overflow = "";
 }
-function showPrev() {
-  if (!currentImages.length) return;
-  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-  updateLightbox();
-}
-function showNext() {
-  if (!currentImages.length) return;
-  currentIndex = (currentIndex + 1) % currentImages.length;
-  updateLightbox();
-}
+function showPrev() { if (!currentImages.length) return; currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; updateLightbox(); }
+function showNext() { if (!currentImages.length) return; currentIndex = (currentIndex + 1) % currentImages.length; updateLightbox(); }
 
 lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
 if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
 if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
 if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => { 
   if (lightbox.style.display === "flex") {
     if (e.key === "Escape") closeLightbox();
     if (e.key === "ArrowLeft") showPrev();
     if (e.key === "ArrowRight") showNext();
-  }
+  } 
 });
 
 /* ---------- Init ---------- */
 buttonNodes.forEach(btn => {
   const tag = extractTagFromButton(btn);
   if (tag) btn.setAttribute("data-tag", tag);
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
-    loadCategory(t);
+  btn.addEventListener("click", (e) => { 
+    e.preventDefault(); 
+    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures"; 
+    loadCategory(t); 
   });
 });
-
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
 loadGallery(firstTag);
