@@ -222,13 +222,13 @@ button:focus, .btn:focus {
 .gallery {
   max-width: 1200px;
   margin: 40px auto; /* espace avant/après la galerie */
-  /* padding-left: 15px;
-  padding-right: 15px; */
+  padding-left: 5px;
+  /*padding-right: 15px; */
 }
 
 /* Items animés */
 .gallery-item {
-  width: 32%; /* Masonry gère la largeur en pourcentage */
+  width: 30%; /* Masonry gère la largeur en pourcentage */
   margin-bottom: 15px;
   opacity: 0;
   transform: translateY(150px);
@@ -261,7 +261,7 @@ button:focus, .btn:focus {
 /* Responsive */
 @media (max-width: 768px) {
    .gallery-item {
-    width: 31%;
+    width: 30%;
   }
 
 
@@ -684,6 +684,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
