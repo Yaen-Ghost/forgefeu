@@ -1,5 +1,6 @@
-// gallery2.js (fade-in + Masonry CSS, sans absolute positioning)
+// gallery2.js (Masonry JS + imagesLoaded + fade-in)
 const cloudName = "dx0mbjcva";
+
 const galleryEl = document.getElementById("gallery");
 const buttonNodes = document.querySelectorAll(".gallery-menu button");
 
@@ -13,11 +14,18 @@ const nextBtn = document.querySelector("#lightbox .next");
 let currentImages = [];
 let currentIndex = 0;
 let observer = null;
+let msnry = null;
 
 /* ---------- Helpers ---------- */
 function extractTagFromButton(btn) {
   let tag = btn.getAttribute("data-tag");
   if (tag) return tag.trim();
+  const onclick = btn.getAttribute("onclick");
+  if (onclick) {
+    const m = onclick.match(/loadGallery\(['"]([^'"]+)['"]\)/);
+    if (m && m[1]) return m[1];
+  }
+  if (btn.dataset && btn.dataset.tag) return btn.dataset.tag.trim();
   return btn.textContent.trim().toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "_")
@@ -29,18 +37,28 @@ function buildUrls(resource) {
     resource.secure_url :
     `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
-  const thumb = fullBase.includes("/upload/") ?
-    fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_300/") :
-    fullBase;
-  const full = fullBase.includes("/upload/") ?
-    fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/") :
-    fullBase;
+  if (fullBase.includes("/upload/")) {
+    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/"); // taille vignette
+    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/"); // taille plein écran
+    return { thumb, full, caption: resource.public_id.split("/").pop() };
+  }
+  return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
+}
 
-  return { thumb, full, caption: resource.public_id.split("/").pop() };
+/* ---------- Masonry init ---------- */
+function initMasonry() {
+  if (msnry) msnry.destroy();
+  msnry = new Masonry(galleryEl, {
+    itemSelector: ".gallery-item",
+    percentPosition: true,
+    gutter: 15
+  });
 }
 
 /* ---------- Main loader ---------- */
-async function loadCategory(tag = "miniatures") {
+async function loadCategory(tag) {
+  if (!tag) tag = "miniatures";
+
   buttonNodes.forEach(b => {
     const bTag = b.getAttribute("data-tag") || extractTagFromButton(b);
     b.classList.toggle("active", bTag === tag);
@@ -58,16 +76,20 @@ async function loadCategory(tag = "miniatures") {
       return;
     }
 
-    data.resources.sort((a,b) => {
+    // tri alphabétique naturel
+    data.resources.sort((a, b) => {
       const nameA = a.public_id.split("/").pop().toLowerCase();
       const nameB = b.public_id.split("/").pop().toLowerCase();
-      return nameA.localeCompare(nameB, undefined, { numeric:true, sensitivity:'base' });
+      return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: "base" });
     });
 
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
-    if (observer) { observer.disconnect(); observer = null; }
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
 
     currentImages.forEach((imgObj, idx) => {
       const wrapper = document.createElement("div");
@@ -75,7 +97,7 @@ async function loadCategory(tag = "miniatures") {
 
       const imgEl = document.createElement("img");
       imgEl.dataset.src = imgObj.thumb;
-      imgEl.alt = imgObj.caption || `Image ${idx+1}`;
+      imgEl.alt = imgObj.caption || `Image ${idx + 1}`;
       imgEl.dataset.index = idx;
       imgEl.loading = "lazy";
 
@@ -85,6 +107,7 @@ async function loadCategory(tag = "miniatures") {
       galleryEl.appendChild(wrapper);
     });
 
+    // Lazy loading avec fade-in
     observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -97,13 +120,23 @@ async function loadCategory(tag = "miniatures") {
             else img.addEventListener("load", () => img.classList.add("loaded"));
           }
 
-          setTimeout(() => { wrapper.classList.add("show"); }, img.dataset.index*150);
+          const delay = img.dataset.index * 150;
+          setTimeout(() => {
+            wrapper.classList.add("show");
+            if (msnry) msnry.layout(); // repositionne Masonry quand une image apparaît
+          }, delay);
+
           obs.unobserve(img);
         }
       });
-    }, { rootMargin:"200px 0px" });
+    }, { rootMargin: "200px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
+
+    // Quand toutes les images sont chargées → Masonry organise
+    imagesLoaded(galleryEl, () => {
+      initMasonry();
+    });
 
   } catch (err) {
     console.error("Erreur Cloudinary:", err);
@@ -112,9 +145,13 @@ async function loadCategory(tag = "miniatures") {
   }
 }
 
+/* expose global function */
+window.loadGallery = loadCategory;
+
 /* ---------- Lightbox ---------- */
-function openLightbox(idx) {
-  currentIndex = idx;
+function openLightbox(index) {
+  if (!currentImages.length) return;
+  currentIndex = index;
   updateLightbox();
   lightbox.style.display = "flex";
   document.body.style.overflow = "hidden";
@@ -124,21 +161,44 @@ function updateLightbox() {
   lightboxImg.src = imgObj.full;
   lightboxCaption.textContent = imgObj.caption || "";
 }
-function closeLightbox() { lightbox.style.display="none"; lightboxImg.src=""; document.body.style.overflow=""; }
-function showPrev() { if (!currentImages.length) return; currentIndex=(currentIndex-1+currentImages.length)%currentImages.length; updateLightbox(); }
-function showNext() { if (!currentImages.length) return; currentIndex=(currentIndex+1)%currentImages.length; updateLightbox(); }
+function closeLightbox() {
+  lightbox.style.display = "none";
+  lightboxImg.src = "";
+  document.body.style.overflow = "";
+}
+function showPrev() {
+  if (!currentImages.length) return;
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  updateLightbox();
+}
+function showNext() {
+  if (!currentImages.length) return;
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  updateLightbox();
+}
 
-lightbox.addEventListener("click",(e)=>{if(e.target===lightbox)closeLightbox();});
-if(prevBtn) prevBtn.addEventListener("click",(e)=>{e.stopPropagation();showPrev();});
-if(nextBtn) nextBtn.addEventListener("click",(e)=>{e.stopPropagation();showNext();});
-if(closeBtn) closeBtn.addEventListener("click",(e)=>{e.stopPropagation();closeLightbox();});
-document.addEventListener("keydown",(e)=>{if(lightbox.style.display==="flex"){if(e.key==="Escape")closeLightbox();if(e.key==="ArrowLeft")showPrev();if(e.key==="ArrowRight")showNext();}});
+lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
+if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
+if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeLightbox(); });
+document.addEventListener("keydown", (e) => {
+  if (lightbox.style.display === "flex") {
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+  }
+});
 
 /* ---------- Init ---------- */
-buttonNodes.forEach(btn=>{
+buttonNodes.forEach(btn => {
   const tag = extractTagFromButton(btn);
-  if(tag) btn.setAttribute("data-tag",tag);
-  btn.addEventListener("click",(e)=>{e.preventDefault();const t=btn.getAttribute("data-tag")||extractTagFromButton(btn)||"miniatures"; loadCategory(t);});
+  if (tag) btn.setAttribute("data-tag", tag);
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const t = btn.getAttribute("data-tag") || extractTagFromButton(btn) || "miniatures";
+    loadCategory(t);
+  });
 });
+
 const firstTag = (buttonNodes[0] && (buttonNodes[0].getAttribute("data-tag") || extractTagFromButton(buttonNodes[0]))) || "miniatures";
-loadCategory(firstTag);
+loadGallery(firstTag);
