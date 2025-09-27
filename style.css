@@ -259,21 +259,21 @@ button:focus, .btn:focus {
 }
 
 /* Responsive */
-@media (min-width; 391px) and (max-width: 590px) {
-   .gallery-item {
+@media (min-width: 391px) and (max-width: 591px) {
+  .gallery-item {
     width: 30%;
   }
   .gallery { 
-  padding-left: 5px;
-  padding-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 @media (max-width: 390px) {
    .gallery-item {
     width: 30%;
   }
   .gallery { 
-  padding-left: 1px;
-  padding-right: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 
@@ -697,6 +697,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
