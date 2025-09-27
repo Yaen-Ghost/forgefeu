@@ -113,24 +113,28 @@ async function loadCategory(tag) {
 
     // IntersectionObserver pour lazy load + fade-in
     observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const wrapper = img.parentElement;
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      const wrapper = img.parentElement;
 
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            if (img.complete) img.classList.add("loaded");
-            else img.addEventListener("load", () => img.classList.add("loaded"));
-          }
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        if (img.complete) img.classList.add("loaded");
+        else img.addEventListener("load", () => img.classList.add("loaded"));
+      }
 
-          wrapper.classList.add("show");
+      // effet cascade : délai basé sur l’index
+      const delay = (parseInt(img.dataset.index, 10) % 10) * 120; 
+      setTimeout(() => {
+        wrapper.classList.add("show");
+        if (msnry) msnry.layout();
+      }, delay);
 
-          if (msnry) msnry.layout();
-          obs.unobserve(img);
-        }
-      });
-    }, { rootMargin: "100px 0px" });
+      obs.unobserve(img);
+    }
+  });
+}, { rootMargin: "100px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
 
