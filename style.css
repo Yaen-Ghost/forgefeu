@@ -264,7 +264,7 @@ button:focus, .btn:focus {
     width: 30%;
   }
   .gallery {
-  padding: 0;
+  padding: 0 5;
 }
 
 
@@ -687,6 +687,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
