@@ -107,29 +107,28 @@ async function loadCategory(tag) {
       galleryEl.appendChild(wrapper);
     });
 
-    // Lazy loading avec fade-in
-    observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const wrapper = img.parentElement;
+    // Lazy loading avec fade-in (corrigé)
+observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      const wrapper = img.parentElement;
 
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            if (img.complete) img.classList.add("loaded");
-            else img.addEventListener("load", () => img.classList.add("loaded"));
-          }
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+        if (img.complete) img.classList.add("loaded");
+        else img.addEventListener("load", () => img.classList.add("loaded"));
+      }
 
-          const delay = img.dataset.index * 150;
-          setTimeout(() => {
-            wrapper.classList.add("show");
-            if (msnry) msnry.layout(); // repositionne Masonry quand une image apparaît
-          }, delay);
+      // 👇 Le fade-in n’est déclenché QUE quand l’item entre dans la vue
+      wrapper.classList.add("show");
 
-          obs.unobserve(img);
-        }
-      });
-    }, { rootMargin: "200px 0px" });
+      if (msnry) msnry.layout(); // repositionne Masonry
+      obs.unobserve(img); // évite que l’animation rejoue
+    }
+  });
+}, { rootMargin: "100px 0px" });
+
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
 
