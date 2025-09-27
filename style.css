@@ -224,11 +224,12 @@ button:focus, .btn:focus {
   margin: 40px auto; /* espace avant/après la galerie */
   padding-left: 15px;
   padding-right: 15px;
+  --gap : 10px;
 }
 
 /* Items animés */
 .gallery-item {
-  width: 30%; /* Masonry gère la largeur en pourcentage */
+  width: calc((100% - 2 * var(--gap)) / 3); /* 3 colonnes, prend en compte le gap */ /*30%; /* Masonry gère la largeur en pourcentage */
   margin-bottom: 15px;
   opacity: 0;
   transform: translateY(150px);
@@ -259,18 +260,18 @@ button:focus, .btn:focus {
 }
 
 /* Responsive */
-@media (min-width: 591px) and (max-width: 768px) {
-  .gallery-item { 
-    width: 30%;
+/* Entre 361px et 768px : 3 colonnes flexibles */
+@media (min-width: 361px) and (max-width: 768px) {
+  .gallery-item {
+    width: calc((100% - 2 * var(--gap)) / 3);
   }
 }
 
-@media (max-width: 590px) {
-  .gallery-item { 
-    width: 28%;
+/* <360px : toujours 3 colonnes avec le même calcul */
+@media (max-width: 360px) {
+  .gallery-item {
+    width: calc((100% - 2 * var(--gap)) / 3);
   }
-}
-
 
 
 /* ----------------- LIGHTBOX RESPONSIVE ----------------- */
@@ -692,6 +693,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
