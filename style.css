@@ -372,8 +372,11 @@ button:focus, .btn:focus {
 }
 
   #lightbox .close {
-  font-size: 70px;
-}
+    font-size: 70px;        /* taille du symbole */
+    padding: 15px;          /* zone cliquable plus large */
+    top: 15px;              /* ajustement position si nécessaire */
+    right: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -390,9 +393,12 @@ button:focus, .btn:focus {
   display: none;
 }
 
-    #lightbox .close {
-  font-size: 70px;
-}
+  #lightbox .close {
+    font-size: 70px;        /* taille du symbole */
+    padding: 15px;          /* zone cliquable plus large */
+    top: 15px;              /* ajustement position si nécessaire */
+    right: 15px;
+  }
 }
 
 
@@ -699,6 +705,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
