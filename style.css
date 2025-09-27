@@ -214,8 +214,9 @@ button:focus, .btn:focus {
   width: 30%;              /* 3 colonnes par défaut */
   margin-bottom: 15px;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(40px);
   transition: opacity 1.2s ease, transform 1.2s ease;
+  will-change: opacity, transform;
 }
 
 .gallery-item.show {
@@ -655,6 +656,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
