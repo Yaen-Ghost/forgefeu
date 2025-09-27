@@ -111,21 +111,24 @@ async function loadCategory(tag) {
       gutter: 15
     });
 
-    // IntersectionObserver pour lazy load + fade-in
-    observer = new IntersectionObserver((entries, obs) => {
+// IntersectionObserver pour lazy load + effet cascade au scroll
+observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const img = entry.target;
       const wrapper = img.parentElement;
 
+      // Lazy load
       if (img.dataset.src) {
         img.src = img.dataset.src;
         if (img.complete) img.classList.add("loaded");
         else img.addEventListener("load", () => img.classList.add("loaded"));
       }
 
-      // effet cascade : délai basé sur l’index
-      const delay = (parseInt(img.dataset.index, 10) % 10) * 120; 
+      // Effet cascade basé sur l’index
+      const index = parseInt(img.dataset.index, 10) || 0;
+      const delay = index * 120; // 120ms entre chaque image
+
       setTimeout(() => {
         wrapper.classList.add("show");
         if (msnry) msnry.layout();
@@ -134,7 +137,7 @@ async function loadCategory(tag) {
       obs.unobserve(img);
     }
   });
-}, { rootMargin: "100px 0px" });
+}, { rootMargin: "0px 0px -50px 0px" });
 
     document.querySelectorAll(".gallery img").forEach(i => observer.observe(i));
 
