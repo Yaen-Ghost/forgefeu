@@ -222,7 +222,8 @@ button:focus, .btn:focus {
 .gallery {
   max-width: 1200px;
   margin: 40px auto; /* espace avant/après la galerie */
-  margin-left: 40px auto; /* espace à gauche */
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /* Items animés */
@@ -260,9 +261,17 @@ button:focus, .btn:focus {
 /* Responsive */
 @media (max-width: 768px) {
   .gallery-item { width: 48%; }
+    .gallery {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 @media (max-width: 480px) {
   .gallery-item { width: 100%; }
+    .gallery {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 
@@ -673,6 +682,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
