@@ -259,9 +259,9 @@ button:focus, .btn:focus {
 }
 
 /* Responsive */
-@media (max-width: 768px) and (min-width: 480px)  {
+@media (max-width: 768px) {
   .gallery-item { 
-    width: 25%;
+    width: calc(100%/3);
   }
 }
 
@@ -686,6 +686,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
