@@ -260,14 +260,14 @@ button:focus, .btn:focus {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .gallery-item { width: 48%; }
+ /* .gallery-item { width: 48%; }*/
     .gallery {
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 @media (max-width: 480px) {
-  .gallery-item { width: 100%; }
+ /* .gallery-item { width: 100%; }*/
     .gallery {
     padding-left: 20px;
     padding-right: 20px;
@@ -717,6 +717,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
