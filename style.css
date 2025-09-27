@@ -199,6 +199,10 @@ button:focus, .btn:focus {
 }
 
 /* ----------------- GALERIE ----------------- */
+.gallery-menu {
+  align: center;
+}
+
 /* Conteneur Masonry */
 .gallery {
   max-width: 1200px;
@@ -651,6 +655,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
