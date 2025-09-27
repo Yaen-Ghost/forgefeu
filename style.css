@@ -367,6 +367,10 @@ button:focus, .btn:focus {
     max-height: 70vh;
   }
 
+    #lightbox-caption {
+  display: none;
+}
+
   #lightbox .close {
   font-size: 70px;
 }
@@ -695,6 +699,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
