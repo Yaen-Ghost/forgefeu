@@ -228,7 +228,7 @@ button:focus, .btn:focus {
 
 /* Items animés */
 .gallery-item {
-  width: 33%; /* Masonry gère la largeur en pourcentage */
+  width: 30%; /* Masonry gère la largeur en pourcentage */
   margin-bottom: 15px;
   opacity: 0;
   transform: translateY(150px);
@@ -687,6 +687,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
