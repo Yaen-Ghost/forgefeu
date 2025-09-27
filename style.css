@@ -222,8 +222,8 @@ button:focus, .btn:focus {
 .gallery {
   max-width: 1200px;
   margin: 40px auto; /* espace avant/après la galerie */
-  padding-left: 15px;
-  padding-right: 15px;
+  /* padding-left: 15px;
+  padding-right: 15px; */
 }
 
 /* Items animés */
@@ -684,6 +684,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
