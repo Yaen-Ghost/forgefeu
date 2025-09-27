@@ -259,11 +259,11 @@ button:focus, .btn:focus {
 }
 
 /* Responsive */
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
   .gallery-item { 
-    width: calc(100%/3);
+    width: 33%;
   }
-} */
+}
 
 
 
@@ -686,6 +686,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
