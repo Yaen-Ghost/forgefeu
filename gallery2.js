@@ -52,24 +52,28 @@ async function loadCategory(tag = "miniatures") {
     currentImages = data.resources.map(r => buildUrls(r));
     galleryEl.innerHTML = "";
 
-    currentImages.forEach((imgObj, idx) => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "gallery-item";
+currentImages.forEach((imgObj, idx) => {
+  const wrapper = document.createElement("div");
+  wrapper.className = "gallery-item";
 
-      const imgEl = document.createElement("img");
-      imgEl.dataset.src = imgObj.thumb;
-      imgEl.alt = imgObj.caption || `Image ${idx+1}`;
-      imgEl.loading = "lazy";
+  const imgEl = document.createElement("img");
+  imgEl.src = imgObj.thumb;  // <-- ici on met directement src
+  imgEl.alt = imgObj.caption || `Image ${idx+1}`;
+  imgEl.loading = "lazy";
 
-      imgEl.addEventListener("click", () => openLightbox(idx));
-      imgEl.addEventListener("load", () => {
-        imgEl.classList.add("loaded");
-        if (msnry) msnry.layout();
-      });
+  // clic pour lightbox
+  imgEl.addEventListener("click", () => openLightbox(idx));
 
-      wrapper.appendChild(imgEl);
-      galleryEl.appendChild(wrapper);
-    });
+  // quand l'image charge, on relayout Masonry
+  imgEl.addEventListener("load", () => {
+    imgEl.classList.add("loaded");
+    if (msnry) msnry.layout();
+  });
+
+  wrapper.appendChild(imgEl);
+  galleryEl.appendChild(wrapper);
+});
+
 
     initMasonry();
 
