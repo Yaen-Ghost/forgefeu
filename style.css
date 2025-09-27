@@ -260,14 +260,14 @@ button:focus, .btn:focus {
 
 /* Responsive */
 @media (max-width: 768px) {
- /* .gallery-item { width: 48%; }*/
+  .gallery-item { width: 48%; }
     .gallery {
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 @media (max-width: 480px) {
- /* .gallery-item { width: 100%; }*/
+  .gallery-item { width: 100%; }
     .gallery {
     padding-left: 20px;
     padding-right: 20px;
@@ -360,36 +360,22 @@ button:focus, .btn:focus {
     right: 10px;
   }
 
-  #lightbox .prev,
-  #lightbox .next {
-    display: none;
-  }
+  #lightbox .prev { left: 10px; }
+  #lightbox .next { right: 10px; }
 
   #lightbox-img {
     max-height: 70vh;
   }
 
-    #lightbox-caption {
-  display: none;
-}
-
-#lightbox .close {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 60px;   /* ou plus selon besoin */
-  padding: 15px;
-  z-index: 1000;
-  cursor: pointer;
-  color: white;
+  #lightbox .close {
+  font-size: 70px;
 }
 }
 
 @media (max-width: 480px) {
-  #lightbox .prev,
-  #lightbox .next {
-    display: none;
+  .prev, .next {
+    font-size: 35px;
+    padding: 8px;
   }
 
   #lightbox-img {
@@ -400,16 +386,8 @@ button:focus, .btn:focus {
   display: none;
 }
 
-#lightbox .close {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 60px;   /* ou plus selon besoin */
-  padding: 15px;
-  z-index: 1000;
-  cursor: pointer;
-  color: white;
+    #lightbox .close {
+  font-size: 70px;
 }
 }
 
@@ -717,78 +695,6 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
