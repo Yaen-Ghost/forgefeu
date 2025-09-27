@@ -267,7 +267,7 @@ button:focus, .btn:focus {
 
 @media (max-width: 590px) {
   .gallery-item { 
-    width: 25%;
+    width: 28%;
   }
 }
 
@@ -692,6 +692,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
