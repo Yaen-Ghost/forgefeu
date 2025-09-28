@@ -47,7 +47,7 @@ header {
   height: 50px;
   width: auto;
   display: block;
-  filter: drop-shadow(30px 10px 4px #4444dd);
+  filter: drop-shadow(5px 5px 1px black);
 }
 
 /* Navigation - desktop */
@@ -694,6 +694,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
