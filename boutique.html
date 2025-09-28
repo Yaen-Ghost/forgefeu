@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/favicon.ico">
+  <link rel="shortcut icon" href="images/favicon.ico">
+
   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   <title>Boutique</title>
 
   <!-- Font Awesome v6 complet, sans integrity tronqué -->
@@ -12,7 +18,18 @@
 </head>
 
 <body>
-  <header>
+  <!-- HEADER avec logo et navigation -->
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="Forgefeu Logo">
+    </a>
+
+    <!-- Hamburger pour mobile -->
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
+
+    <!-- Navigation -->
     <nav>
       <ul>
         <li><a href="index.html">Accueil</a></li>
@@ -22,7 +39,8 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-  </header>
+  </div>
+</header>
 
   <main>
     <h1>Boutique</h1>
@@ -155,5 +173,19 @@
       lightbox.style.display = "none";
     }
   </script>
+
+  <!-- Script Hamburger -->
+  <script>
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.innerHTML = navMenu.classList.contains('active')
+    ? '<i class="fas fa-times"></i>'
+    : '<i class="fas fa-bars"></i>';
+});
+</script>
+  
 </body>
 </html>
