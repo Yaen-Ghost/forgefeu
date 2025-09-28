@@ -688,7 +688,6 @@ form button:hover {
 .footer-bottom {
   background: #B13D20;
   text-align: center;
-  padding-top: 10px;
   font-size: 14px;
 }
 
@@ -705,6 +704,7 @@ form button:hover {
     padding: 0;
   }
 }
+
 
 
 
