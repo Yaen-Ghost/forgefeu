@@ -25,14 +25,7 @@ main {
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
-  background: linear-gradient(
-    to bottom,
-    #D15347 0%,
-    #D15347 30%,
-    #D15347 50%,
-    #D15347 70%,
-    #D15347 100%
-  );
+  background: #A3453C;
   padding: 15px 20px;
   position: sticky;
   top: 0;
@@ -700,6 +693,7 @@ footer {
   .footer-column { margin: 15px 0; }
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
