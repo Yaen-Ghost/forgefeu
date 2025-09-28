@@ -630,8 +630,8 @@ form button:hover {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background: #333;
-  color: #fff;
+  background: #B13D20;
+  color: white;
 }
 
 /* Colonnes */
@@ -659,11 +659,30 @@ form button:hover {
   margin: 4px 0;
 }
 
+.footer-column a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #E07A5F;
+  text-decoration: underline;
+}
+
 .social-icons {
   display: flex;
   justify-content: center;
   gap: 10px; /* au lieu de margin sur chaque icône */
 }
+
+.social-icons a {
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: color 0.3s;
+}
+.social-icons a:hover { color: #E07A5F; }
 
 /* Ligne du bas */
 .footer-bottom {
@@ -685,3 +704,4 @@ form button:hover {
     padding: 0;
   }
 }
+
