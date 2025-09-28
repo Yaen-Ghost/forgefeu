@@ -624,30 +624,25 @@ form button:hover {
 }
 
 
-/* ----------------- FOOTER ----------------- */
-footer {
-  background: #B13D20;
-  color: white;
-  padding: 30px 20px 10px;
-  flex-shrink: 0;
-}
 
+/* ----------------- FOOTER ----------------- */
 .footer-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1000px;
-  margin: 0 auto;
+  padding: 20px;
+  background: #333;
+  color: #fff;
 }
 
+/* Colonnes */
 .footer-column {
-  flex: 1 1 200px;
-  margin: 10px;
+  flex: 1;
+  padding: 0 10px;
 }
 
+/* Nettoyage des marges par défaut */
 .footer-column h4 {
-  margin-bottom: 10px;
-  color: #FFF2EE;
+  margin: 0 0 8px 0;
 }
 
 .footer-column ul {
@@ -656,47 +651,37 @@ footer {
   margin: 0;
 }
 
-.footer-column ul li { margin-bottom: 8px; }
-
-.footer-column a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s;
+.footer-column li {
+  margin: 4px 0;
 }
 
-.footer-column a:hover {
-  color: #E07A5F;
-  text-decoration: underline;
+.footer-column p {
+  margin: 4px 0;
 }
 
-.social-icons a {
-  color: white;
-  font-size: 1.5rem;
-  margin-right: 15px;
-  transition: color 0.3s;
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* au lieu de margin sur chaque icône */
 }
 
-.social-icons a:hover { color: #E07A5F; }
-
+/* Ligne du bas */
 .footer-bottom {
   text-align: center;
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: #ccc;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
+/* FOOTER - version mobile */
 @media (max-width: 700px) {
-
-  
-  .footer-container, 
-  .footer-column, 
-  .footer-container * {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 1px solid red; /* debug visuel */
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px; /* contrôle de l’espacement */
   }
 
-  .social-icons a { margin: 0 10px; }
+  .footer-column {
+    padding: 0;
+  }
 }
-
-
