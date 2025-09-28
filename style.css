@@ -691,46 +691,23 @@ footer {
     align-items: center;
     gap: 5px; /* espace uniforme entre colonnes */
   }
-  .footer-column { margin: 0px 0; }
-  .social-icons a { margin: 0 10px; }
+.footer-column h4 {
+  margin: 0 0 8px 0; /* supprime le margin-top et réduit le bottom */
 }
 
+.footer-column ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* si tu veux retirer les puces */
+}
 
+.footer-column p {
+  margin: 4px 0;
+}
 
+.footer-column li {
+  margin: 4px 0;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .social-icons a { margin: 0 10px; }
+}
