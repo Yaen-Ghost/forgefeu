@@ -689,11 +689,12 @@ footer {
   .footer-container {
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    gap: 10px; /* espace uniforme entre colonnes */
   }
-  .footer-column { margin: 15px 0; }
+  /*.footer-column { margin: 15px 0; }*/
   .social-icons a { margin: 0 10px; }
 }
+
 
 
 
