@@ -686,6 +686,7 @@ form button:hover {
 
 /* Ligne du bas */
 .footer-bottom {
+  background: #B13D20;
   text-align: center;
   margin-top: 10px;
   font-size: 14px;
@@ -704,4 +705,5 @@ form button:hover {
     padding: 0;
   }
 }
+
 
