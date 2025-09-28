@@ -684,7 +684,7 @@ form button:hover {
 }
 .social-icons a:hover { color: #E07A5F; }
 
- Ligne du bas 
+ /*Ligne du bas */
 .footer-bottom {
   background: #B13D20;
   text-align: center;
@@ -705,6 +705,7 @@ form button:hover {
     padding: 0;
   }
 }
+
 
 
 
