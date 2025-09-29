@@ -653,7 +653,8 @@ form button:hover {
 footer {
   background-color: #B13D20;        /* Couleur de fond */
   color: #f5f5f5;                /* Texte clair */
-  padding: 10px 20px 20px;       /* Espacement */
+  padding: 1px 20px 20px;       /* Espacement */
+  justify-content: center;
 }
 
 .footer-container {
@@ -738,6 +739,7 @@ footer {
     padding: 0;
   }
 }
+
 
 
 
