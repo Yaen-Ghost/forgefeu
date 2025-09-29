@@ -658,7 +658,8 @@ footer {
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 40px;                /* espace fixe entre les colonnes */
   padding: 20px;
   background: #B13D20;
   color: white;
@@ -738,6 +739,7 @@ footer {
     padding: 0;
   }
 }
+
 
 
 
