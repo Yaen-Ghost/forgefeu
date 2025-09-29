@@ -23,6 +23,11 @@ main {
   flex: 1 0 auto;
 }
 
+nav {
+  background: rgba(0, 128, 255, 0.2);
+}
+
+
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
   background: #A3453C;
@@ -724,6 +729,7 @@ form button:hover {
     padding: 0;
   }
 }
+
 
 
 
