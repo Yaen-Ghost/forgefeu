@@ -669,7 +669,7 @@ footer {
 
 /* Colonnes */
 .footer-column {
-  flex: 1;
+  flex: 0 0 auto;    /* largeur auto, ne s’étire pas */
   padding: 0 10px;
   margin: 10px;
 }
@@ -739,6 +739,7 @@ footer {
     padding: 0;
   }
 }
+
 
 
 
