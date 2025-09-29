@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>{{ page.title }} | {{ site.title }}</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ '/images/favicon.ico' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/images/favicon.ico' | relative_url }}">
+  <link rel="shortcut icon" href="{{ '/images/favicon.ico' | relative_url }}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Ton CSS -->
+  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <!-- Logo -->
+      <a href="{{ '/' | relative_url }}" class="logo">
+        <img src="{{ '/images/logo.png' | relative_url }}" alt="Forgefeu Logo">
+      </a>
+
+      <!-- Hamburger pour mobile -->
+      <div class="hamburger"><i class="fas fa-bars"></i></div>
+
+      <!-- Navigation -->
+      <nav>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Accueil</a></li>
+          <li><a href="{{ '/galerie/' | relative_url }}">Portfolio</a></li>
+          <li><a href="{{ '/boutique/' | relative_url }}">Boutique</a></li>
+          <li><a href="{{ '/about/' | relative_url }}">À propos</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="{{ '/mentions/' | relative_url }}">Mentions légales</a></li>
+          <li><a href="{{ '/cgv/' | relative_url }}">Conditions générales de vente</a></li>
+          <li><a href="{{ '/confidentialite/' | relative_url }}">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <p><a href="mailto:tonmail@example.com">tonmail@example.com</a></p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Suivez-moi</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <p class="footer-bottom">&copy; 2025 Forgefeu</p>
+    </div>
+  </footer>
+
+  <!-- Script Hamburger -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.innerHTML = navMenu.classList.contains('active')
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+  </script>
+
+</body>
+</html>
