@@ -10,9 +10,6 @@ url: "https://www.forgefeu.fr"
 # Base URL (laisse vide si ton site est directement à la racine du domaine)
 baseurl: ""
 
-# Thème par défaut (fourni par GitHub Pages)
-theme: minima
-
 # Paramètres pour générer des URLs propres (sans .html)
 permalink: pretty
 
