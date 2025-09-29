@@ -23,10 +23,6 @@ main {
   flex: 1 0 auto;
 }
 
-nav {
-  background: rgba(0, 128, 255, 0.2);
-}
-
 
 /* ----------------- HEADER + NAVIGATION ----------------- */
 header {
@@ -283,8 +279,6 @@ button:focus, .btn:focus {
 .gallery-menu {
   display: block !important;
   position: relative;
-  z-index: 9999;
-  background: #333; /* pour bien voir si le bloc apparaît */
   color: white;
   padding: 10px;
 }
@@ -733,6 +727,7 @@ form button:hover {
     padding: 0;
   }
 }
+
 
 
 
