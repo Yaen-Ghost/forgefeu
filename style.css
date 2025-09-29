@@ -654,12 +654,11 @@ footer {
   background-color: #B13D20;        /* Couleur de fond */
   color: #f5f5f5;                /* Texte clair */
   padding: 1px 20px 20px;       /* Espacement */
-  justify-content: center;
 }
 
 .footer-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 20px;
   background: #B13D20;
   color: white;
@@ -739,6 +738,7 @@ footer {
     padding: 0;
   }
 }
+
 
 
 
