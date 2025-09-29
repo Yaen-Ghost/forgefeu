@@ -1,0 +1,23 @@
+# Nom de ton site
+title: "Forgefeu"
+
+# Description (utile pour SEO et métadonnées)
+description: "Mon site portfolio pour impression de figurines 3D"
+
+# URL racine (ton domaine custom ou celui de GitHub Pages)
+url: "https://www.forgefeu.fr"
+
+# Base URL (laisse vide si ton site est directement à la racine du domaine)
+baseurl: ""
+
+# Thème par défaut (fourni par GitHub Pages)
+theme: minima
+
+# Paramètres pour générer des URLs propres (sans .html)
+permalink: pretty
+
+# Exclure certains fichiers/dossiers du build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
