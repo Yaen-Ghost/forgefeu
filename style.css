@@ -295,6 +295,10 @@ button:focus, .btn:focus {
     min-width: 100px; /* largeur minimale pour rester lisibles */
     margin: 5px 0;    /* évite qu’ils se collent verticalement */
   }
+
+.gallery-section nav {
+  display: block !important;
+}
 }
 
 
@@ -729,6 +733,7 @@ form button:hover {
     padding: 0;
   }
 }
+
 
 
 
