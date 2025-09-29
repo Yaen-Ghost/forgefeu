@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
+  ---
+layout: default
+title: À propos
+permalink: /about/
+---
+
+# À propos
+Ceci est ma page à propos.
+
 <head>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.ico">
@@ -97,6 +107,7 @@ hamburger.addEventListener('click', () => {
   
 </body>
 </html>
+
 
 
 
