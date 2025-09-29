@@ -705,7 +705,6 @@ footer {
 
 .social-icons {
   display: flex;
-  justify-content: center;
   gap: 10px; /* au lieu de margin sur chaque icône */
 }
 
@@ -739,5 +738,6 @@ footer {
     padding: 0;
   }
 }
+
 
 
