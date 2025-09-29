@@ -1,48 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="images/favicon.ico">
-  <link rel="apple-touch-icon" href="images/favicon.ico">
-  <link rel="shortcut icon" href="images/favicon.ico">
-
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>Boutique</title>
-
-  <!-- Font Awesome v6 complet, sans integrity tronqué -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Ton CSS -->
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-  <!-- HEADER avec logo et navigation -->
-<header>
-  <div class="header-container">
-    <!-- Logo -->
-    <a href="index.html" class="logo">
-      <img src="images/logo.png" alt="Forgefeu Logo">
-    </a>
-
-    <!-- Hamburger pour mobile -->
-    <div class="hamburger"><i class="fas fa-bars"></i></div>
-
-    <!-- Navigation -->
-    <nav>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="galerie.html">Portfolio</a></li>
-        <li><a href="boutique.html">Boutique</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-  <main>
+---
+layout: default
+title: "Boutique"
+permalink: /boutique/
+---
     <h1>Boutique</h1>
     <p>Découvrez mes figurines disponibles à la vente. Pour commander, contactez-moi directement par mail.</p>
 
@@ -68,39 +28,6 @@
         <p class="price">40 €</p>
       </div>
     </div>
-  </main>
-
-<footer>
-  <div class="footer-container">
-    <!-- Colonne 1 : Informations légales -->
-    <div class="footer-column">
-      <h4>Informations</h4>
-      <ul>
-        <li><a href="mentions.html">Mentions légales</a></li>
-        <li><a href="cgv.html">Conditions générales de vente</a></li>
-        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
-      </ul>
-    </div>
-
-    <!-- Colonne 2 : Contact -->
-    <div class="footer-column">
-      <h4>Contact</h4>
-      <p><a href="mailto:tonmail@example.com">tonmail@example.com</a></p>
-    </div>
-
-    <!-- Colonne 3 : Réseaux sociaux -->
-    <div class="footer-column">
-      <h4>Suivez-moi</h4>
-      <div class="social-icons">
-        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <p class="footer-bottom">&copy; 2025 Forgefeu</p>
-</footer>
 
   <!-- Lightbox -->
   <div id="shop-lightbox" class="shop-lightbox">
@@ -173,19 +100,3 @@
       lightbox.style.display = "none";
     }
   </script>
-
-  <!-- Script Hamburger -->
-  <script>
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('nav');
-
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  hamburger.innerHTML = navMenu.classList.contains('active')
-    ? '<i class="fas fa-times"></i>'
-    : '<i class="fas fa-bars"></i>';
-});
-</script>
-  
-</body>
-</html>
