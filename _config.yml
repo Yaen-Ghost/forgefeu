@@ -5,7 +5,7 @@ title: "Forgefeu"
 description: "Mon site portfolio pour impression de figurines 3D"
 
 # URL racine (ton domaine custom ou celui de GitHub Pages)
-url: "https://www.forgefeu.fr"
+url: "https://www.forgefeu.fr/accueil"
 
 # Base URL (laisse vide si ton site est directement à la racine du domaine)
 baseurl: ""
