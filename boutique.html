@@ -6,6 +6,11 @@ permalink: /boutique/
     <h1>Boutique</h1>
     <p>Découvrez mes figurines disponibles à la vente. Pour commander, contactez-moi directement par mail.</p>
 
+<section class="shop">
+  <h1>Boutique</h1>
+  <div id="shop-container" class="shop-container"></div>
+</section>
+
     <div class="shop">
       <!-- Produit 1 -->
       <div class="product">
@@ -121,5 +126,22 @@ permalink: /boutique/
       closeShopLightbox();
     }
   });
+
+          // Script qui permet de dupliquer les produits de mon javascript
+      const shopContainer = document.getElementById("shop-container");
+
+products.forEach((product, index) => {
+  const card = document.createElement("div");
+  card.classList.add("product");
+
+  card.innerHTML = `
+    <img src="${product.img}" alt="${product.title}" onclick="openShopLightbox(${index})">
+    <h3>${product.title}</h3>
+    <p class="price">${product.price}</p>
+  `;
+
+  shopContainer.appendChild(card);
+});
+
 </script>
 
