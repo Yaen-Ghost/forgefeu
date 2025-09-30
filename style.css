@@ -758,13 +758,10 @@ footer {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
+/* ----------------- PAGE EN CONSTRUCTION ----------------- */
+.construction img {
+  width: 100%;      /* occupe toute la largeur disponible */
+  height: auto;     /* conserve les proportions */
+  display: block;   /* évite l'espace blanc sous l'image */
+  max-width: 100%;  /* empêche de dépasser */
+}
