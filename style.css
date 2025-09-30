@@ -425,6 +425,15 @@ button:focus, .btn:focus {
 
 
 /* ----------------- BOUTIQUE ----------------- */
+
+/* Indispensable pour recentrer les images de la boutique en grille */
+.shop-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
 .shop {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -748,6 +757,7 @@ footer {
     padding: 0;
   }
 }
+
 
 
 
