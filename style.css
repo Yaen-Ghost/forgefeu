@@ -375,15 +375,24 @@ button:focus, .btn:focus {
 
 /* ----------------- MOBILE ----------------- */
 @media (max-width: 768px) {
-  #lightbox .prev, #lightbox .next {
-    font-size: 40px;
-    padding: 10px;
-    left: 10px;
-    right: 10px;
-  }
 
-  #lightbox .prev { left: 10px; }
-  #lightbox .next { right: 10px; }
+  #lightbox .prev {
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 10px;  /* 10px depuis le bord gauche */
+  transform: translateY(-50%);
+  z-index: 1001; 
+  }
+  
+  #lightbox .next {
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  right: 10px; /* 10px depuis le bord droit */
+  transform: translateY(-50%);
+  z-index: 1001; 
+  }
 
   #lightbox-img {
     max-height: 70vh;
@@ -739,6 +748,7 @@ footer {
     padding: 0;
   }
 }
+
 
 
 
