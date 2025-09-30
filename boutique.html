@@ -114,5 +114,12 @@ permalink: /boutique/
       closeShopLightbox();
     }
   });
+
+      // ✅ Fermeture avec la touche Échap
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      closeShopLightbox();
+    }
+  });
 </script>
 
