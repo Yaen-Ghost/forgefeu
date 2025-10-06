@@ -31,8 +31,8 @@ main {
   top: 0;
   left: 0;
   width: 100%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #A3453C;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   z-index: 1000;
   transition: all 0.4s ease;
 }
@@ -51,19 +51,20 @@ main {
   height: 80px;          /* logo grand au départ */
   transform: translateY(15%); /* dépasse du header */
   transition: all 0.4s ease;
+  filter: drop-shadow(2px 2px 3px black);
 }
 
 /* MENU */
 .main-nav a {
   margin-left: 20px;
   text-decoration: none;
-  color: #333;
+  color: white;
   font-weight: bold;
   transition: color 0.3s;
 }
 
 .main-nav a:hover {
-  color: #D15347;
+  color: #E07A5F;
 }
 
 /* EFFET SCROLL */
@@ -79,6 +80,14 @@ main {
 
 .header-scrolled .header-content {
   padding: 10px 5%;
+}
+
+/* Hamburger button - hidden on desktop */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
 }
 
 /* ----------------- MOBILE ----------------- */
@@ -759,6 +768,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
