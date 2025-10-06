@@ -24,112 +24,60 @@ main {
 }
 
 
-/* ----------------- HEADER + NAVIGATION ----------------- */
-header {
-  background: #A3453C;
-  padding: 15px 20px;
-  position: sticky;
+/* HEADER DE BASE */
+#main-header {
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
 }
 
-/* Header container */
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
+/* CONTENU INTERNE */
+.header-content {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 20px 5%;
+  position: relative;
 }
 
-/* Logo */
-.logo img {
-  height: 50px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(2px 2px 3px black);
+/* LOGO FLOTTANT */
+.logo {
+  height: 120px;          /* logo grand au départ */
+  transform: translateY(30%); /* dépasse du header */
+  transition: all 0.4s ease;
 }
 
-/* Navigation - desktop */
-/* menu visible par défaut sur PC */
-nav {
-  display: block;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-
-nav li {
-  margin: 0 20px;
-}
-
-nav a {
-  color: white;
-  font-weight: 600;
+/* MENU */
+.main-nav a {
+  margin-left: 20px;
   text-decoration: none;
+  color: #333;
+  font-weight: bold;
   transition: color 0.3s;
 }
 
-nav a:hover {
-  color: #E07A5F;
+.main-nav a:hover {
+  color: #D15347;
 }
 
-/* Hamburger button - hidden on desktop */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  color: white;
-  cursor: pointer;
+/* EFFET SCROLL */
+.header-scrolled {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
-/* ----------------- MOBILE ----------------- */
-@media screen and (max-width: 768px) {
-
-  /* cacher le menu par défaut sur mobile */
-  nav {
-    display: none;
-  }
-
-  /* afficher le menu quand on clique */
-  nav.active {
-    display: block;
-    position: absolute;
-    top: 70px; /* ajuste selon la hauteur de ton header */
-    left: 0;
-    width: 100%;
-    background-color: #A3453C; /* arrière-plan */
-  }
-
-  /* afficher le hamburger sur mobile */
-  .hamburger {
-    display: block;
-  }
-
-  /* rendre le menu vertical sur mobile */
-  nav ul {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-  }
-
-  nav ul li {
-    list-style: none;
-    border-bottom: 1px solid white;
-    padding: 10px;
-  }
-
-  nav ul li a {
-    text-decoration: none;
-    color: white;
-  }
+.header-scrolled .logo {
+  height: 60px;            /* réduit la taille du logo */
+  transform: translateY(0); /* logo rentre dans le header */
 }
+
+
+
 
 /* ----------------- HERO ----------------- */
 .hero {
@@ -765,3 +713,4 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
