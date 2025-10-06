@@ -39,7 +39,7 @@ main {
 
 /* CONTENU INTERNE */
 .header-content {
-  display: block;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px 5%;
@@ -782,6 +782,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
