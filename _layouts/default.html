@@ -19,28 +19,18 @@
 <body>
 
   <!-- HEADER -->
-  <header>
-    <div class="header-container">
-      <!-- Logo -->
-      <a href="{{ '/' | relative_url }}" class="logo">
-        <img src="{{ '/images/logo.png' | relative_url }}" alt="Forgefeu Logo">
-      </a>
+<header id="main-header">
+  <div class="header-content">
+    <img src="{{ '/images/logo.png' | relative_url }}" alt="Forgefeu" class="logo">
+    <nav class="main-nav">
+      <a href="/">Accueil</a>
+      <a href="/boutique">Boutique</a>
+      <a href="/galerie">Galerie</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-      <!-- Hamburger pour mobile -->
-      <div class="hamburger"><i class="fas fa-bars"></i></div>
-
-      <!-- Navigation -->
-      <nav>
-        <ul>
-          <li><a href="{{ '/' | relative_url }}">Accueil</a></li>
-          <li><a href="{{ '/galerie/' | relative_url }}">Portfolio</a></li>
-          <li><a href="{{ '/boutique/' | relative_url }}">Boutique</a></li>
-          <li><a href="{{ '/apropos/' | relative_url }}">À propos</a></li>
-          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
   <main>
     {{ content }}
@@ -86,6 +76,17 @@
         : '<i class="fas fa-bars"></i>';
     });
   </script>
+<!-- Script Header -->
+  <script>
+window.addEventListener("scroll", function() {
+  const header = document.getElementById("main-header");
+  if (window.scrollY > 50) {
+    header.classList.add("header-scrolled");
+  } else {
+    header.classList.remove("header-scrolled");
+  }
+});
+</script>
 
 </body>
 </html>
