@@ -55,6 +55,20 @@ main {
 }
 
 /* MENU */
+/* Navigation - desktop */
+/* menu visible par défaut sur PC */
+main-nav {
+  display: block;
+}
+
+main-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
 .main-nav a {
   margin-left: 20px;
   text-decoration: none;
@@ -768,6 +782,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
