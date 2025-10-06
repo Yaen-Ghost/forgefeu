@@ -76,6 +76,9 @@ main {
   transform: translateY(0); /* logo rentre dans le header */
 }
 
+.header-scrolled .header-content {
+  padding: 10px 5%;
+}
 
 
 
@@ -713,4 +716,5 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
