@@ -188,7 +188,12 @@ main {
   max-width: 700px;
   padding: 20px;
   text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.hero h1 {
   font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: white;
 }
 
 /* ----------------- BOUTONS ----------------- */
@@ -785,6 +790,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
