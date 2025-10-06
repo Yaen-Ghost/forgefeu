@@ -57,11 +57,11 @@ main {
 /* MENU */
 /* Navigation - desktop */
 /* menu visible par défaut sur PC */
-main-nav {
+.main-nav {
   display: block;
 }
 
-main-nav ul {
+.main-nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -782,6 +782,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
