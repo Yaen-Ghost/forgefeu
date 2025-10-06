@@ -188,6 +188,7 @@ main {
   max-width: 700px;
   padding: 20px;
   text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  font-family: 'Dancing Script', cursive;
 }
 
 /* ----------------- BOUTONS ----------------- */
@@ -784,6 +785,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
