@@ -21,6 +21,7 @@ body {
 
 main {
   flex: 1 0 auto;
+  padding-top: 130px; /* à changer si je change la taille du header */
 }
 
 
@@ -48,7 +49,7 @@ main {
 /* LOGO FLOTTANT */
 .logo {
   height: 80px;          /* logo grand au départ */
-  transform: translateY(20%); /* dépasse du header */
+  transform: translateY(10%); /* dépasse du header */
   transition: all 0.4s ease;
 }
 
@@ -716,6 +717,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
