@@ -41,14 +41,14 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 5%;
+  padding: 0px 5%;
   position: relative;
 }
 
 /* LOGO FLOTTANT */
 .logo {
   height: 120px;          /* logo grand au départ */
-  transform: translateY(30%); /* dépasse du header */
+  transform: translateY(50%); /* dépasse du header */
   transition: all 0.4s ease;
 }
 
@@ -716,5 +716,6 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
