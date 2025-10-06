@@ -25,10 +25,11 @@
           <!-- Hamburger pour mobile -->
       <div class="hamburger"><i class="fas fa-bars"></i></div>
     <nav class="main-nav">
-      <a href="/">Accueil</a>
-      <a href="/boutique">Boutique</a>
-      <a href="/galerie">Galerie</a>
-      <a href="/contact">Contact</a>
+      <a href="{{ '/' | relative_url }}">Accueil</a>
+      <a href="{{ '/galerie/' | relative_url }}">Portfolio</a>
+      <a href="{{ '/boutique/' | relative_url }}">Boutique</a>
+      <a href="{{ '/apropos/' | relative_url }}">À propos</a>
+      <a href="{{ '/contact/' | relative_url }}">Contact</a>
     </nav>
   </div>
 </header>
