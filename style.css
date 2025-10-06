@@ -108,12 +108,12 @@ main {
 @media screen and (max-width: 768px) {
 
   /* cacher le menu par défaut sur mobile */
-  nav {
+  main-nav {
     display: none;
   }
 
   /* afficher le menu quand on clique */
-  nav.active {
+  main-nav.active {
     display: block;
     position: absolute;
     top: 70px; /* ajuste selon la hauteur de ton header */
@@ -128,20 +128,20 @@ main {
   }
 
   /* rendre le menu vertical sur mobile */
-  nav ul {
+  main-nav ul {
     display: flex;
     flex-direction: column;
     padding: 0;
     margin: 0;
   }
 
-  nav ul li {
+  main-nav ul li {
     list-style: none;
     border-bottom: 1px solid white;
     padding: 10px;
   }
 
-  nav ul li a {
+  main-nav ul li a {
     text-decoration: none;
     color: white;
   }
@@ -782,6 +782,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
