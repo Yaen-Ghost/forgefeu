@@ -37,13 +37,15 @@ function buildUrls(resource) {
   const fullBase = resource.secure_url ? resource.secure_url :
     `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
-  if (fullBase.includes("/upload/")) {
-    const thumb = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/");
-    const full = fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/");
-    return { thumb, full, caption: resource.public_id.split("/").pop() };
-  }
-  return { thumb: fullBase, full: fullBase, caption: resource.public_id.split("/").pop() };
+  const thumb = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/") : fullBase;
+  const full = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/") : fullBase;
+
+  // Récupère la description depuis les metadata (context.custom.description) si elle existe
+  const description = resource.context?.custom?.description || "";
+
+  return { thumb, full, caption: resource.public_id.split("/").pop(), description };
 }
+
 
 /* ---------- Masonry init ---------- */
 function initMasonry() {
