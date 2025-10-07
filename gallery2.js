@@ -198,7 +198,7 @@ function openLightbox(index) {
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
-  lightboxCaption.textContent = imgObj.caption || "";
+  lightboxCaption.textContent = imgObj.description || "";
 }
 function closeLightbox() {
   lightbox.style.display = "none";
