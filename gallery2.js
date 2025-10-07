@@ -40,12 +40,11 @@ function buildUrls(resource) {
   const thumb = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/") : fullBase;
   const full = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/") : fullBase;
 
-  // Récupère la description depuis les metadata (context.custom.description) si elle existe
-  const description = resource.context?.custom?.description || "";
+  // description depuis metadata si disponible, sinon fallback sur caption
+  const description = resource.context?.custom?.description || resource.public_id.split("/").pop() || "";
 
   return { thumb, full, caption: resource.public_id.split("/").pop(), description };
 }
-
 
 
 /* ---------- Masonry init ---------- */
