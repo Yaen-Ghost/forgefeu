@@ -34,6 +34,7 @@ function extractTagFromButton(btn) {
 }
 
 function buildUrls(resource) {
+  console.log(resource); // <--- Vérifie ici
   const fullBase = resource.secure_url ? resource.secure_url :
     `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
