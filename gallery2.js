@@ -41,7 +41,7 @@ function buildUrls(resource) {
   const full = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/") : fullBase;
 
   // description depuis metadata si disponible, sinon fallback sur caption
-  const description = resource.context?.custom?.description || resource.public_id.split("/").pop() || "";
+  const description = resource.context?.custom?.description?.alt || resource.public_id.split("/").pop() || "";
 
   return { thumb, full, caption: resource.public_id.split("/").pop(), description };
 }
@@ -200,7 +200,7 @@ function openLightbox(index) {
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
-  lightboxCaption.textContent = imgObj.description || "";
+  lightboxCaption.textContent = imgObj.description.alt || "";
 }
 function closeLightbox() {
   lightbox.style.display = "none";
