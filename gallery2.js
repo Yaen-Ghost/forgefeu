@@ -201,6 +201,7 @@ function openLightbox(index) {
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
+  console.log("Description à afficher :", imgObj.description);
   lightboxCaption.textContent = imgObj.description || "";
 }
 function closeLightbox() {
