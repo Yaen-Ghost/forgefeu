@@ -40,8 +40,8 @@ function buildUrls(resource) {
   const thumb = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/") : fullBase;
   const full = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/") : fullBase;
 
-  // description depuis metadata si disponible, sinon fallback sur caption
-  const description = resource.context?.custom?.description || resource.public_id.split("/").pop() || "";
+  // Récupère la description depuis les metadata (context.custom.description) si elle existe
+  const description = resource.context?.custom?.description || "";
 
   return { thumb, full, caption: resource.public_id.split("/").pop(), description };
 }
@@ -201,7 +201,6 @@ function openLightbox(index) {
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
-  console.log("Description à afficher :", imgObj.description);
   lightboxCaption.textContent = imgObj.description || "";
 }
 function closeLightbox() {
