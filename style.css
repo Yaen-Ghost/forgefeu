@@ -363,10 +363,6 @@ button:focus, .btn:focus {
   z-index: 2200;
 }
 
-#lightbox-caption {
-  display: none;
-}
-
 
 /* Flèches lightbox */
 .prev, .next {
@@ -790,6 +786,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
