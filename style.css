@@ -334,6 +334,7 @@ button:focus, .btn:focus {
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  flex-direction: column; /* ✅ image + texte verticalement */
 }
 
 .lightbox-content {
@@ -350,6 +351,7 @@ button:focus, .btn:focus {
   max-height: 80vh;
   object-fit: contain;
   border-radius: 10px;
+  margin-bottom: 1rem; /* ✅ espace au-dessus de la description */
 }
 
 #lightbox .close {
@@ -363,6 +365,13 @@ button:focus, .btn:focus {
   z-index: 2200;
 }
 
+#lightbox-caption {
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.4;
+}
 
 /* Flèches lightbox */
 .prev, .next {
@@ -786,6 +795,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
