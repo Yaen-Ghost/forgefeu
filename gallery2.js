@@ -34,17 +34,28 @@ function extractTagFromButton(btn) {
 }
 
 function buildUrls(resource) {
-  const fullBase = resource.secure_url ? resource.secure_url :
-    `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
+  const fullBase = resource.secure_url
+    ? resource.secure_url
+    : `https://res.cloudinary.com/${cloudName}/image/upload/${resource.public_id}.${resource.format}`;
 
-  const thumb = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/") : fullBase;
-  const full = fullBase.includes("/upload/") ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/") : fullBase;
+  const thumb = fullBase.includes("/upload/")
+    ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_400/")
+    : fullBase;
 
-  // description depuis metadata si disponible, sinon fallback sur caption
-  const description = resource.context?.custom?.description || resource.public_id.split("/").pop() || "";
+  const full = fullBase.includes("/upload/")
+    ? fullBase.replace("/upload/", "/upload/f_auto,q_auto,c_limit,w_1600/")
+    : fullBase;
+
+  // ✅ Cloudinary "Description (alt)" = resource.context?.alt
+  const description =
+    resource.context?.alt ||
+    resource.context?.custom?.description ||
+    resource.public_id.split("/").pop() ||
+    "";
 
   return { thumb, full, caption: resource.public_id.split("/").pop(), description };
 }
+
 
 
 /* ---------- Masonry init ---------- */
