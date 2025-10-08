@@ -211,7 +211,7 @@ function openLightbox(index) {
 function updateLightbox() {
   const imgObj = currentImages[currentIndex];
   lightboxImg.src = imgObj.full;
-  lightboxCaption.textContent = imgObj.description || "";
+  lightboxCaption.innerHTML = imgObj.description || "";
 }
 function closeLightbox() {
   lightbox.style.display = "none";
