@@ -464,10 +464,6 @@ button:focus, .btn:focus {
     max-height: 60vh;
   }
 
-  #lightbox-caption {
-  display: none;
-}
-
     #lightbox .close {
   font-size: 70px;
 }
@@ -816,6 +812,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
