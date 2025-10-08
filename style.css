@@ -373,6 +373,27 @@ button:focus, .btn:focus {
   line-height: 1.4;
 }
 
+#lightbox-caption a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 8px 16px;
+  border: 1px solid #ff6600;
+  border-radius: 6px;
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#lightbox-caption a:hover {
+  background-color: #ff6600;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+}
+
+
+
 /* Flèches lightbox */
 .prev, .next {
   position: absolute;
@@ -795,6 +816,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
