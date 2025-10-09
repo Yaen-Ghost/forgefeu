@@ -25,7 +25,7 @@ main {
 }
 
 
-/* HEADER DE BASE */
+/* ----------------- HEADER DE BASE ------------------------------------------------------------------------------------ */
 #main-header {
   position: fixed;
   top: 0;
@@ -150,7 +150,7 @@ main {
 }
 
 
-/* ----------------- HERO ----------------- */
+/* ----------------- HERO ------------------------------------------------------------------------------------ */
 .hero {
   position: relative;
   height: 65vh;
@@ -218,7 +218,7 @@ button:focus, .btn:focus {
   outline: none;
 }
 
-/* ----------------- GALERIE ----------------- */
+/* ----------------- GALERIE ------------------------------------------------------------------------------------ */
 .gallery-menu {
   text-align: center;
   margin: 20px 0;
@@ -471,7 +471,7 @@ button:focus, .btn:focus {
 
 
 
-/* ----------------- BOUTIQUE ----------------- */
+/* ----------------- BOUTIQUE ------------------------------------------------------------------------------------ */
 
 /* Indispensable pour recentrer les images de la boutique en grille */
 .shop-container {
@@ -568,7 +568,120 @@ button:focus, .btn:focus {
   cursor: pointer;
 }
 
-/* ----------------- FORMULAIRE MODERNE ----------------- */
+/* ----------------- A PROPOS ------------------------------------------------------------------------------------ */
+
+
+.apropos-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  color: #2a2a2a;
+  font-family: sans-serif;
+}
+
+.apropos-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.apropos-image {
+  flex: 1 1 45%;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.apropos-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.apropos-image img:hover {
+  transform: scale(1.05);
+}
+
+.apropos-intro {
+  flex: 1 1 50%;
+}
+
+.apropos-intro h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.intro-texte {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.btn-contact {
+  display: inline-block;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-contact:hover {
+  background-color: #333;
+}
+
+/* Blocs sous la section principale */
+
+.apropos-blocs {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.bloc {
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.bloc:hover {
+  transform: translateY(-8px);
+}
+
+.bloc-image {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.bloc-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.bloc-texte {
+  padding: 24px;
+}
+
+.bloc-texte h3 {
+  margin-bottom: 16px;
+  font-size: 1.75rem;
+}
+
+.bloc-texte p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+/* ----------------- FORMULAIRE MODERNE ------------------------------------------------------------------------------------ */
 .contact-section {
   max-width: 600px;
   margin: 40px auto;
@@ -713,7 +826,7 @@ form button:hover {
 
 
 
-/* ----------------- FOOTER ----------------- */
+/* ----------------- FOOTER ------------------------------------------------------------------------------------ */
 /* Footer général */
 footer {
   background-color: #B13D20;        /* Couleur de fond */
@@ -805,13 +918,14 @@ footer {
   }
 }
 
-/* ----------------- PAGE EN CONSTRUCTION ----------------- */
+/* ----------------- PAGE EN CONSTRUCTION ------------------------------------------------------------------------------------ */
 .construction img {
   width: 100%;      /* occupe toute la largeur disponible */
   height: auto;     /* conserve les proportions */
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
