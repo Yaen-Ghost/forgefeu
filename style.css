@@ -570,115 +570,72 @@ button:focus, .btn:focus {
 
 /* ----------------- A PROPOS ------------------------------------------------------------------------------------ */
 
-
-.apropos-section {
+.about-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px;
-  color: #2a2a2a;
-  font-family: sans-serif;
-}
-
-.apropos-header {
+  padding: 100px 20px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.about-block {
+  display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
-.apropos-image {
+.about-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-image {
   flex: 1 1 45%;
+  border-radius: 20px;
   overflow: hidden;
-  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-.apropos-image img {
+.about-image img {
   width: 100%;
   height: auto;
+  display: block;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 
-.apropos-image img:hover {
+.about-image img:hover {
   transform: scale(1.05);
 }
 
-.apropos-intro {
-  flex: 1 1 50%;
+.about-text {
+  flex: 1 1 45%;
 }
 
-.apropos-intro h2 {
-  font-size: 2.8rem;
+.about-text h2 {
+  font-size: 2.4rem;
   margin-bottom: 20px;
+  color: #222;
 }
 
-.intro-texte {
+.about-text p {
   font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.btn-contact {
-  display: inline-block;
-  background-color: #000;
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-}
-
-.btn-contact:hover {
-  background-color: #333;
-}
-
-/* Blocs sous la section principale */
-
-.apropos-blocs {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-}
-
-.bloc {
-  background-color: #f9f9f9;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s;
-}
-
-.bloc:hover {
-  transform: translateY(-8px);
-}
-
-.bloc-image {
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.bloc-image img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.bloc-texte {
-  padding: 24px;
-}
-
-.bloc-texte h3 {
+  line-height: 1.7;
+  color: #555;
   margin-bottom: 16px;
-  font-size: 1.75rem;
 }
 
-.bloc-texte p {
-  font-size: 1rem;
-  line-height: 1.5;
+@media (max-width: 900px) {
+  .about-block,
+  .about-block.reverse {
+    flex-direction: column;
+  }
+  .about-image, .about-text {
+    flex: 1 1 100%;
+  }
 }
+
 
 
 /* ----------------- FORMULAIRE MODERNE ------------------------------------------------------------------------------------ */
@@ -925,6 +882,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
