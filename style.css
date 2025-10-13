@@ -596,7 +596,6 @@ button:focus, .btn:focus {
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
-  height: 400px;
 }
 
 .about-block:nth-child(1) .about-image {
@@ -906,6 +905,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
