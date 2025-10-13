@@ -910,12 +910,18 @@ footer {
   color: #222;
 }
 
-/* Article container */
+.cgv h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #111;
+}
+
 .cgv-article {
   margin-bottom: 3rem;
 }
 
-/* Title styling */
 .cgv-article h2 {
   font-size: 1.3rem;
   font-weight: 700;
@@ -923,39 +929,56 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* Purple "Article X :" prefix */
 .cgv-article h2 span {
-  color: #F8845A; /* Orange doux, modifiable */
+  color: #F8845A; /* orange doux titre */
 }
 
-/* Paragraphs */
+.cgv-article h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
 .cgv-article p {
   margin-bottom: 1rem;
   text-align: justify;
 }
 
-/* Bold text for key terms */
+.cgv-article ul {
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
+  list-style: none;
+}
+
+.cgv-article ul li::before {
+  content: "• ";
+  color: #F8845A;
+}
+
 .cgv-article strong {
   color: #000;
 }
 
-/* Optional subtle border between articles */
 .cgv-article:not(:last-child) {
   border-bottom: 1px solid #eee;
   padding-bottom: 2rem;
 }
 
-/* Responsive spacing */
 @media (max-width: 600px) {
   .cgv {
     padding: 0 1rem;
   }
 
+  .cgv h1 {
+    font-size: 1.6rem;
+  }
+
   .cgv-article h2 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }
-
 
 /* ----------------- PAGE EN CONSTRUCTION ------------------------------------------------------------------------------------ */
 .construction img {
@@ -964,4 +987,5 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
