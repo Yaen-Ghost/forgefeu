@@ -593,10 +593,10 @@ button:focus, .btn:focus {
 .about-image {
   position: relative;
   flex: 1 1 45%;
-  border-radius: 12px;
+  border-radius: 50px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  transform: rotate(-1deg);
+  transform: rotate(-5deg);
   transition: transform 0.3s ease;
 }
 
@@ -889,6 +889,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
