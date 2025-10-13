@@ -898,6 +898,65 @@ footer {
   }
 }
 
+
+/* ----------------- CGV ------------------------------------------------------------------------------------ */
+
+.cgv {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.7;
+  color: #222;
+}
+
+/* Article container */
+.cgv-article {
+  margin-bottom: 3rem;
+}
+
+/* Title styling */
+.cgv-article h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+/* Purple "Article X :" prefix */
+.cgv-article h2 span {
+  color: #F8845A; /* Orange doux, modifiable */
+}
+
+/* Paragraphs */
+.cgv-article p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Bold text for key terms */
+.cgv-article strong {
+  color: #000;
+}
+
+/* Optional subtle border between articles */
+.cgv-article:not(:last-child) {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2rem;
+}
+
+/* Responsive spacing */
+@media (max-width: 600px) {
+  .cgv {
+    padding: 0 1rem;
+  }
+
+  .cgv-article h2 {
+    font-size: 1.1rem;
+  }
+}
+
+
 /* ----------------- PAGE EN CONSTRUCTION ------------------------------------------------------------------------------------ */
 .construction img {
   width: 100%;      /* occupe toute la largeur disponible */
@@ -905,44 +964,4 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
