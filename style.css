@@ -603,11 +603,22 @@ button:focus, .btn:focus {
 .about-image {
   position: relative;
   flex: 1 1 45%;
-  border-radius: 100px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   transform: rotate(-5deg);
   transition: transform 0.3s ease;
+}
+
+.about-block:nth-child(1) .about-image {
+  border-radius: 40px 8px 20px 0;
+}
+
+.about-block:nth-child(2) .about-image {
+  border-radius: 10px 30px 0 40px;
+}
+
+.about-block:nth-child(3) .about-image {
+  border-radius: 50px 0 30px 10px;
 }
 
 .about-image:hover {
@@ -899,6 +910,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
