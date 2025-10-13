@@ -959,7 +959,7 @@ footer {
 }
 
 .cgv-article ul li::before {
-  content: "✓";                  /* Encoche */
+  content: "✔";                  /* Encoche */
   position: absolute;
   left: 0;
   top: 0.15rem;
@@ -998,6 +998,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
