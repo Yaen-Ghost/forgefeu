@@ -883,7 +883,6 @@ footer {
   text-align: center;
   font-size: 14px;
   width: 100%;
-  margin-top: 10px;
 }
 
 /* FOOTER - version mobile */
@@ -1076,6 +1075,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
