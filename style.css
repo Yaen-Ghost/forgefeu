@@ -991,6 +991,87 @@ footer {
   }
 }
 
+/* ----------------- Mentions légales & Politique de confidentialité ------------------------------------------------------------------------------------ */
+
+.legal {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.7;
+  color: #222;
+}
+
+.legal h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 4rem 0 3rem;
+  color: #111;
+}
+
+.legal-article {
+  margin-bottom: 3rem;
+}
+
+.legal-article h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+.legal-article h2 span {
+  color: #F8845A; /* orange doux */
+}
+
+.legal-article p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.legal-article ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.legal-article ul li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.legal-article ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  color: #F8845A;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.legal-article:not(:last-child) {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+  .legal {
+    padding: 0 1rem;
+  }
+
+  .legal h1 {
+    font-size: 1.6rem;
+  }
+
+  .legal-article h2 {
+    font-size: 1.15rem;
+  }
+}
+
+
 /* ----------------- PAGE EN CONSTRUCTION ------------------------------------------------------------------------------------ */
 .construction img {
   width: 100%;      /* occupe toute la largeur disponible */
@@ -998,6 +1079,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
