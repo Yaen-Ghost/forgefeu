@@ -159,6 +159,7 @@ main {
   align-items: center;
   text-align: center;
   overflow: hidden;
+  margin-bottom: 0;
 }
 
 .hero-img {
@@ -812,6 +813,8 @@ footer {
   background-color: #B13D20;        /* Couleur de fond */
   color: #f5f5f5;                /* Texte clair */
   padding: 1px 20px 20px;       /* Espacement */
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .footer-container {
@@ -881,7 +884,6 @@ footer {
   font-size: 14px;
   width: 100%;
   margin-top: 10px;
-  padding-top: 15px;
 }
 
 /* FOOTER - version mobile */
@@ -1074,6 +1076,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
