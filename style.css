@@ -1052,11 +1052,6 @@ footer {
   font-size: 1rem;
 }
 
-.legal-article:not(:last-child) {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 2rem;
-}
-
 @media (max-width: 600px) {
   .legal {
     padding: 0 1rem;
@@ -1079,6 +1074,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
