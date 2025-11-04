@@ -22,6 +22,12 @@ body {
 main {
   flex: 1 0 auto;
   padding-top: 88px; /* à changer si je change la taille du header */
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+main > *:last-child {
+  margin-bottom: 0 !important;
 }
 
 
@@ -1075,6 +1081,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
