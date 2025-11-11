@@ -18,6 +18,7 @@ permalink: /boutique/
         <h2 id="shop-title"></h2>
         <p id="shop-price"></p>
         <p id="shop-description"></p>
+      <p id="shop-creator" class="creator-text"></p>
         <div class="share">
           <p>Partager :</p>
           <a id="share-facebook" target="_blank">Facebook</a> |
@@ -35,7 +36,9 @@ permalink: /boutique/
       img: "{{ '/images/cerises1.jpg' | relative_url }}",
       title: "Noël - Chat dans une boîte",
       price: "10 €",
-      description: "Une décoration de sapin représentant un chat dans une boîte. Figurine non peinte."
+      description: "Une décoration de sapin représentant un chat dans une boîte. Figurine non peinte.",
+      creatorName: "ForgeFeu",
+      creatorUrl: "https://instagram.com/forgefeu3d"
     },
     {
       img: "{{ '/images/cerises1.jpg' | relative_url }}",
@@ -93,6 +96,12 @@ permalink: /boutique/
     lightboxTitle.textContent = product.title;
     lightboxPrice.textContent = product.price;
     lightboxDesc.textContent = product.description;
+
+     // ➜ Ajout du créateur
+  document.getElementById("shop-creator").innerHTML =
+    `<a href="${product.creatorUrl}" target="_blank" rel="noopener" class="creator-btn">
+       ${product.creatorName}
+     </a>`;
 
     // Mettre à jour les liens de partage
     const pageUrl = window.location.href;
