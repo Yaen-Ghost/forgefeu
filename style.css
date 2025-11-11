@@ -575,6 +575,20 @@ button:focus, .btn:focus {
   cursor: pointer;
 }
 
+.creator-btn {
+  background: #D15347;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.creator-btn:hover { background: #E07A5F; }
+.creator-btn.active { background: #8C2F23; }
+
 /* ----------------- A PROPOS ------------------------------------------------------------------------------------ */
 
 .about-section {
@@ -1081,6 +1095,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
