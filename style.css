@@ -585,6 +585,7 @@ button:focus, .btn:focus {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  text-decoration: none;
 }
 .creator-btn:hover { background: #E07A5F; }
 .creator-btn.active { background: #8C2F23; }
@@ -1095,6 +1096,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
