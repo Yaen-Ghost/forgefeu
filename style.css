@@ -173,7 +173,7 @@ main > *:last-child {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   z-index: 0;
   opacity: 0.85; /* légèrement estompée */
 }
@@ -589,6 +589,76 @@ button:focus, .btn:focus {
 }
 .creator-btn:hover { background: #E07A5F; }
 .creator-btn.active { background: #8C2F23; }
+
+
+/* 🌙 Responsive : Lightbox sur mobile */
+@media (max-width: 768px) {
+
+  .shop-lightbox-content {
+    flex-direction: column;     /* empile image et texte */
+    align-items: center;
+    padding: 15px;
+    width: 95%;
+    max-height: 90vh;           /* garde un peu d’espace */
+    overflow-y: auto;           /* scroll si texte long */
+  }
+
+  .shop-lightbox-img img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .shop-lightbox-info {
+    width: 100%;
+    margin-top: 15px;
+    text-align: center;
+    justify-content: flex-start;
+  }
+
+  .shop-lightbox-info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .shop-lightbox-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .share {
+    margin-top: 15px;
+  }
+
+  .share a {
+    display: inline-block;
+    margin: 5px;
+    font-size: 0.95rem;
+  }
+
+  .shop-lightbox .close {
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+  }
+
+  .creator-btn {
+    margin: 15px auto 0;
+    display: inline-block;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-lightbox-info h2 {
+    font-size: 1.2rem;
+  }
+  .shop-lightbox-info p {
+    font-size: 0.95rem;
+  }
+}
+
 
 /* ----------------- A PROPOS ------------------------------------------------------------------------------------ */
 
@@ -1096,6 +1166,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
