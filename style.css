@@ -527,10 +527,24 @@ button:focus, .btn:focus {
   z-index: 2000;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);        /* 💎 flou d’arrière-plan */
+  -webkit-backdrop-filter: blur(10px); /* pour Safari */
   justify-content: center;
   align-items: center;
   animation: fadeIn 0.3s ease;
+}
+
+/* ✨ Animations de la lightbox */
+@keyframes lightboxFadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .shop-lightbox-content {
@@ -541,7 +555,11 @@ button:focus, .btn:focus {
   width: 90%;
   padding: 20px;
   gap: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: lightboxFadeZoom 0.35s ease; /* 👈 ajoute l’animation */
+  transform-origin: center center;
 }
+
 
 .shop-lightbox-img img {
   max-width: 400px;
@@ -568,12 +586,20 @@ button:focus, .btn:focus {
 .shop-lightbox .close {
   position: absolute;
   top: 20px;
-  right: 40px;
-  font-size: 40px;
-  font-weight: bold;
-  color: white;
+  right: 30px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #E07A5F;               /* 🧡 couleur accent ForgeFeu */
   cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+  z-index: 2100;
 }
+
+.shop-lightbox .close:hover {
+  color: #FFB997;               /* plus clair au survol */
+  transform: scale(1.15);
+}
+
 
 .creator-btn {
   background: #D15347;
@@ -637,11 +663,12 @@ button:focus, .btn:focus {
     font-size: 0.95rem;
   }
 
-  .shop-lightbox .close {
-    top: 10px;
-    right: 15px;
-    font-size: 32px;
-  }
+.shop-lightbox .close {
+  top: 10px;
+  right: 15px;
+  font-size: 32px;
+  color: #E07A5F;
+}
 
   .creator-btn {
     margin: 15px auto 0;
@@ -1166,6 +1193,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
