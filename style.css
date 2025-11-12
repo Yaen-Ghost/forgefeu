@@ -205,8 +205,7 @@ main > *:last-child {
 
 .hero,
 main {
-  margin: 0;
-  padding: 0;
+  margin-bottom: 0;
 }
 
 /* ----------------- BOUTONS ----------------- */
@@ -1199,6 +1198,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
