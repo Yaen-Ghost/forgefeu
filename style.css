@@ -202,6 +202,15 @@ main > *:last-child {
   color: white;
 }
 
+/* 🔧 Corrige la marge sous le hero sur la page d’accueil */
+.home main {
+  padding-top: 0 !important;
+  margin: 0 !important;
+  background-color: #B13D20; /* même fond que le footer */
+  color: white;
+}
+
+
 /* ----------------- BOUTONS ----------------- */
 button, .btn {
   display: inline-block;
@@ -1192,6 +1201,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
