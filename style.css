@@ -210,6 +210,10 @@ main > *:last-child {
   color: white;
 }
 
+body.home main {
+  padding-top: 0;
+}
+
 
 /* ----------------- BOUTONS ----------------- */
 button, .btn {
@@ -1201,6 +1205,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
