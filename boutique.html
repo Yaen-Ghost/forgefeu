@@ -102,13 +102,6 @@ permalink: /boutique/
        ${product.creatorName}
      </a>`;
 
-    // Mettre à jour les liens de partage
-    const pageUrl = window.location.href;
-    document.getElementById("share-facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-    document.getElementById("share-twitter").href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${product.title}`;
-    document.getElementById("share-instagram").href = `https://www.instagram.com/`;
-    document.getElementById("share-link").href = pageUrl;
-
     lightbox.style.display = "flex";
   }
 
