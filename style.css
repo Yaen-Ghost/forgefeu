@@ -514,7 +514,7 @@ button:focus, .btn:focus {
 
 .product img {
   width: 100%;
-  height: 180px;
+  height: auto;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
@@ -1201,6 +1201,7 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
+
 
 
 
