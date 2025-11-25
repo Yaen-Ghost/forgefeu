@@ -1193,6 +1193,81 @@ footer {
   }
 }
 
+/* ----------------- F.A.Q. --------------------------------------------------------- */
+
+.faq-container {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.7;
+  color: #222;
+}
+
+.faq-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #111;
+}
+
+.faq-item {
+  margin-bottom: 3rem;
+}
+
+.faq-item h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+.faq-item h2 span {
+  color: #F8845A; /* orange doux */
+}
+
+.faq-item p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.faq-item ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.faq-item ul li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.faq-item ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  color: #F8845A;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .faq-container {
+    padding: 0 1rem;
+  }
+
+  .faq-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .faq-item h2 {
+    font-size: 1.15rem;
+  }
+}
+
 
 /* ----------------- PAGE EN CONSTRUCTION ------------------------------------------------------------------------------------ */
 .construction img {
@@ -1201,34 +1276,3 @@ footer {
   display: block;   /* évite l'espace blanc sous l'image */
   max-width: 100%;  /* empêche de dépasser */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
